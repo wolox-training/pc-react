@@ -3,10 +3,17 @@
 @import 'variables/_fonts';
 @import 'variables/_sizes';
 
+* {
+  font-family: $font;
+}
+
 .navbar {
-  position: fixed;
+  background: white;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: $nav-height;
+  padding: 0 15px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   display: flex;
@@ -15,13 +22,41 @@
   -webkit-box-shadow: 0 8px 6px 0 $grey;
   -moz-box-shadow: 0 8px 6px 0 $grey;
   box-shadow: 0 8px 6px 0 $grey;
-  padding: 0 15px;
 }
 
 h1 {
-  font: $font-big $font;
+  font-size: $font-big;
 }
 
 .wolox-logo {
   width: 200px;
+}
+
+.main-section {
+  margin: 40px;
+}
+
+.technology-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+h2 {
+  font-size : $font-medium;
+  margin-left: -35px;
+}
+
+.technology-list {
+
+}
+
+.tech-logo {
+    height: $tech-logo-size;
+    width: $tech-logo-size;
+}
+
+.triangle {
+    height: $triangle-height;
+    width: $triangle-width;
 }
