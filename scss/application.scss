@@ -1,14 +1,4 @@
 @import 'equalizer';
-
-$blue: #00ADEE;
-$green: #BED23C;
-$grey: #C4C4C4;
-$tech-logo-size: 100px;
-$triangle-width: 100px;
-$triangle-height: 90px;
-$footer-height: 30vh;
-$font: "Roboto";
-$nav-height: 90px;
-$font-big: 24px;
-$font-medium: 16px;
-$font-small: 12px;
+@import 'variables/_colors';
+@import 'variables/_fonts';
+@import 'variables/_sizes';
