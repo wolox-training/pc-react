@@ -1,20 +1,31 @@
 @import 'equalizer';
-
-$blue: #00ADEE;
-$green: #BED23C;
-$grey: #C4C4C4;
-$tech-logo-size: 100px;
-$triangle-width: 100px;
-$triangle-height: 90px;
-$footer-height: 30vh;
-$font: "Roboto";
-$nav-height: 90px;
-$font-big: 24px;
-$font-medium: 16px;
-$font-small: 12px;
+@import 'variables/_colors';
+@import 'variables/_fonts';
+@import 'variables/_sizes';
 
 .navbar {
   position: fixed;
   width: 100%;
   height: $nav-height;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-box-shadow: 0 8px 6px 0 $grey;
+  -moz-box-shadow: 0 8px 6px 0 $grey;
+  box-shadow: 0 8px 6px 0 $grey;
+  padding: 0 15px;
+}
+
+.navbar > * {
+
+}
+
+h1 {
+  font: $font-big $font;
+}
+
+.wolox-logo {
+  width: 200px;
 }
