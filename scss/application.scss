@@ -12,3 +12,9 @@ $nav-height: 90px;
 $font-big: 24px;
 $font-medium: 16px;
 $font-small: 12px;
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  height: $nav-height;
+}
