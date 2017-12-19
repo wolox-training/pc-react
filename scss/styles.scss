@@ -1,0 +1,23 @@
+.navbar {
+  position: sticky;
+  top:0;
+  width: 100%;
+  height: $nav-height;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-box-shadow: 0 5px 10px 0 $grey;
+  -moz-box-shadow: 0 5px 10px 0 $grey;
+  box-shadow: 0 5px 10px $grey;
+  padding: 0 15px;
+}
+
+.title-big {
+  font-size: $font-big;
+}
+
+.wolox-logo {
+  width: 200px;
+}

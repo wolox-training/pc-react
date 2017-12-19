@@ -1,27 +1,5 @@
-@import 'equalizer';
 @import 'variables/_colors';
 @import 'variables/_fonts';
 @import 'variables/_sizes';
-
-.navbar {
-  position: fixed;
-  width: 100%;
-  height: $nav-height;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  -webkit-box-shadow: 0 8px 6px 0 $grey;
-  -moz-box-shadow: 0 8px 6px 0 $grey;
-  box-shadow: 0 8px 6px 0 $grey;
-  padding: 0 15px;
-}
-
-h1 {
-  font: $font-big $font;
-}
-
-.wolox-logo {
-  width: 200px;
-}
+@import 'equalizer';
+@import 'styles';
