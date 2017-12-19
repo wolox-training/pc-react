@@ -1,0 +1,52 @@
+.navbar {
+  position: sticky;
+  top:0;
+  width: 100%;
+  height: $nav-height;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-box-shadow: 0 5px 10px 0 $grey;
+  -moz-box-shadow: 0 5px 10px 0 $grey;
+  box-shadow: 0 5px 10px $grey;
+  padding: 0 15px;
+}
+
+.title-big {
+  font-size: $font-big;
+}
+
+.wolox-logo {
+  width: 200px;
+}
+
+.main-section {
+  margin: 40px;
+}
+
+.technology-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title-medium {
+  font-size : $font-medium;
+  margin-left: -35px;
+}
+
+.technology-list {
+
+}
+
+.tech-logo {
+    height: $tech-logo-size;
+    width: $tech-logo-size;
+}
+
+.triangle {
+    height: $triangle-height;
+    width: $triangle-width;
+}

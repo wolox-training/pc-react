@@ -3,7 +3,7 @@ $equalizer-grey: #999;
 
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: $font;
   margin: 0;
   padding: 0;
 }
@@ -90,4 +90,3 @@ li {
   color: $equalizer-grey;
   opacity: 1;
 }
-
