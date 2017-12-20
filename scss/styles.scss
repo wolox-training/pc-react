@@ -9,11 +9,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  -webkit-box-shadow: 0 5px 10px 0 $grey;
-  -moz-box-shadow: 0 5px 10px 0 $grey;
+  -webkit-box-shadow: 0 5px 10px $grey;
+  -moz-box-shadow: 0 5px 10px $grey;
   box-shadow: 0 5px 10px $grey;
   padding: 0 15px;
-	z-index: 2
+  z-index: 2;
+  margin-bottom: 75px;
 }
 
 .title-big {
@@ -25,28 +26,36 @@
 }
 
 .main-section {
-  margin: 0 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  max-width: 1040px;
+  margin: auto;
 }
 
 .technology-group {
-	margin: 100px 0 40px 0;
+  &:not(:first-child){
+    margin-top: 100px;
+  }
 }
 
 .title-medium {
   font-size: $font-big;
-	position: relative;
-}
+  position: relative;
 
-.title-medium:before {
-	content: "";
-	display: inline-block;
-	background: url("../assets/triangle.svg") no-repeat;
-	height: $triangle-height;
-	width: $triangle-width;
-	position: absolute;
-	top: -35px;
-	left: -50px;
-	z-index: -1;
+  &:before {
+    content: "";
+    display: inline-block;
+    background: url("../assets/triangle.svg") no-repeat;
+    height: $triangle-height;
+    width: $triangle-width;
+    position: absolute;
+    top: -35px;
+    left: -50px;
+    z-index: -1;
+  }
 }
 
 .technology-list {
@@ -61,60 +70,65 @@
   width: 220px;
   height: 320px;
   margin: 50px 20px;
-	padding: 0 15px;
+  padding: 0 15px;
   border: 1px solid $green;
   border-radius: 5px;
   font-size: $font-small;
-	text-align: center;
-	position: relative;
-}
+  text-align: center;
+  position: relative;
 
-.technology-card:before {
-	content: "";
-	display: inline-block;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	top: 10px;
-	left: 10px;
-	border-radius: 5px;
-	background-color: $green;
-	z-index: -1;
-}
+  &:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 10px;
+    left: 10px;
+    border-radius: 5px;
+    background-color: $green;
+    z-index: -1;
+  }
 
-.technology-card:hover:before {
-	top: 0;
-	left: 0;
+  &:hover{
+    &::before {
+      top: 0;
+      left: 0;
+    }
+  }
 }
 
 .tech-logo {
-	height: $tech-logo-size;
+  height: $tech-logo-size;
   width: $tech-logo-size;
-	margin: 20px 0 5px 0;
+  margin: 20px 0 5px;
 }
 
 .tech-title {
-	margin: 5px;
-	font-size: $font-medium;
+  margin: 5px;
+  font-size: $font-medium;
+  display: block;
 }
 
 .tech-release {
-	font-weight: bold;
-	margin: 10px;
+  font-weight: bold;
+  margin: 10px;
 }
 
 .tech-description {
-	margin: 20px 5px;
+  margin: 20px 5px;
 }
 
 .footer-contact {
 	height: $footer-height;
 	background-color: $blue;
-  padding: 20px 0 0;
 	color: white;
+	text-align: center;
+	vertical-align: middle;
+  padding: 50px 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -127,8 +141,8 @@
 .text-contact {
   margin: 5px 0;
 	border-radius: 5px;
-  height: 32px;
-  width: 17.5%;
+  height: 30px;
+  width: 350px;
 }
 
 .button-contact {
