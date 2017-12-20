@@ -106,3 +106,19 @@
 .tech-description {
 	margin: 20px 5px;
 }
+
+.footer-contact {
+	height: $footer-height;
+	background-color: $blue;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.title-contact {
+	font-size: $font-big;
+	color: white;
+}
+.text-contact {
+	border-radius: 5px;
+}
