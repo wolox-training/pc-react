@@ -13,6 +13,7 @@
   -moz-box-shadow: 0 5px 10px 0 $grey;
   box-shadow: 0 5px 10px $grey;
   padding: 0 15px;
+	z-index: 2
 }
 
 .title-big {
@@ -24,18 +25,28 @@
 }
 
 .main-section {
-  margin: 40px;
+  margin: 0 140px;
 }
 
-.technology-title {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+.technology-group {
+	margin: 100px 0 40px 0;
 }
 
 .title-medium {
   font-size: $font-big;
-  margin-left: -33px;
+	position: relative;
+}
+
+.title-medium:before {
+	content: "";
+	display: inline-block;
+	background: url("../assets/triangle.svg") no-repeat;
+	height: $triangle-height;
+	width: $triangle-width;
+	position: absolute;
+	top: -35px;
+	left: -50px;
+	z-index: -1;
 }
 
 .technology-list {
@@ -47,20 +58,39 @@
 }
 
 .technology-card {
-  width: 200px;
-  height: 300px;
+  width: 220px;
+  height: 320px;
   margin: 50px 20px;
-  background-color: $green;
-  border: 1px solid $blue;
+	padding: 0 15px;
+  border: 1px solid $green;
   border-radius: 5px;
   font-size: $font-small;
 	text-align: center;
+	position: relative;
+}
+
+.technology-card:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 10px;
+	left: 10px;
+	border-radius: 5px;
+	background-color: $green;
+	z-index: -1;
+}
+
+.technology-card:hover:before {
+	top: 0;
+	left: 0;
 }
 
 .tech-logo {
 	height: $tech-logo-size;
   width: $tech-logo-size;
-	margin: 10px 0 5px 0;
+	margin: 20px 0 5px 0;
 }
 
 .tech-title {
@@ -75,9 +105,4 @@
 
 .tech-description {
 	margin: 20px 5px;
-}
-
-.triangle {
-  height: $triangle-height;
-  width: $triangle-width;
 }
