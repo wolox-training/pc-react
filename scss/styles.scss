@@ -1,4 +1,5 @@
 .navbar {
+  background-color: white;
   position: sticky;
   top:0;
   width: 100%;
@@ -33,20 +34,50 @@
 }
 
 .title-medium {
-  font-size : $font-medium;
-  margin-left: -35px;
+  font-size: $font-big;
+  margin-left: -33px;
 }
 
 .technology-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
 
+.technology-card {
+  width: 200px;
+  height: 300px;
+  margin: 50px 20px;
+  background-color: $green;
+  border: 1px solid $blue;
+  border-radius: 5px;
+  font-size: $font-small;
+	text-align: center;
 }
 
 .tech-logo {
-    height: $tech-logo-size;
-    width: $tech-logo-size;
+	height: $tech-logo-size;
+  width: $tech-logo-size;
+	margin: 10px 0 5px 0;
+}
+
+.tech-title {
+	margin: 5px;
+	font-size: $font-medium;
+}
+
+.tech-release {
+	font-weight: bold;
+	margin: 10px;
+}
+
+.tech-description {
+	margin: 20px 5px;
 }
 
 .triangle {
-    height: $triangle-height;
-    width: $triangle-width;
+  height: $triangle-height;
+  width: $triangle-width;
 }
