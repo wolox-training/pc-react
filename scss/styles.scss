@@ -73,6 +73,7 @@
   font-size: $font-small;
   text-align: center;
   position: relative;
+  border-radius: 5px;
   &:first-child {
     display: flex;
     justify-content: center;
@@ -144,4 +145,25 @@
   color: white;
   font-size: $font-medium;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .title-big {
+    display: none;
+  }
+
+  .technology-list {
+    display: block;
+  }
+
+  .technology-card {
+    width: 220px;
+    border-bottom: 2px solid $green;
+    &:first-child {
+      border-right: none;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
