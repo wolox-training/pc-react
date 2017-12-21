@@ -62,7 +62,7 @@
 .technology-list {
   display: grid;
   grid-template-columns: repeat(3, 220px);
-  grid-template-rows: repeat(2, 320px);
+  grid-template-rows: repeat(2, 340px);
   grid-column-gap: 15px;
 }
 
@@ -73,6 +73,7 @@
   font-size: $font-small;
   text-align: center;
   position: relative;
+  border-radius: 5px;
   &:first-child {
     display: flex;
     justify-content: center;
@@ -144,4 +145,25 @@
   color: white;
   font-size: $font-medium;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .title-big {
+    display: none;
+  }
+
+  .technology-list {
+    grid-template-columns: 220px;
+  }
+
+  .technology-card {
+    border-bottom: 2px solid $green;
+    &:first-child {
+      border-right: none;
+      grid-row-end: 2;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
