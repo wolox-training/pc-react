@@ -62,7 +62,7 @@
 .technology-list {
   display: grid;
   grid-template-columns: repeat(3, 220px);
-  grid-template-rows: repeat(2, 320px);
+  grid-template-rows: repeat(2, 340px);
   grid-column-gap: 15px;
 }
 
@@ -153,14 +153,14 @@
   }
 
   .technology-list {
-    display: block;
+    grid-template-columns: 220px;
   }
 
   .technology-card {
-    width: 220px;
     border-bottom: 2px solid $green;
     &:first-child {
       border-right: none;
+      grid-row-end: 2;
     }
     &:last-child {
       border-bottom: none;
