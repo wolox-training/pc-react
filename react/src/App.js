@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import BookList from './components/BookList';
 import BookFilters from './components/BookFilters';
+import filterFieldConstants from './constants/filterFieldConstants'
 import './styles.css';
 
 class App extends Component {
-  state = { filterType: 0, filterText: '' };
+  state = { filterField: filterFieldConstants.defaultFilterField, filterText: '' };
 
   handleTextFilter = (filterText) => this.setState({ filterText });
   handleFieldFilter = (filterField) => this.setState({ filterField });
