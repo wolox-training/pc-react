@@ -4,7 +4,7 @@ import {
   Route,
   NavLink
 } from 'react-router-dom';
-import './App.css';
+import './styles.css';
 
 import BookSearch from './screens/BookSearch';
 
