@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+.book-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row; }
+
+/*# sourceMappingURL=styles.css.map */

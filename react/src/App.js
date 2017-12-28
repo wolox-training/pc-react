@@ -1,34 +1,26 @@
 import React, { Component } from 'react';
 import BookList from './components/BookList';
 import BookFilters from './components/BookFilters';
-import './App.css';
-import 'roboto-npm-webfont';
+import './styles.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {filterType: 0, filterText: ""};
-    this.handleTextFilter = this.handleTextFilter.bind(this);
-    this.handleFieldFilter = this.handleFieldFilter.bind(this);
-  }
-  handleTextFilter(filterText) {
-    this.setState({filterText: filterText});
-  }
-  handleFieldFilter(filterField) {
-    this.setState({filterField: filterField});
-  }
+  state = { filterType: 0, filterText: '' };
+
+  handleTextFilter = (filterText) => this.setState({ filterText });
+  handleFieldFilter = (filterField) => this.setState({ filterField });
+
   render() {
     return (
-      <div className="bookSearch">
+      <div className="book-search">
         <BookFilters
-        filterField={this.state.filterField}
-        filterText={this.state.filterText}
-        onFilterTextChange={this.handleTextFilter}
-        onFilterFieldChange={this.handleFieldFilter}
+          filterField={this.state.filterField}
+          filterText={this.state.filterText}
+          onFilterTextChange={this.handleTextFilter}
+          onFilterFieldChange={this.handleFieldFilter}
         />
         <BookList
-        filterField={this.state.filterField}
-        filterText={this.state.filterText}
+          filterField={this.state.filterField}
+          filterText={this.state.filterText}
         />
       </div>
     );
