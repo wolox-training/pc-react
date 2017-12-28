@@ -1,5 +1,5 @@
 const filterFieldConstants = {
-  defaultFilterField: ""
+  DEFAULT_FILTER_FIELD: ""
 }
 
 export default filterFieldConstants;

@@ -15,14 +15,14 @@ class BookFilters extends Component {
           value={this.props.filterField}
           onChange={this.handleFilterFieldChange}
         >
-          <option value={filterFieldConstants.defaultFilterField} disabled hidden>{strings.selectFilter}</option>
+          <option value={filterFieldConstants.DEFAULT_FILTER_FIELD} disabled hidden>{strings.selectFilter}</option>
           <option value="title">{strings.title}</option>
           <option value="author">{strings.author}</option>
         </select>
         <input type="text"
           value={this.props.filterText}
           onChange={this.handleFilterTextChange}
-          placeholder={strings.filter + "..."}
+          placeholder={`${strings.filter}...`}
         />
         <div className="search-image-container">
           <img src={search_image} alt={strings.filter} className="search-image" />
