@@ -16,11 +16,12 @@
   height: 232px;
   margin: 35px;
   padding: 3px;
-  cursor: pointer;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   position: relative;
+  text-decoration: none !important;
+  color: black;
 
   &:hover:before{
     border: 3px solid $green;
@@ -45,6 +46,7 @@
   width: 100%;
   font-family: $font;
   font-size: $font-medium;
+  font-style: normal;
   letter-spacing: 0px;
   line-height: 19px;
   margin: 10px 0 0 2px;

@@ -14,8 +14,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route path="/" component={BookSearch}/>
-          <Route path="/detail" component={BookDetail}/>
+          <Route exact path="/" component={BookSearch}/>
+          <Route path="/detail/:id(\d+)" component={BookDetail}/>
         </div>
       </Router>
     )
