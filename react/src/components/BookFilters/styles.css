@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+.book-filters {
+  max-width: 560px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 35px; }
+  .book-filters > * {
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background-color: #F4F4F4;
+    font-size: 14px;
+    width: 230px; }
+  .book-filters > select {
+    margin-right: 30px; }
+
+.search-image-container {
+  background-color: #A5CD39;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.search-image {
+  height: 65%; }
+
+/*# sourceMappingURL=styles.css.map */

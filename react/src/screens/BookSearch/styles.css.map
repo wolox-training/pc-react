@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,YAAa;EACX,SAAS,EAAE,KAAK;EAChB,MAAM,EAAE,MAAM",
+"sources": ["../../../scss/screens/BookSearch/styles.scss"],
+"names": [],
+"file": "styles.css"
+}
