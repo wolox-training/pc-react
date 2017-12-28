@@ -1,0 +1,38 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.book-filters {
+  max-width: 560px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 35px;
+
+  > * {
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background-color: $light-grey;
+    font-size: $font-medium;
+    width: 230px;
+  }
+
+  > select {
+    margin-right: 30px;
+  }
+
+}
+
+.search-image-container {
+  background-color: $green;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-image {
+  height: 65%;
+}
