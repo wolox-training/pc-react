@@ -3,8 +3,7 @@
   margin: 40px auto; }
   .book-detail > *:not(:last-child) {
     border-bottom: 2px solid #00ADEE;
-    margin-bottom: 30px;
-    padding-bottom: 30px; }
+    margin-bottom: 30px; }
 
 .green-subtitle {
   color: #A5CD39;

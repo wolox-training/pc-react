@@ -5,7 +5,7 @@
 .commentary {
   display: grid;
   grid-template-columns: 60px auto auto;
-  grid-template-rows: 25px 25px auto;
+  grid-template-rows: 30px 20px auto;
   margin: 20px 0;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .commentary-title {
-  margin-top: 10px;
+  margin: 10px 0 0;
   font-size: $font-medium;
   grid-row-start: 1;
   grid-row-end: 2;
@@ -25,7 +25,7 @@
 }
 
 .commentary-date {
-  margin-top: 5px;
+  margin: 0;
   font-size: $font-small;
   color: $dark-grey;
   font-weight: normal;
@@ -36,10 +36,9 @@
 }
 
 .commentary-text {
-  margin-top: 10px;
+  margin: 10px 0;
   font-size: $font-medium;
   color: $dark-grey;
-  margin: 0;
   grid-row-start: 3;
   grid-row-end: 4;
   grid-column-start: 2;
