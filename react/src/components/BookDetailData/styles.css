@@ -16,16 +16,16 @@
   color: #FFFFFF;
   font-weight: bold; }
 
-.book-title {
+.book-detail-title {
   font-size: 20px;
   margin: 5px 0; }
 
-.book-subtitle {
+.book-detail-subtitle {
   font-size: 16px;
   font-weight: normal;
   margin: 5px 0; }
 
-.book-summary {
+.book-detail-summary {
   font-size: 14px;
   color: #4A4A4A; }
 
