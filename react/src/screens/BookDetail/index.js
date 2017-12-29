@@ -1,15 +1,49 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import BookDetailCommentaries from '../../components/BookDetailCommentaries';
 import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
-import { NavLink } from 'react-router-dom';
+import {data} from '../../mock.js';
+import routes from '../../constants/routes';
+
 import './styles.css';
 
 class BookDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      errorInfo: null
+    };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // Catch errors in any child components and re-renders with an error message
+    this.setState({
+      error: error,
+      errorInfo: errorInfo
+    });
+  }
   render() {
+
+    if (this.state.error) {
+      // Fallback UI if an error occurs
+      return (
+        <div>
+          <h2>{"Oh-no! Something went wrong"}</h2>
+          <p className="red">
+            {this.state.error && this.state.error.toString()}
+          </p>
+          <div>{"Component Stack Error Details: "}</div>
+          <p className="red">{this.state.errorInfo.componentStack}</p>
+        </div>
+      );
+    }
+
     return (
-      <div>
-        <NavLink to="/" className="go-back">
+      <Fragment>
+        <NavLink to={routes.HOME} className="go-back">
           &lt; Volver
         </NavLink>
         <div className="book-detail">
@@ -17,7 +51,7 @@ class BookDetail extends Component {
           <BookDetailSuggestions />
           <BookDetailCommentaries  bookId={this.props.match.params.id}/>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

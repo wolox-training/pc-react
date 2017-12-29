@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import BookImage from '../../../BookImage';
+
 import './styles.css';
 
 class BookItem extends Component {

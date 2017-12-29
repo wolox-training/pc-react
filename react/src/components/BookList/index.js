@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+
 import BookItem from './components/BookItem';
-import './styles.css';
 import {data} from '../../mock.js';
+
+import './styles.css';
+
 
 class BookList extends Component {
   render() {

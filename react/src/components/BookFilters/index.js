@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import strings from './strings'
-import filterFieldConstants from '../../constants/filterFieldConstants'
-import './styles.css';
+
 import search_image from '../../assets/search.svg';
+import filterFieldConstants from '../../constants/filterFieldConstants'
+
+import './styles.css';
+import strings from './strings'
+
 
 class BookFilters extends Component {
   handleFilterTextChange = (e) => this.props.onFilterTextChange(e.target.value);
