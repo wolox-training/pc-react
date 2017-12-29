@@ -1,0 +1,45 @@
+.login-screen {
+  max-width: 550px;
+  margin: 20vh auto; }
+
+.login-title {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 0; }
+
+.login-field {
+  margin-bottom: 20px; }
+
+.login-field-title {
+  margin: 0 0 5px 5px;
+  font-size: 12px;
+  font-weight: normal; }
+
+.login-text {
+  height: 35px;
+  width: 100%;
+  border: 0;
+  background-color: #F4F4F4; }
+
+.login-text-error {
+  border: 1px solid #FF0000; }
+
+.error-message {
+  font-size: 12px;
+  color: #FF0000; }
+
+.login-submit-container {
+  width: 100%;
+  text-align: center; }
+
+.login-submit {
+  width: 200px;
+  height: 40px;
+  background-color: #00ADEE;
+  border: 0;
+  font-size: 20px;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin-top: 25px; }
+
+/*# sourceMappingURL=styles.css.map */
