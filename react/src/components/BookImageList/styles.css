@@ -1,0 +1,22 @@
+.book-image-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row; }
+
+.image-item {
+  margin: 35px;
+  position: relative; }
+  .image-item:hover:before {
+    border: 3px solid #A5CD39;
+    border-radius: 4px;
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    bottom: -3px;
+    left: -3px; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,40 @@
+@import 'variables/_colors';
+@import 'variables/_fonts';
+@import 'variables/_sizes';
+
+.book-detail-data {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+
+.book-detail-subdata {
+  margin: 0 20px;
+}
+
+.button-rent {
+  width: 200px;
+  height: 40px;
+  background-color: $blue;
+  border: 0;
+  font-size: $font-title;
+  color: $white;
+  font-weight: bold;
+}
+
+.book-title {
+  font-size: $font-title;
+  margin: 5px 0;
+}
+
+.book-subtitle {
+  font-size: $font-subtitle;
+  font-weight: normal;
+  margin: 5px 0;
+}
+
+.book-summary {
+  font-size: 14px;
+  color: $dark-grey;
+}

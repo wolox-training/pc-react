@@ -1,0 +1,13 @@
+.book-detail {
+  max-width: 800px;
+  margin: 40px auto; }
+  .book-detail > *:not(:last-child) {
+    border-bottom: 2px solid #00ADEE;
+    margin-bottom: 30px;
+    padding-bottom: 30px; }
+
+.green-subtitle {
+  color: #A5CD39;
+  font-size: 20px; }
+
+/*# sourceMappingURL=styles.css.map */

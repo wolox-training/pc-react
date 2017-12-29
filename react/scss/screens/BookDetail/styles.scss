@@ -1,0 +1,19 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.book-detail {
+  max-width: 800px;
+  margin: 40px auto;
+
+  & > *:not(:last-child){
+    border-bottom: 2px solid $blue;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+}
+
+.green-subtitle {
+  color: $green;
+  font-size: $font-title;
+}

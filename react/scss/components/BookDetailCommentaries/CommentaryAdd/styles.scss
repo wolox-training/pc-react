@@ -1,0 +1,31 @@
+@import 'variables/_colors';
+@import 'variables/_fonts';
+@import 'variables/_sizes';
+
+.add-commentary {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.form-commentary {
+  margin: 0 10px;
+  width: 100%;
+}
+
+.add-commentary-text {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.add-commentary-button {
+  width: 200px;
+  height: 40px;
+  background-color: $green;
+  border: 0;
+  font-size: $font-title;
+  color: $white;
+  font-weight: bold;
+  display: block;
+}

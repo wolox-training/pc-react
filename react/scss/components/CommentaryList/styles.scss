@@ -1,0 +1,47 @@
+@import 'variables/_colors';
+@import 'variables/_fonts';
+@import 'variables/_sizes';
+
+.commentary {
+  display: grid;
+  grid-template-columns: 60px auto auto;
+  grid-template-rows: 25px 25px auto;
+  margin: 20px 0;
+}
+
+.commentary-image {
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+
+.commentary-title {
+  margin-top: 10px;
+  font-size: $font-medium;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+}
+
+.commentary-date {
+  margin-top: 5px;
+  font-size: $font-small;
+  color: $dark-grey;
+  font-weight: normal;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+.commentary-text {
+  margin-top: 10px;
+  font-size: $font-medium;
+  color: $dark-grey;
+  margin: 0;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}

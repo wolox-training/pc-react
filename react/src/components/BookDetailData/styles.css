@@ -1,0 +1,32 @@
+.book-detail-data {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row; }
+
+.book-detail-subdata {
+  margin: 0 20px; }
+
+.button-rent {
+  width: 200px;
+  height: 40px;
+  background-color: #00ADEE;
+  border: 0;
+  font-size: 20px;
+  color: #FFFFFF;
+  font-weight: bold; }
+
+.book-title {
+  font-size: 20px;
+  margin: 5px 0; }
+
+.book-subtitle {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 5px 0; }
+
+.book-summary {
+  font-size: 14px;
+  color: #4A4A4A; }
+
+/*# sourceMappingURL=styles.css.map */

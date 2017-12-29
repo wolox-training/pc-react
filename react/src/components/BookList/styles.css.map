@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAIA,UAAW;EACT,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,UAAU;EAC3B,WAAW,EAAE,MAAM;EACnB,SAAS,EAAE,IAAI;EACf,cAAc,EAAE,GAAG",
+"sources": ["../../../scss/components/BookList/styles.scss"],
+"names": [],
+"file": "styles.css"
+}

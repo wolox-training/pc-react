@@ -1,120 +1,12 @@
 @import 'variables/_colors';
 @import 'variables/_fonts';
 @import 'variables/_sizes';
-
-.bookSearch {
-  max-width: 792px;
-  margin: 0 auto;
-}
-
-.bookItem {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  width: 120px;
-  height: 232px;
-  margin: 35px;
-  padding: 3px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  position: relative;
-  text-decoration: none !important;
-  color: black;
-
-  &:hover:before{
-    border: 3px solid $green;
-    border-radius: 4px;
-    display: inline-block;
-    content: '';
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    z-index: -1;
-  }
-}
-
-.bookList {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.bookTitle {
-  width: 100%;
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+* {
   font-family: $font;
-  font-size: $font-medium;
-  font-style: normal;
-  letter-spacing: 0px;
-  line-height: 19px;
-  margin: 10px 0 0 2px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
-.bookAuthor {
-  width: 100%;
-  font-family: $font;
-  font-weight: 400;
+.go-back {
   font-size: $font-small;
-  color: #4a4a4a;
-  letter-spacing: 0px;
-  line-height: 19px;
-  margin: 5px 0 0 2px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.bookImage {
-  max-width: 100%;
-  max-height: 100%;
-  margin: 0 auto;
-}
-
-.imageBackground {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 182px;
-  width: 100%;
-  background-color: $grey;
-}
-
-.bookFilters {
-  max-width: 559px;
-  height: 38px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 35px;
-
-  > * {
-    height: 100%;
-    padding: 0;
-    border: 0;
-    background-color: $light-grey;
-    font-size: $font-medium;
-    width: 230px;
-  }
-
-  > select {
-    margin-right: 30px;
-  }
-
-}
-
-.searchImageContainer {
-  background-color: $green;
-  width: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.searchImage {
-  height: 65%;
+  margin-left: 35px;
 }

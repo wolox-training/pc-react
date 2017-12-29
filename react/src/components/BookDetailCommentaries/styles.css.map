@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAIA,oBAAqB;EACnB,MAAM,EAAE,MAAM",
+"sources": ["../../../scss/components/BookDetailCommentaries/styles.scss"],
+"names": [],
+"file": "styles.css"
+}

@@ -1,0 +1,52 @@
+@import '../../../../variables/_colors';
+@import '../../../../variables/_fonts';
+@import '../../../../variables/_sizes';
+
+.book-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 120px;
+  height: 230px;
+  margin: 35px;
+  padding: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  position: relative;
+  text-decoration: none;
+
+  &:hover:before{
+    border: 3px solid $green;
+    border-radius: 4px;
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.book-author,
+.book-title {
+  width: 100%;
+  letter-spacing: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.book-title {
+  font-size: $font-medium;
+  color: $black;
+  margin: 10px 0 0 2px;
+}
+
+.book-author {
+  font-weight: 400;
+  font-size: $font-small;
+  color: $dark-grey;
+  margin: 5px 0 0 2px;
+}

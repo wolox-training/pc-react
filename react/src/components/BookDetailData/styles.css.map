@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAIA,iBAAkB;EAChB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,UAAU;EAC3B,WAAW,EAAE,MAAM;EACnB,cAAc,EAAE,GAAG;;AAGrB,oBAAqB;EACnB,MAAM,EAAE,MAAM;;AAGhB,YAAa;EACX,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,IAAI;EACZ,gBAAgB,EClBX,OAAO;EDmBZ,MAAM,EAAE,CAAC;EACT,SAAS,EEnBE,IAAI;EFoBf,KAAK,ECfC,OAAO;EDgBb,WAAW,EAAE,IAAI;;AAGnB,WAAY;EACV,SAAS,EEzBE,IAAI;EF0Bf,MAAM,EAAE,KAAK;;AAGf,cAAe;EACb,SAAS,EE7BK,IAAI;EF8BlB,WAAW,EAAE,MAAM;EACnB,MAAM,EAAE,KAAK;;AAGf,aAAc;EACZ,SAAS,EAAE,IAAI;EACf,KAAK,EClCK,OAAO",
+"sources": ["../../../scss/components/BookDetailData/styles.scss","../../../scss/variables/_colors.scss","../../../scss/variables/_fonts.scss"],
+"names": [],
+"file": "styles.css"
+}
