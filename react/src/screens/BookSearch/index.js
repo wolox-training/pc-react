@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
 import BookList from '../../components/BookList';
 import BookFilters from '../../components/BookFilters';
 import filterFieldConstants from '../../constants/filterFieldConstants'
+
 import './styles.css';
 
 class BookSearch extends Component {

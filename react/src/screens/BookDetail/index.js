@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import BookDetailCommentaries from '../../components/BookDetailCommentaries';
 import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
-import { NavLink } from 'react-router-dom';
+import {data} from '../../mock.js';
+import routes from '../../constants/routes';
+import withErrorCatch from '../../components/WithErrorCatch';
+
 import './styles.css';
 
 class BookDetail extends Component {
   render() {
     sessionStorage.clear();
     return (
-      <div>
-        <NavLink to="/" className="go-back">
+      <Fragment>
+        <NavLink to={routes.HOME()} className="go-back">
           &lt; Volver
         </NavLink>
         <div className="book-detail">
@@ -18,9 +23,9 @@ class BookDetail extends Component {
           <BookDetailSuggestions />
           <BookDetailCommentaries  bookId={this.props.match.params.id}/>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
 
-export default BookDetail;
+export default withErrorCatch(BookDetail);
