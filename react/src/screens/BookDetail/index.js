@@ -27,4 +27,4 @@ class BookDetail extends Component {
   }
 }
 
-export default (BookDetail);
+export default withErrorCatch(BookDetail);

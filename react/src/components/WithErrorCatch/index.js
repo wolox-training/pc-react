@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 
-export default function withErrorCatch(WrappedComponent) {
-  return class extends React.Component {
+function withErrorCatch(WrappedComponent) {
+  return class extends Component {
     state = { error: null, errorInfo: null }
 
     componentDidCatch(error, errorInfo) {
@@ -15,17 +15,19 @@ export default function withErrorCatch(WrappedComponent) {
       if (this.state.error) {
         // Fallback UI if an error occurs
         return (
-          <div>
+          <Fragment>
             <h2>{"Oh-no! Something went wrong"}</h2>
             <p className="red">
               {this.state.error && this.state.error.toString()}
             </p>
             <div>{"Component Stack Error Details: "}</div>
             <p className="red">{this.state.errorInfo.componentStack}</p>
-          </div>
+          </Fragment>
         );
       }
       return <WrappedComponent {...this.props} />;
     }
   };
 }
+
+export default withErrorCatch;
