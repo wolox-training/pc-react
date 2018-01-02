@@ -14,7 +14,11 @@ import Login from './screens/Login';
 import BookDetail from './screens/BookDetail';
 
 const Auth = () => {
-  return true;
+  const user = sessionStorage.getItem('user_session');
+  if(user){
+    return  true;
+  }
+  return false;
 };
 
 class Home extends Component {

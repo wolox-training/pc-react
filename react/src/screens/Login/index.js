@@ -13,9 +13,13 @@ class Login extends Component {
     }
 
     if(this.state.password.length < 8 || this.state.password.length > 52){
-      this.setState({errorPassword: 'El password debe tener entre 8 y 52 caracteres'});      
+      this.setState({errorPassword: 'El password debe tener entre 8 y 52 caracteres'});
     }else{
+      this.setState({errorPassword: ''});
+    }
 
+    if(!this.state.errorEmail && !this.state.errorPassword){
+      sessionStorage.setItem('user_session', this.state.email);
     }
   }
   handleEmailChange = (e) => { this.setState({email: e.target.value}); }
