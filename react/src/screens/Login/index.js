@@ -17,6 +17,8 @@ class Login extends Component {
     if(!errorEmail && !errorPassword){
       sessionStorage.setItem('user_session', this.state.email);
     }else{
+      errorEmail = errorEmail || '';
+      errorPassword = errorPassword || '';
       this.setState({errorEmail, errorPassword});
       e.preventDefault();
     }
@@ -25,6 +27,7 @@ class Login extends Component {
   handlePasswordChange = (e) => { this.setState({password: e.target.value}); }
 
   render() {
+    sessionStorage.clear();
     return (
       <div className="login-screen">
         <h1 className="login-title">{strings.login}</h1>

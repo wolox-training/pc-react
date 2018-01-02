@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path={routes.SIGNUP()} component={SignUp} />
+          <Route path={routes.SIGNUP()} render={() => { return (!isUserAuthenticated() ?  <SignUp /> : <Redirect to={routes.HOME()} />); }} />
           <Route path={routes.LOGIN()} render={() => { return (!isUserAuthenticated() ?  <Login /> : <Redirect to={routes.HOME()} />); }} />
           <Route path={routes.HOME()} render={() => { return (isUserAuthenticated() ?  <Dashboard /> : <Redirect to={routes.LOGIN()} />); }} />
         </Switch>

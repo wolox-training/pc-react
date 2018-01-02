@@ -17,7 +17,6 @@ class Dashboard extends Component {
         <Switch>
           <Route exact path={routes.HOME()} component={BookSearch}/>
           <Route path={routes.DETAIL()} component={BookDetail}/>
-          <Route path={routes.LOGIN()} render={() => {return <Redirect to={routes.HOME()} />;}} />
         </Switch>
       </Router>
     );

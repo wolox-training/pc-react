@@ -20,6 +20,10 @@ class SignUp extends Component {
     if(!errorEmail && !errorPassword && !errorName && !errorSurname){
       sessionStorage.setItem('user_session', this.state.email);
     }else{
+      errorEmail = errorEmail || '';
+      errorPassword = errorPassword || '';
+      errorName = errorName || '';
+      errorSurname = errorSurname || '';
       this.setState({errorEmail, errorPassword, errorName, errorSurname});
       e.preventDefault();
     }
