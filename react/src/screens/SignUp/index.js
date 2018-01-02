@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import routes from '../../constants/routes';
 import {validateEmail, validatePasswordLength, validatePasswordContent, validateNameContent, validateSurnameContent} from '../../utils/validations';
+import InputWideWithHeader from '../../components/InputWideWithHeader'
 
 import './styles.css';
 import strings from './strings';
@@ -36,26 +37,34 @@ class SignUp extends Component {
       <div className="signup-screen">
         <h1 className="signup-title">{strings.signup}</h1>
         <form className="signup-form" action={routes.HOME()} onSubmit={this.submitHandler}>
-          <div className="signup-field">
-            <h4 className="signup-field-title">{strings.email}</h4>
-            <input id="email" type="text" className={`signup-text ${this.state.errorEmail ? 'signup-text-error' : ''}`} value={this.state.email} onChange={this.handleEmailChange}/>
-            {this.state.errorEmail ? <p className="error-message">{this.state.errorEmail}</p> : null}
-          </div>
-          <div className="signup-field">
-            <h4 className="signup-field-title">{strings.password}</h4>
-            <input id="password" type="password" className={`signup-text ${this.state.errorPassword ? 'signup-text-error' : ''}`} value={this.state.password} onChange={this.handlePasswordChange} />
-            {this.state.errorPassword ? <p className="error-message">{this.state.errorPassword}</p> : null}
-          </div>
-          <div className="signup-field">
-            <h4 className="signup-field-title">{strings.name}</h4>
-            <input id="name" type="text" className={`signup-text ${this.state.errorName ? 'signup-text-error' : ''}`} value={this.state.name} onChange={this.handleNameChange} />
-            {this.state.errorName ? <p className="error-message">{this.state.errorName}</p> : null}
-          </div>
-          <div className="signup-field">
-            <h4 className="signup-field-title">{strings.surname}</h4>
-            <input id="surname" type="text" className={`signup-text ${this.state.errorSurname ? 'signup-text-error' : ''}`} value={this.state.surname} onChange={this.handleSurnameChange} />
-            {this.state.errorSurname ? <p className="error-message">{this.state.errorSurname}</p> : null}
-          </div>
+          <InputWideWithHeader
+            header={strings.email}
+            value={this.state.email}
+            handler={this.handleEmailChange}
+            errorMessage={this.state.errorEmail}
+            type="text"
+          />
+          <InputWideWithHeader
+            header={strings.password}
+            value={this.state.password}
+            handler={this.handlePasswordChange}
+            errorMessage={this.state.errorPassword}
+            type="password"
+          />
+          <InputWideWithHeader
+            header={strings.name}
+            value={this.state.name}
+            handler={this.handleNameChange}
+            errorMessage={this.state.errorName}
+            type="text"
+          />
+          <InputWideWithHeader
+            header={strings.surname}
+            value={this.state.surname}
+            handler={this.handleSurnameChange}
+            errorMessage={this.state.errorSurname}
+            type="text"
+          />
           <div className="signup-submit-container">
             <input type="submit" className="signup-submit" value={strings.send} />
           </div>
