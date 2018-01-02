@@ -7,6 +7,7 @@ import './styles.css';
 
 class BookDetail extends Component {
   render() {
+    sessionStorage.clear();
     return (
       <div>
         <NavLink to="/" className="go-back">

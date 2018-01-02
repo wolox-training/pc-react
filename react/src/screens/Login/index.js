@@ -4,7 +4,7 @@ import './styles.css';
 class Login extends Component {
   state = {email: '', password: '', errorEmail: '', errorPassword: ''}
   submitHandler = e => {
-    e.preventDefault();
+
     const validator = require("email-validator");
     if(!validator.validate(this.state.email)){
       this.setState({errorEmail: 'El email ingresado no es válido.'});
@@ -20,6 +20,8 @@ class Login extends Component {
 
     if(!this.state.errorEmail && !this.state.errorPassword){
       sessionStorage.setItem('user_session', this.state.email);
+    }else{
+      e.preventDefault();
     }
   }
   handleEmailChange = (e) => { this.setState({email: e.target.value}); }
