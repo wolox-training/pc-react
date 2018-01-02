@@ -8,6 +8,7 @@ import {
 
 import BookSearch from './screens/BookSearch';
 import Login from './screens/Login';
+import SignUp from './screens/SignUp';
 import BookDetail from './screens/BookDetail';
 import routes from './constants/routes';
 import './styles.css';
@@ -39,6 +40,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
+          <Route path="/signup" component={SignUp} />
           <Route path="/login" render={() => { return (!Auth() ?  <Login /> : <Redirect to={routes.HOME()} />); }} />
           <Route path="/" render={() => { return (Auth() ?  <Home /> : <Redirect to={routes.LOGIN()} />); }} />
         </Switch>

@@ -1,0 +1,56 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.signup-screen {
+  max-width: 550px;
+  margin: 20vh auto;
+}
+
+.signup-title{
+  text-align: center;
+  font-size: $font-title;
+  margin-top: 0;
+}
+
+.signup-field {
+  margin-bottom: 20px;
+}
+
+.signup-field-title {
+  margin: 0 0 5px 5px;
+  font-size: $font-small;
+  font-weight: normal;
+}
+
+.signup-text {
+  height: 35px;
+  width: 100%;
+  border: 0;
+  background-color: $light-grey;
+}
+
+.signup-text-error {
+  border: 1px solid $red;
+}
+
+.error-message {
+  font-size: $font-small;
+  color: $red;
+}
+
+.signup-submit-container {
+  width: 100%;
+  text-align: center;
+}
+
+.signup-submit {
+  width: 200px;
+  height: 40px;
+  background-color: $blue;
+  border: 0;
+  font-size: $font-title;
+  color: $white;
+  font-weight: bold;
+  margin-top: 25px;
+}
