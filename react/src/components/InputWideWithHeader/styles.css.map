@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAIA,uBAAwB;EACtB,aAAa,EAAE,IAAI;;AAGrB,6BAA8B;EAC5B,MAAM,EAAE,WAAW;EACnB,SAAS,ECNE,IAAI;EDOf,WAAW,EAAE,MAAM;;AAGrB,4BAA6B;EAC3B,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,CAAC;EACT,gBAAgB,EEdL,OAAO;;AFiBpB,kCAAmC;EACjC,MAAM,EAAE,iBAAc;;AAGxB,qCAAsC;EACpC,SAAS,ECtBE,IAAI;EDuBf,KAAK,EExBD,OAAO",
+"sources": ["../../../scss/components/InputWideWithHeader/styles.scss","../../../scss/variables/_fonts.scss","../../../scss/variables/_colors.scss"],
+"names": [],
+"file": "styles.css"
+}

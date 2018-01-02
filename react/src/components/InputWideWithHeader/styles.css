@@ -1,0 +1,22 @@
+.input-wide-with-header {
+  margin-bottom: 20px; }
+
+.input-wide-with-header-title {
+  margin: 0 0 5px 5px;
+  font-size: 12px;
+  font-weight: normal; }
+
+.input-wide-with-header-text {
+  height: 35px;
+  width: 100%;
+  border: 0;
+  background-color: #F4F4F4; }
+
+.input-wide-with-header-text-error {
+  border: 1px solid #FF0000; }
+
+.input-wide-with-header-error-message {
+  font-size: 12px;
+  color: #FF0000; }
+
+/*# sourceMappingURL=styles.css.map */

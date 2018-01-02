@@ -6,41 +6,21 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import BookSearch from './screens/BookSearch';
 import Login from './screens/Login';
-import BookDetail from './screens/BookDetail';
+import Dashboard from './screens/Dashboard';
+
 import routes from './constants/routes';
 import './styles.css';
 
-const Auth = () => {
-  const user = sessionStorage.getItem('user_session');
-  if(user){
-    return  true;
-  }
-  return false;
-};
-
-class Home extends Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route exact path={routes.HOME()} component={BookSearch}/>
-          <Route path={routes.DETAIL()} component={BookDetail}/>
-          <Route path={routes.LOGIN()} render={() => {return <Redirect to="/" />;}} />
-        </Switch>
-      </Router>
-    );
-  }
-}
+const isUserAuthenticated = () => !!sessionStorage.getItem('user_session');
 
 class App extends Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route path="/login" render={() => { return (!Auth() ?  <Login /> : <Redirect to={routes.HOME()} />); }} />
-          <Route path="/" render={() => { return (Auth() ?  <Home /> : <Redirect to={routes.LOGIN()} />); }} />
+          <Route path={routes.LOGIN()} render={() => { return (!isUserAuthenticated() ?  <Login /> : <Redirect to={routes.HOME()} />); }} />
+          <Route path={routes.HOME()} render={() => { return (isUserAuthenticated() ?  <Dashboard /> : <Redirect to={routes.LOGIN()} />); }} />
         </Switch>
       </Router>
     );

@@ -1,0 +1,29 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.input-wide-with-header {
+  margin-bottom: 20px;
+}
+
+.input-wide-with-header-title {
+  margin: 0 0 5px 5px;
+  font-size: $font-small;
+  font-weight: normal;
+}
+
+.input-wide-with-header-text {
+  height: 35px;
+  width: 100%;
+  border: 0;
+  background-color: $light-grey;
+}
+
+.input-wide-with-header-text-error {
+  border: 1px solid $red;
+}
+
+.input-wide-with-header-error-message {
+  font-size: $font-small;
+  color: $red;
+}
