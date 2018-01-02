@@ -1,0 +1,19 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.book-image {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+.image-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  width: 110px;
+  background-color: $grey;
+  flex-shrink: 0
+}

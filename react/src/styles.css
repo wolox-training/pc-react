@@ -1,3 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+* {
+  font-family: "Roboto", sans-serif; }
+
+.go-back {
+  font-size: 12px;
+  margin-left: 35px; }
 
 /*# sourceMappingURL=styles.css.map */

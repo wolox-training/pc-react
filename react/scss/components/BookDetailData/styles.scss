@@ -1,0 +1,50 @@
+@import 'variables/_colors';
+@import 'variables/_fonts';
+@import 'variables/_sizes';
+
+.book-detail-data {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-direction: row;
+  padding-bottom: 30px;
+}
+
+.book-detail-subdata {
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.button-rent {
+  width: 200px;
+  height: 40px;
+  background-color: $blue;
+  border: 0;
+  font-size: $font-title;
+  color: $white;
+  font-weight: bold;
+}
+
+.book-detail-title {
+  font-size: $font-title;
+  margin: 0 0 5px 0;
+}
+
+.book-detail-subtitle {
+  font-size: $font-subtitle;
+  font-weight: normal;
+  margin: 0;
+}
+
+.book-detail-text-group {
+  margin-bottom: 10px;
+}
+
+.book-detail-summary {
+  font-size: 14px;
+  color: $dark-grey;
+  margin: 0 0 40px;
+}

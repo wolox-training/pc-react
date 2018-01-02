@@ -4,17 +4,19 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import routes from './constants/routes';
-import './styles.css';
 
 import BookSearch from './screens/BookSearch';
+import BookDetail from './screens/BookDetail';
+import routes from './constants/routes';
+import './styles.css';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route path={routes.HOME} component={BookSearch}/>
+          <Route exact path={routes.HOME()} component={BookSearch}/>
+          <Route path={routes.DETAIL()} component={BookDetail}/>
         </Switch>
       </Router>
     )
