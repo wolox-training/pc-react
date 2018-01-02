@@ -13,32 +13,6 @@
   margin-top: 0;
 }
 
-.login-field {
-  margin-bottom: 20px;
-}
-
-.login-field-title {
-  margin: 0 0 5px 5px;
-  font-size: $font-small;
-  font-weight: normal;
-}
-
-.login-text {
-  height: 35px;
-  width: 100%;
-  border: 0;
-  background-color: $light-grey;
-}
-
-.login-text-error {
-  border: 1px solid $red;
-}
-
-.error-message {
-  font-size: $font-small;
-  color: $red;
-}
-
 .login-submit-container {
   width: 100%;
   text-align: center;

@@ -10,7 +10,7 @@ import './styles.css';
 const BookDetailData = ({ bookId }) => {
 
   const book = data.find(item => Number(item.id) === Number(bookId));
-
+  
   return (
     <div className="book-detail-data">
       <BookImage image_url={book.image_url} title={book.title} width={200} height={275} />

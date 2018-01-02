@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
 
+import {validateEmail, validatePasswordLength, validatePasswordContent} from '../../utils/validations';
+import InputWideWithHeader from '../../components/InputWideWithHeader';
+
 import './styles.css';
 import strings from './strings';
 
 class Login extends Component {
-  state = {email: '', password: '', errorEmail: '', errorPassword: ''}
+  state = {email: '', password: '', errorEmail: '', errorPassword: ''};
   submitHandler = e => {
 
-    const validator = require("email-validator");
     let errorEmail, errorPassword = "";
-    if(!validator.validate(this.state.email)){
-      errorEmail = strings.error_email_not_valid;
-    }else{
-      errorEmail = "";
-    }
-    if(this.state.password.length < 8 || this.state.password.length > 52){
-      errorPassword = strings.error_password_size;
-    } else if (this.state.password.search(/\d/) === -1 || this.state.password.search(/[a-zA-Z]/) === -1) {
-      errorPassword = strings.error_password_content;
-    }else{
-      errorPassword = "";
-    }
+    errorEmail = validateEmail(this.state.email);
+    errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
+
     if(!errorEmail && !errorPassword){
       sessionStorage.setItem('user_session', this.state.email);
     }else{
@@ -36,16 +29,20 @@ class Login extends Component {
       <div className="login-screen">
         <h1 className="login-title">{strings.login}</h1>
         <form className="login-form" onSubmit={this.submitHandler}>
-          <div className="login-field">
-            <h4 className="login-field-title">{strings.email}</h4>
-            <input id="email" type="text" className={`login-text ${this.state.errorEmail ? 'login-text-error' : ''}`} value={this.state.email} onChange={this.handleEmailChange}/>
-            {this.state.errorEmail ? <p className="error-message">{this.state.errorEmail}</p> : null}
-          </div>
-          <div className="login-field">
-            <h4 className="login-field-title">{strings.password}</h4>
-            <input id="password" type="password" className={`login-text ${this.state.errorPassword ? 'login-text-error' : ''}`} value={this.state.password} onChange={this.handlePasswordChange} />
-            {this.state.errorPassword ? <p className="error-message">{this.state.errorPassword}</p> : null}
-          </div>
+          <InputWideWithHeader
+            header={strings.email}
+            value={this.state.email}
+            handler={this.handleEmailChange}
+            errorMessage={this.state.errorEmail}
+            type="text"
+          />
+          <InputWideWithHeader
+            header={strings.password}
+            value={this.state.password}
+            handler={this.handlePasswordChange}
+            errorMessage={this.state.errorPassword}
+            type="password"
+          />
           <div className="login-submit-container">
             <input type="submit" className="login-submit" value={strings.send} />
           </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import routes from '../../constants/routes';
+import {validateEmail, validatePasswordLength, validatePasswordContent, validateNameContent, validateSurnameContent} from '../../utils/validations';
 
 import './styles.css';
 import strings from './strings';
@@ -9,28 +10,16 @@ class SignUp extends Component {
   state = {email: '', password: '', name: '', surname: '', errorEmail: '', errorPassword: '', errorName: '', errorSurname: ''};
 
   submitHandler = e => {
-    const validator = require("email-validator");
     let errorEmail, errorPassword, errorName, errorSurname = "";
-    if(!validator.validate(this.state.email)){
-      errorEmail = strings.error_email_not_valid;
-    }
-
-    if(this.state.password.length < 8 || this.state.password.length > 52){
-      errorPassword = strings.error_password_size;
-    } else if (this.state.password.search(/\d/) === -1 || this.state.password.search(/[a-zA-Z]/) === -1) {
-      errorPassword = strings.error_password_content;
-    }
-
-    if(this.state.name.search(/[a-zA-Z]/) === -1) {
-      errorName = strings.error_name_content;
-    }
-
-    if(this.state.surname.search(/[a-zA-Z]/) === -1) {
-      errorSurname = strings.error_surname_content;
-    }
+    errorEmail = validateEmail(this.state.email);
+    errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
+    errorName = validateNameContent(this.state.name);
+    errorSurname = validateSurnameContent(this.state.surname);
 
     if(!errorEmail && !errorPassword && !errorName && !errorSurname){
+      sessionStorage.setItem('user_session', this.state.email);
     }else{
+      this.setState({errorEmail, errorPassword, errorName, errorSurname});
       e.preventDefault();
     }
   }
