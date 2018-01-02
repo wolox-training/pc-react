@@ -14,7 +14,7 @@ class BookItem extends Component {
         <h3 className="book-title">{this.props.title}</h3>
         <h4 className="book-author">{this.props.author}</h4>
       </NavLink>
-    )
+    );
   }
 }
 

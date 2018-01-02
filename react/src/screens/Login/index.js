@@ -17,6 +17,8 @@ class Login extends Component {
     if(!errorEmail && !errorPassword){
       sessionStorage.setItem('user_session', this.state.email);
     }else{
+      errorEmail = errorEmail || '';
+      errorPassword = errorPassword || '';
       this.setState({errorEmail, errorPassword});
       e.preventDefault();
     }
