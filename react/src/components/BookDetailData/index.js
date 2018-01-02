@@ -7,9 +7,8 @@ import strings from './strings';
 import './styles.css';
 
 
-const BookDetailData = props => {
+const BookDetailData = ({ bookId }) => {
 
-  const bookId = props.bookId;
   const book = data.find(item => Number(item.id) === Number(bookId));
 
   return (

@@ -6,44 +6,15 @@ import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
 import {data} from '../../mock.js';
 import routes from '../../constants/routes';
+import withErrorCatch from '../../components/WithErrorCatch';
 
 import './styles.css';
 
 class BookDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      errorInfo: null
-    };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    // Catch errors in any child components and re-renders with an error message
-    this.setState({
-      error: error,
-      errorInfo: errorInfo
-    });
-  }
   render() {
-
-    if (this.state.error) {
-      // Fallback UI if an error occurs
-      return (
-        <div>
-          <h2>{"Oh-no! Something went wrong"}</h2>
-          <p className="red">
-            {this.state.error && this.state.error.toString()}
-          </p>
-          <div>{"Component Stack Error Details: "}</div>
-          <p className="red">{this.state.errorInfo.componentStack}</p>
-        </div>
-      );
-    }
-
     return (
       <Fragment>
-        <NavLink to={routes.HOME} className="go-back">
+        <NavLink to={routes.HOME()} className="go-back">
           &lt; Volver
         </NavLink>
         <div className="book-detail">
@@ -56,4 +27,4 @@ class BookDetail extends Component {
   }
 }
 
-export default BookDetail;
+export default (BookDetail);

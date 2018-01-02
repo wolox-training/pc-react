@@ -1,7 +1,6 @@
 const routes = {
-  HOME: '/',
-  DETAIL: '/detail/:id',
-  DETAIL_NO_ID: '/detail/'
+  HOME: () => '/',
+  DETAIL: (id = ':id') => `/detail/${id}`
 };
 
 export default routes;

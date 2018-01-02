@@ -4,11 +4,10 @@ import default_book from '../../assets/default_book.svg';
 
 import './styles.css';
 
-const BookImage = props => {
-  const { width, height } = props;
+const BookImage = ({ image_url, title, width, height }) => {
   return (
     <div className="image-background" style={{ width, height }}>
-      <img className="book-image" src={props.image_url || default_book} alt={props.title} />
+      <img className="book-image" src={image_url || default_book} alt={title} />
     </div>
   );
 
