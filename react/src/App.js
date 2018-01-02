@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -39,7 +39,8 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/" render={() => { return (Auth() ?  <Home /> : (<Fragment><Redirect to={routes.LOGIN()} /><Login /></Fragment>)); }} />
+          <Route path="/login" render={() => { return (!Auth() ?  <Login /> : <Redirect to={routes.HOME()} />); }} />
+          <Route path="/" render={() => { return (Auth() ?  <Home /> : <Redirect to={routes.LOGIN()} />); }} />
         </Switch>
       </Router>
     );
