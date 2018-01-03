@@ -29,7 +29,6 @@ class Login extends Component {
   handlePasswordChange = (e) => { this.setState({password: e.target.value}); }
 
   render() {
-    sessionStorage.clear();
     return (
       <div className="login-screen">
         <h1 className="login-title">{strings.login}</h1>
