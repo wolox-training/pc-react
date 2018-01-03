@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect
+  Switch
 } from 'react-router-dom';
 
 import BookSearch from '../../screens/BookSearch';
@@ -17,7 +16,6 @@ class Dashboard extends Component {
         <Switch>
           <Route exact path={routes.HOME()} component={BookSearch}/>
           <Route path={routes.DETAIL()} component={BookDetail}/>
-          <Route path={routes.LOGIN()} render={() => {return <Redirect to={routes.HOME()} />;}} />
         </Switch>
       </Router>
     );

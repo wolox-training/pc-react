@@ -2,22 +2,22 @@
 @import '../../variables/_fonts';
 @import '../../variables/_sizes';
 
-.login-screen {
+.signup-screen {
   max-width: 550px;
   margin: 20vh auto;
   text-align: center;
 }
 
-.login-title{
+.signup-title{
   font-size: $font-title;
   margin-top: 0;
 }
 
-.login-submit-container {
+.signup-submit-container {
   width: 100%;
 }
 
-.login-submit {
+.signup-submit {
   width: 200px;
   height: 40px;
   background-color: $blue;
@@ -25,5 +25,5 @@
   font-size: $font-title;
   color: $white;
   font-weight: bold;
-  margin: 25px 0;
+  margin-top: 25px;
 }

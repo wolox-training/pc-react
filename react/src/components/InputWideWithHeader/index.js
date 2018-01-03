@@ -2,7 +2,8 @@ import React from 'react';
 
 import './styles.css';
 
-const InputWideWithHeader = ({header, value, handler, id, errorMessage, type}) =>
+
+const InputWideWithHeader = ({header, value, handler, errorMessage, type}) =>
   <div className="input-wide-with-header">
     <h4 className="input-wide-with-header-title">{header}</h4>
     <input
