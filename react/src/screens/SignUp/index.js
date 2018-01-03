@@ -8,7 +8,16 @@ import './styles.css';
 import strings from './strings';
 
 class SignUp extends Component {
-  state = {email: '', password: '', name: '', surname: '', errorEmail: '', errorPassword: '', errorName: '', errorSurname: ''};
+  state = {
+    email: '',
+    password: '',
+    name: '',
+    surname: '',
+    errorEmail: '',
+    errorPassword: '',
+    errorName: '',
+    errorSurname: ''
+  };
 
   submitHandler = e => {
     let errorEmail, errorPassword, errorName, errorSurname = "";
@@ -27,10 +36,12 @@ class SignUp extends Component {
     }
   }
 
-  handleEmailChange = (e) => { this.setState({email: e.target.value}); }
-  handlePasswordChange = (e) => { this.setState({password: e.target.value}); }
-  handleNameChange = (e) => { this.setState({name: e.target.value}); }
-  handleSurnameChange = (e) => { this.setState({surname: e.target.value}); }
+  setStateHandler = (e, target) => { this.setState({[target]: e.target.value}); }
+
+  handleEmailChange = (e) => this.setStateHandler(e, "email");
+  handlePasswordChange = (e) => this.setStateHandler(e, "password");
+  handleNameChange = (e) => this.setStateHandler(e, "name");
+  handleSurnameChange = (e) => this.setStateHandler(e, "surname");
 
   render() {
     return (
