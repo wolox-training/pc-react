@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import routes from '../../constants/routes';
 import {validateEmail, validatePasswordLength, validatePasswordContent, validateNameContent, validateSurnameContent} from '../../utils/validations';
-import InputWideWithHeader from '../../components/InputWideWithHeader'
+import InputWideWithHeader from '../../components/InputWideWithHeader';
 
 import './styles.css';
 import strings from './strings';

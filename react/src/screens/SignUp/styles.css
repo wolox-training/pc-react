@@ -1,36 +1,14 @@
 .signup-screen {
   max-width: 550px;
-  margin: 20vh auto; }
+  margin: 20vh auto;
+  text-align: center; }
 
 .signup-title {
-  text-align: center;
   font-size: 20px;
   margin-top: 0; }
 
-.signup-field {
-  margin-bottom: 20px; }
-
-.signup-field-title {
-  margin: 0 0 5px 5px;
-  font-size: 12px;
-  font-weight: normal; }
-
-.signup-text {
-  height: 35px;
-  width: 100%;
-  border: 0;
-  background-color: #F4F4F4; }
-
-.signup-text-error {
-  border: 1px solid #FF0000; }
-
-.error-message {
-  font-size: 12px;
-  color: #FF0000; }
-
 .signup-submit-container {
-  width: 100%;
-  text-align: center; }
+  width: 100%; }
 
 .signup-submit {
   width: 200px;
