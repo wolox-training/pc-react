@@ -1,0 +1,30 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.login-screen {
+  max-width: 550px;
+  margin: 20vh auto;
+}
+
+.login-title{
+  text-align: center;
+  font-size: $font-title;
+  margin-top: 0;
+}
+
+.login-submit-container {
+  width: 100%;
+  text-align: center;
+}
+
+.login-submit {
+  width: 200px;
+  height: 40px;
+  background-color: $blue;
+  border: 0;
+  font-size: $font-title;
+  color: $white;
+  font-weight: bold;
+  margin-top: 25px;
+}
