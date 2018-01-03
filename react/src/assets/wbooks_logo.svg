@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="320px" height="75px" viewBox="0 0 320 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="360px" height="75px" viewBox="0 0 320 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
     <title>wbooks_logo</title>
     <desc>Created with Sketch.</desc>
@@ -32,7 +32,7 @@
                         </g>
                     </g>
                 </g>
-                <text id="WBooks" font-family="FuturaStd-Medium, Futura Std" font-size="62.1153846" font-weight="400">
+                <text id="WBooks" font-family="'Open Sans', sans-serif" font-size="62.1153846" font-weight="400">
                     <tspan x="104.708791" y="65.24" fill="#000000">WB</tspan>
                     <tspan x="201.733022" y="65.24" fill="#00ADEE">o</tspan>
                     <tspan x="235.27533" y="65.24" fill="#A5CD39">o</tspan>
