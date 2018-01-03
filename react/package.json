@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apisauce": "^0.14.3",
+    "axios": "^0.16.2",
     "bootstrap": "^4.0.0-beta.3",
     "email-validator": "^1.1.1",
     "react": "^16.2.0",

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavLink from 'react-router-dom/NavLink';
+import {create} from 'apisauce'
 
 import {validateEmail, validatePasswordLength, validatePasswordContent} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
@@ -17,7 +18,23 @@ class Login extends Component {
     errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
 
     if(!errorEmail && !errorPassword){
-      sessionStorage.setItem('user_session', this.state.email);
+      const api = create({
+        baseURL: 'https://wbooks-api-stage.herokuapp.com/api/v1/'
+      });
+      api.post(
+        '/users/sessions',
+        {email: this.state.email, password: this.state.password}
+      ).then(
+        (response) => {
+          if(response.ok){
+            sessionStorage.setItem('user_session', this.state.email);
+          }else{
+            console.log('error');
+            e.preventDefault();
+          }
+        }
+      );
+
     }else{
       errorEmail = errorEmail || '';
       errorPassword = errorPassword || '';
