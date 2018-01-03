@@ -15,7 +15,7 @@ class Dashboard extends Component {
     return (
       <Router>
         <Fragment>
-          <Route path={routes.HOME()} component={NavBar} />
+          <NavBar />
           <Switch>
             <Route exact path={routes.HOME()} component={BookSearch}/>
             <Route path={routes.DETAIL()} component={BookDetail}/>
