@@ -1,0 +1,36 @@
+.navbar {
+  background-color: white;
+  position: sticky;
+  top: 0;
+  height: 85px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 5px 10px #D8D8D8;
+  padding: 0 3vw;
+  z-index: 2;
+  margin-bottom: 40px; }
+
+.wbooks-logo {
+  height: 42px; }
+
+.navbar-icons-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row; }
+  .navbar-icons-group > * {
+    margin: 0 15px;
+    height: 40px; }
+
+.avatar-container {
+  margin: 0; }
+
+.dropdown-toggle {
+  padding: 0; }
+
+.dropdown-item:hover {
+  background-color: #00ADEE; }
+
+/*# sourceMappingURL=styles.css.map */
