@@ -17,9 +17,7 @@ class SignUp extends Component {
     errorName = validateNameContent(this.state.name);
     errorSurname = validateSurnameContent(this.state.surname);
 
-    if(!errorEmail && !errorPassword && !errorName && !errorSurname){
-      sessionStorage.setItem('user_session', this.state.email);
-    }else{
+    if(errorEmail || errorPassword || errorName || errorSurname){
       errorEmail = errorEmail || '';
       errorPassword = errorPassword || '';
       errorName = errorName || '';
@@ -35,12 +33,11 @@ class SignUp extends Component {
   handleSurnameChange = (e) => { this.setState({surname: e.target.value}); }
 
   render() {
-    sessionStorage.clear();
     return (
 
       <div className="signup-screen">
         <h1 className="signup-title">{strings.signup}</h1>
-        <form className="signup-form" action={routes.HOME()} onSubmit={this.submitHandler}>
+        <form className="signup-form" action={routes.LOGIN()} onSubmit={this.submitHandler}>
           <InputWideWithHeader
             header={strings.email}
             value={this.state.email}

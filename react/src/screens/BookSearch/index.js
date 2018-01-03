@@ -13,7 +13,7 @@ class BookSearch extends Component {
   handleFieldFilter = (filterField) => this.setState({ filterField });
 
   render() {
-    
+    sessionStorage.clear();
     return (
       <div className="book-search">
         <BookFilters

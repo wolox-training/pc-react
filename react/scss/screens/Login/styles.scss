@@ -5,17 +5,17 @@
 .login-screen {
   max-width: 550px;
   margin: 20vh auto;
+  text-align: center;
 }
 
 .login-title{
-  text-align: center;
+
   font-size: $font-title;
   margin-top: 0;
 }
 
 .login-submit-container {
   width: 100%;
-  text-align: center;
 }
 
 .login-submit {
@@ -26,5 +26,5 @@
   font-size: $font-title;
   color: $white;
   font-weight: bold;
-  margin-top: 25px;
+  margin: 25px 0;
 }

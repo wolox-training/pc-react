@@ -8,6 +8,6 @@ export const validatePasswordLength =
 export const validatePasswordContent =
   password => !(password.search(/\d/) !== -1 && password.search(/[a-zA-Z]/) !== -1) && strings.error_password_content;
 export const validateNameContent =
-  name => !(name.search(/[a-zA-Z]/) !== -1) && strings.error_name_content;
+  name => !(name.match(/^[A-Za-z\s]+$/)) && strings.error_name_content;
 export const validateSurnameContent =
-  surname => !(surname.search(/[a-zA-Z]/) !== -1) && strings.error_surname_content;
+  surname => !(surname.match(/^[A-Za-z\s]+$/)) && strings.error_surname_content;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import NavLink from 'react-router-dom/NavLink';
 
 import {validateEmail, validatePasswordLength, validatePasswordContent} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
+import routes from '../../constants/routes';
 
 import './styles.css';
 import strings from './strings';
@@ -50,6 +52,9 @@ class Login extends Component {
             <input type="submit" className="login-submit" value={strings.send} />
           </div>
         </form>
+        <NavLink to={routes.SIGNUP()}>
+          Registrarse
+        </NavLink>
       </div>
     );
   }
