@@ -19,7 +19,7 @@ const BookDetailData = book => {
           <h3 className="book-detail-subtitle">{book.year}</h3>
           <h3 className="book-detail-subtitle">{book.genre}</h3>
         </div>
-        <p className = "book-detail-summary">{book.summary}</p>
+        <p className = "book-detail-summary">{book.description}</p>
 
         <button className="button-rent">{strings.rent}</button>
       </div>

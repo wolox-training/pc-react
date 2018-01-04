@@ -8,13 +8,16 @@ import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import Dashboard from './screens/Dashboard';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
+import api from './config/service';
 
 import routes from './constants/routes';
 import './styles.css';
 
 class App extends Component {
 
-
+  componentWillMount(){
+    api.setHeader('Authorization', sessionStorage.getItem('Authorization'));
+  }
   render() {
     return (
       <Router>

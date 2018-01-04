@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import NavLink from 'react-router-dom/NavLink';
-import loginPost from '../../services/loginPost'
 
+import {postLogin} from '../../services/auth';
 import {validateEmail, validatePasswordLength, validatePasswordContent} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
 import routes from '../../constants/routes';
+import api from '../../config/service';
 
 import './styles.css';
 import strings from './strings';
@@ -28,12 +29,13 @@ class Login extends Component {
     if(!errorEmail && !errorPassword){
       this.setState({buttonText: strings.sending, posting: true});
 
-      loginPost(this.state.email, this.state.password)
+      postLogin(this.state.email, this.state.password)
       .then(
         (response) => {
           if(response.ok){
             sessionStorage.setItem('user_session', this.state.email);
-            sessionStorage.setItem('access_token', response.data.access_token);
+            sessionStorage.setItem('Authorization', response.data.access_token);
+            api.setHeader('Authorization', response.data.access_token);
             window.location.href = routes.HOME();
           }else{
             this.setState({

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import routes from '../../constants/routes';
 import {validateEmail, validatePasswordLength, validatePasswordContent, validateNameContent, validateSurnameContent, validateRepeatPassword} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
-import signupPost from '../../services/signupPost';
+import {postSignUp} from '../../services/auth';
 
 import './styles.css';
 import strings from './strings';
@@ -35,7 +35,7 @@ class SignUp extends Component {
 
     if(!errorEmail && !errorPassword && !errorRepeatPassword && !errorName && !errorSurname){
       this.setState({buttonText: strings.sending, posting: true});
-      signupPost(this.state.email, this.state.password, this.state.repeatPassword, this.state.name, this.state.surname)
+      postSignUp(this.state.email, this.state.password, this.state.repeatPassword, this.state.name, this.state.surname)
       .then(
         (response) => {
           if(response.ok){

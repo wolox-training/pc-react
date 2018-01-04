@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 
 import BookItem from './components/BookItem';
 import {data} from '../../mock.js';
-import booksGet from '../../services/booksGet';
+import {getBooks} from '../../services/books';
 
 import './styles.css';
 
 class BookList extends Component {
   state = {data: null};
   componentWillMount(){
-    booksGet(
-      sessionStorage.getItem('access_token')
-    ).then(
-      response => this.setState({data: response.data})
+    getBooks().then(
+      response => response.ok && this.setState({data: response.data})
     );
   }
   render() {
