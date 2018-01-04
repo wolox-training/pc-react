@@ -6,24 +6,37 @@ import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
 import routes from '../../constants/routes';
 import withErrorCatch from '../../components/WithErrorCatch';
+import bookGet from '../../services/bookGet';
 
 import './styles.css';
 import strings from './strings';
 
 class BookDetail extends Component {
-  render() {
-    return (
-      <Fragment>
-        <NavLink to={routes.HOME()} className="go-back">
-          &lt; {strings.go_back}
-        </NavLink>
-        <div className="book-detail">
-          <BookDetailData bookId={this.props.match.params.id} />
-          <BookDetailSuggestions />
-          <BookDetailCommentaries  bookId={this.props.match.params.id}/>
-        </div>
-      </Fragment>
+  state = ({data: ''})
+  componentWillMount() {
+    bookGet(
+      sessionStorage.getItem('access_token'),
+      this.props.match.params.id
+    ).then(
+      response => this.setState({data: response.data})
     );
+  }
+  render() {
+    if(this.state.data){
+      return (
+        <Fragment>
+          <NavLink to={routes.HOME()} className="go-back">
+            &lt; {strings.go_back}
+          </NavLink>
+          <div className="book-detail">
+            <BookDetailData {...this.state.data} />
+            <BookDetailSuggestions />
+            <BookDetailCommentaries  bookId={this.props.match.params.id}/>
+          </div>
+        </Fragment>
+      );
+    }
+    return null;
   }
 }
 

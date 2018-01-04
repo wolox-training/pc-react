@@ -11,3 +11,5 @@ export const validateNameContent =
   name => !(name.match(/^[A-Za-z\s]+$/)) && strings.error_name_content;
 export const validateSurnameContent =
   surname => !(surname.match(/^[A-Za-z\s]+$/)) && strings.error_surname_content;
+export const validateRepeatPassword =
+  (password1, password2) => !(password1 === password2) && strings.error_repeat_password;

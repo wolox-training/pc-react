@@ -1,16 +1,12 @@
 import React from 'react';
 
 import BookImage from '../BookImage';
-import {data} from '../../mock.js';
 
 import strings from './strings';
 import './styles.css';
 
+const BookDetailData = book => {
 
-const BookDetailData = ({ bookId }) => {
-
-  const book = data.find(item => Number(item.id) === Number(bookId));
-  
   return (
     <div className="book-detail-data">
       <BookImage image_url={book.image_url} title={book.title} width={200} height={275} />
