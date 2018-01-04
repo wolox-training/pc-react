@@ -1,6 +1,6 @@
 .book-detail {
   max-width: 800px;
-  margin: 40px auto; }
+  margin: 0 auto 40px; }
   .book-detail > div:not(:last-child) {
     border-bottom: 2px solid #00ADEE;
     margin-bottom: 30px; }

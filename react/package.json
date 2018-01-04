@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.0.0-beta.3",
     "email-validator": "^1.1.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
+    "reactstrap": "^5.0.0-alpha.4",
     "typeface-roboto": "0.0.45"
   },
   "scripts": {
