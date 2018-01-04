@@ -11,29 +11,43 @@ import strings from './strings';
 
 class Login extends Component {
   state = {email: '', password: '', errorEmail: '', errorPassword: ''};
+  postLogin =  (e) => {
+    // var request = new XMLHttpRequest();
+    // request.open('POST', 'https://wbooks-api-stage.herokuapp.com/api/v1/users/sessions', false);  // `false` makes the request synchronous
+    // request.setRequestHeader("Content-type", "application/json");
+    // request.send(JSON.stringify({email: this.state.email, password: this.state.password}));
+    //
+    // if(request.status === 200){
+    //   sessionStorage.setItem('user_session', this.state.email);
+    //   sessionStorage.setItem('access_token', request.response.access_token);
+    //   console.log(request.response.access_token);
+    // }else{
+    //   e.preventDefault();
+    // }
+    const api = create({
+      baseURL: 'https://wbooks-api-stage.herokuapp.com/api/v1'
+    })
+    // customizing headers per-request
+    api.post(
+      '/users/sessions',
+      {email: this.state.email, password: this.state.password}
+    ).then(
+      (response) => {
+        console.log(response)
+      }
+    )
+    console.log(e)
+    e.preventDefault();
+
+  }
   submitHandler = e => {
 
     let errorEmail, errorPassword = "";
     errorEmail = validateEmail(this.state.email);
-    errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
+    //errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
 
     if(!errorEmail && !errorPassword){
-      const api = create({
-        baseURL: 'https://wbooks-api-stage.herokuapp.com/api/v1/'
-      });
-      api.post(
-        '/users/sessions',
-        {email: this.state.email, password: this.state.password}
-      ).then(
-        (response) => {
-          if(response.ok){
-            sessionStorage.setItem('user_session', this.state.email);
-          }else{
-            console.log('error');
-            e.preventDefault();
-          }
-        }
-      );
+      this.postLogin(e);
 
     }else{
       errorEmail = errorEmail || '';
