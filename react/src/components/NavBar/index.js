@@ -13,7 +13,9 @@ import strings from './strings';
 import './styles.css';
 
 class NavBar extends Component {
-
+  state = {
+    dropdownOpen: false
+  };
   toggle = () => {
     this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
   }
@@ -21,10 +23,7 @@ class NavBar extends Component {
     sessionStorage.clear();
     window.location.href = routes.LOGIN();
   };
-  toggle = this.toggle.bind(this);
-  state = {
-    dropdownOpen: false
-  };
+
 
   render() {
     return (
@@ -39,13 +38,15 @@ class NavBar extends Component {
             <DropdownToggle
               tag="div"
               data-toggle="dropdown"
-              aria-expanded={this.state.dropdownOpen}>
+              aria-expanded={this.state.dropdownOpen}
+            >
               <UserAvatar />
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem onClick={() => {}}>{strings.profile}</DropdownItem>
-              <DropdownItem onClick={this.clickLogOut}
-              >
+              <DropdownItem onClick={() => {}}>
+                {strings.profile}
+              </DropdownItem>
+              <DropdownItem onClick={this.clickLogOut}>
                 {strings.logout}
               </DropdownItem>
             </DropdownMenu>
