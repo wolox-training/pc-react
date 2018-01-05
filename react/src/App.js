@@ -17,6 +17,7 @@ class App extends Component {
 
   componentWillMount(){
     api.setHeader('Authorization', sessionStorage.getItem('Authorization'));
+    console.log(sessionStorage.getItem('Authorization'));
   }
   render() {
     return (

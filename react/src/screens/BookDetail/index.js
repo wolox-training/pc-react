@@ -17,7 +17,7 @@ class BookDetail extends Component {
     getBook(
       this.props.match.params.id
     ).then(
-      response => this.setState({data: response.data})
+      response => response.ok && this.setState({data: response.data})
     );
   }
   render() {
