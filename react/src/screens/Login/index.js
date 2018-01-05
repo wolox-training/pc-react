@@ -1,32 +1,63 @@
 import React, { Component } from 'react';
 import NavLink from 'react-router-dom/NavLink';
 
+import {postLogin} from '../../services/auth';
 import {validateEmail, validatePasswordLength, validatePasswordContent} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
 import routes from '../../constants/routes';
+import api from '../../config/service';
 
 import './styles.css';
 import strings from './strings';
 
 class Login extends Component {
-  state = {email: '', password: '', errorEmail: '', errorPassword: ''};
-  submitHandler = e => {
+  state = {
+    email: '',
+    password: '',
+    errorEmail: '',
+    errorPassword: '',
+    posting: false,
+    buttonText: strings.send
+  };
 
-    let errorEmail, errorPassword = "";
+  submitHandler = e => {
+    e.preventDefault();
+    let errorEmail, errorPassword;
     errorEmail = validateEmail(this.state.email);
-    errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
+    //errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
 
     if(!errorEmail && !errorPassword){
-      sessionStorage.setItem('user_session', this.state.email);
+      this.setState({buttonText: strings.sending, posting: true});
+
+      postLogin(this.state.email, this.state.password)
+      .then(
+        (response) => {
+          if(response.ok){
+            sessionStorage.setItem('user_session', this.state.email);
+            sessionStorage.setItem('Authorization', response.data.access_token);
+            api.setHeader('Authorization', response.data.access_token);
+            window.location.href = routes.HOME();
+          }else{
+            this.setState({
+              buttonText: strings.send,
+              posting: false,
+              email: '',
+              password: '',
+              errorEmail: strings.errorLogin,
+              errorPassword: ' '
+            });
+          }
+        }
+      );
     }else{
       errorEmail = errorEmail || '';
       errorPassword = errorPassword || '';
       this.setState({errorEmail, errorPassword});
-      e.preventDefault();
+
     }
   }
-  handleEmailChange = (e) => { this.setState({email: e.target.value}); }
-  handlePasswordChange = (e) => { this.setState({password: e.target.value}); }
+  handleEmailChange = (e) => { this.setState({email: e.target.value, errorEmail: ''}); }
+  handlePasswordChange = (e) => { this.setState({password: e.target.value, errorPassword: ''}); }
 
   render() {
     return (
@@ -48,7 +79,7 @@ class Login extends Component {
             type="password"
           />
           <div className="login-submit-container">
-            <input type="submit" className="login-submit" value={strings.send} />
+            <input type="submit" className="login-submit" disabled={this.state.posting} value={this.state.buttonText} />
           </div>
         </form>
         <NavLink to={routes.SIGNUP()}>

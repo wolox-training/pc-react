@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 
 import BookItem from './components/BookItem';
-import {data} from '../../mock.js';
+import {getBooks} from '../../services/books';
 
 import './styles.css';
 
 class BookList extends Component {
+  state = {data: []};
+  componentWillMount(){
+    getBooks().then(
+      response => response.ok && this.setState({data: response.data})
+    );
+  }
   render() {
     const filterText = this.props.filterText;
     const filterField = this.props.filterField;
     return (
       <div className="book-list">
         {
-          data.map((book) => {
+          this.state.data.map((book) => {
             if(
               !filterText ||
               !filterField ||
@@ -25,6 +31,7 @@ class BookList extends Component {
         }
       </div>
     );
+
   }
 }
 

@@ -18,7 +18,7 @@ class BookDetailCommentaries extends Component {
         <h2 className="green-subtitle">{strings.commentaries}</h2>
         <div className="commentaries-detail">
           <CommentaryAdd />
-          <CommentaryList commentaries={book.commentaries} />
+          {book && <CommentaryList commentaries={book.commentaries} />}
         </div>
       </Fragment>
     );

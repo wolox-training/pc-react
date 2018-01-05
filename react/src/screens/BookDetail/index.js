@@ -6,11 +6,20 @@ import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
 import routes from '../../constants/routes';
 import withErrorCatch from '../../components/WithErrorCatch';
+import {getBook} from '../../services/books';
 
 import './styles.css';
 import strings from './strings';
 
 class BookDetail extends Component {
+  state = ({data: []})
+  componentWillMount() {
+    getBook(
+      this.props.match.params.id
+    ).then(
+      response => response.ok && this.setState({data: response.data})
+    );
+  }
   render() {
     return (
       <Fragment>
@@ -18,7 +27,7 @@ class BookDetail extends Component {
           &lt; {strings.go_back}
         </NavLink>
         <div className="book-detail">
-          <BookDetailData bookId={this.props.match.params.id} />
+          <BookDetailData {...this.state.data} />
           <BookDetailSuggestions />
           <BookDetailCommentaries  bookId={this.props.match.params.id}/>
         </div>
