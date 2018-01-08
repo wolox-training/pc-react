@@ -5,7 +5,7 @@ export const postLogin = (email, password) => api.post(
   {email: email, password: password}
 );
 
-export const postSignUp = (email, password, confirm_password, first_name, last_name) => api.post(
+export const postSignUp = (email, password, password_confirmation, first_name, last_name) => api.post(
   '/users',
-  {email, password, confirm_password, first_name, last_name, locale: 'en'}
+  {user:{email, password, password_confirmation, first_name, last_name, locale: 'en'}}
 );

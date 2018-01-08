@@ -1,12 +1,12 @@
 import api from '../config/service';
 
-export const getBooks = () => {
+export const getBooksService = () => {
   return api.get(
     '/books'
   );
 };
 
-export const getBook = (bookId) => {
+export const getBookService = (bookId) => {
 
   return api.get(
     `/books/${bookId}`

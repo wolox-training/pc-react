@@ -1,24 +1,21 @@
 import React, { Component,Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
+import connect from 'react-redux/es/connect/connect';
 
 import BookDetailCommentaries from '../../components/BookDetailCommentaries';
 import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
 import routes from '../../constants/routes';
 import withErrorCatch from '../../components/WithErrorCatch';
-import {getBook} from '../../services/books';
+// import {getBook} from '../../services/books';
+import {getBook} from '../../redux/books/actions';
 
 import './styles.css';
 import strings from './strings';
 
 class BookDetail extends Component {
-  state = ({data: []})
   componentWillMount() {
-    getBook(
-      this.props.match.params.id
-    ).then(
-      response => response.ok && this.setState({data: response.data})
-    );
+    this.props.dispatch(getBook(this.props.match.params.id));
   }
   render() {
     return (
@@ -27,13 +24,19 @@ class BookDetail extends Component {
           &lt; {strings.go_back}
         </NavLink>
         <div className="book-detail">
-          <BookDetailData {...this.state.data} />
+          <BookDetailData {...this.props.currentBook} />
           <BookDetailSuggestions />
-          <BookDetailCommentaries  bookId={this.props.match.params.id}/>
+          <BookDetailCommentaries  bookId={this.props.currentBook.id}/>
         </div>
       </Fragment>
     );
   }
 }
 
-export default withErrorCatch(BookDetail);
+const mapStateToProps = state => {
+  return {
+    currentBook: state.books.currentBook
+  };
+};
+
+export default connect(mapStateToProps)(withErrorCatch(BookDetail));
