@@ -62,9 +62,6 @@ function books(state = initialState, action) {
   case ActionTypes.GET_BOOK_COMMENTARIES:
     return {
       ...state,
-      currentBook: {
-        ...state.currentBook
-      },
       currentBookCommentaries: action.commentaries,
       loading: false
     };
@@ -76,6 +73,12 @@ function books(state = initialState, action) {
         bookState: bookDetailStates.AT_WISHLIST,
         buttonDisabled: true
       },
+      loading: false
+    };
+  case ActionTypes.NEW_COMMENT_SUCCESS:
+    return {
+      ...state,
+      currentBookCommentaries: action.payload.commentaries,
       loading: false
     };
   default:

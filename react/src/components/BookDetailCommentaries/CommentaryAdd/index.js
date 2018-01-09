@@ -22,6 +22,7 @@ class CommentaryAdd extends Component {
     let errorComment = validateCommentLength(this.state.comment);
 
     if(!errorComment){
+      this.setState({comment: ''});
       this.props.dispatch(postComment(this.props.bookId, this.state.comment));
     }else{
       errorComment = errorComment || '';
@@ -38,14 +39,19 @@ class CommentaryAdd extends Component {
         <UserAvatar />
         <form className="form-commentary" onSubmit={this.submitHandler}>
           <h3 className="commentary-title">{strings.add_commentary}</h3>
-          <textarea className="add-commentary-text" rows={TEXT_ROWS} value={this.state.comment} onChange={this.handleCommentChange} />
+          <textarea className="add-commentary-text" rows={TEXT_ROWS} value={this.state.comment} onChange={this.handleCommentChange} disabled={this.props.loading} />
           {this.state.errorComment && <p className="input-wide-with-header-error-message">{this.state.errorComment}</p>}
-          <input type="submit" className="add-commentary-button" value={strings.send} />
+          <input type="submit" className="add-commentary-button" value={strings.send} disabled={this.props.loading} />
         </form>
       </div>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    loading: state.books.loading
+  };
+};
 
-export default connect()(CommentaryAdd);
+export default connect(mapStateToProps)(CommentaryAdd);

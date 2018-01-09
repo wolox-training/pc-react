@@ -9,6 +9,8 @@ export const ActionTypes = {
   AT_WISHLIST: 'AT_WISHLIST',
   SET_BOOK_FILTER_TYPE: 'SET_BOOK_FILTER_TYPE',
   SET_BOOK_FILTER_TEXT: 'SET_BOOK_FILTER_TEXT',
+  NEW_COMMENT_SUCCESS: 'NEW_COMMENT_SUCCESS',
+  NEW_COMMENT_FAILURE: 'NEW_COMMENT_FAILURE'
 };
 
 export const getBooks = () => {
@@ -76,6 +78,7 @@ export const getCommentaries = (bookId) => {
   return async (dispatch) => {
     dispatch({type: ActionTypes.BOOK_LOADING});
     const responseCommentaries = await getBookCommentaries(bookId);
+    console.log(responseCommentaries)
     if(responseCommentaries.ok){
       dispatch({type: ActionTypes.GET_BOOK_COMMENTARIES, commentaries: responseCommentaries.data});
     }else{
@@ -92,7 +95,7 @@ export const postComment = (bookId, comment) => {
       const responsePost = await postBookComment(bookId, responseData.data.id, comment);
       console.log(responsePost)
       if(responsePost.ok){
-        getCommentaries(bookId);
+        getCommentaries(bookId)(dispatch)
       }
     }
   }

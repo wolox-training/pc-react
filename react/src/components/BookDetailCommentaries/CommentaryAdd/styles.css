@@ -21,5 +21,7 @@
   color: #FFFFFF;
   font-weight: bold;
   display: block; }
+  .add-commentary-button:disabled {
+    background-color: #D8D8D8; }
 
 /*# sourceMappingURL=styles.css.map */
