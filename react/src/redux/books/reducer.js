@@ -13,6 +13,7 @@ const initialState = {
   },
   books: [],
   currentBook: {},
+  currentBookCommentaries: [],
   loading: false
 };
 
@@ -34,7 +35,7 @@ function books(state = initialState, action) {
         text: action.filterText
       }
     };
-  case ActionTypes.GET_BOOK_LOADING:
+  case ActionTypes.BOOK_LOADING:
 
     return {
       ...state,
@@ -57,6 +58,15 @@ function books(state = initialState, action) {
     return {
       ...state,
       books: action.books
+    };
+  case ActionTypes.GET_BOOK_COMMENTARIES:
+    return {
+      ...state,
+      currentBook: {
+        ...state.currentBook
+      },
+      currentBookCommentaries: action.commentaries,
+      loading: false
     };
   case ActionTypes.AT_WISHLIST:
     return {

@@ -1,28 +1,38 @@
 import React, { Component, Fragment } from 'react';
+import connect from 'react-redux/es/connect/connect';
 
 import CommentaryList from '../CommentaryList';
-import {data} from '../../mock.js';
+import {getCommentaries} from '../../redux/books/actions';
 
 import CommentaryAdd from './CommentaryAdd';
 import strings from './strings';
 import './styles.css';
 
-class BookDetailCommentaries extends Component {
+const MAX_COMMENTARIES = 4;
 
+class BookDetailCommentaries extends Component {
+  componentWillMount() {
+    this.props.dispatch(getCommentaries(this.props.bookId));
+  }
   render() {
     const bookId = this.props.bookId;
-    const book = data.find(item => Number(item.id) === Number(bookId));
 
     return (
       <Fragment>
         <h2 className="green-subtitle">{strings.commentaries}</h2>
         <div className="commentaries-detail">
-          <CommentaryAdd />
-          {book && <CommentaryList commentaries={book.commentaries} />}
+          <CommentaryAdd bookId={this.props.bookId}/>
+          {bookId && <CommentaryList max={MAX_COMMENTARIES} commentaries={this.props.currentBookCommentaries} />}
         </div>
       </Fragment>
     );
   }
 }
 
-export default BookDetailCommentaries;
+const mapStateToProps = state => {
+  return {
+    currentBookCommentaries: state.books.currentBookCommentaries
+  };
+};
+
+export default connect(mapStateToProps)(BookDetailCommentaries);

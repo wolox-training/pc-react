@@ -15,7 +15,6 @@ const BookDetailData = props => {
       props.dispatch(addToWishlist(props.currentBook.id));
     }
   }
-console.log(props)
   return (
     <div className="book-detail-data">
       <BookImage image_url={props.currentBook.image_url} title={props.currentBook.title} width={200} height={275} />

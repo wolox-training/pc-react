@@ -26,7 +26,7 @@ class BookDetail extends Component {
         <div className="book-detail">
           <BookDetailData {...this.props} />
           <BookDetailSuggestions />
-          <BookDetailCommentaries  bookId={this.props.currentBook.id}/>
+          <BookDetailCommentaries  bookId={this.props.match.params.id}/>
         </div>
       </Fragment>
     );
