@@ -12,3 +12,28 @@ export const getBookService = (bookId) => {
     `/books/${bookId}`
   );
 };
+
+export const getBookRentsService = (bookId) => {
+
+  return api.get(
+    `/books/${bookId}/rents`
+  );
+};
+
+export const getBookWishesService = (userId) => {
+
+  return api.get(
+    '/books/3/wishes'
+  );
+};
+
+export const getUserData = () => {
+  return api.get('/users/me');
+};
+
+export const postWishlist = (bookId, userId) => {
+  return api.post(
+    `/users/${userId}/wishes`,
+    {wish:{book_id: bookId, user_id: userId}}
+  );
+};

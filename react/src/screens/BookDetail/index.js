@@ -24,7 +24,7 @@ class BookDetail extends Component {
           &lt; {strings.go_back}
         </NavLink>
         <div className="book-detail">
-          <BookDetailData {...this.props.currentBook} />
+          <BookDetailData {...this.props} />
           <BookDetailSuggestions />
           <BookDetailCommentaries  bookId={this.props.currentBook.id}/>
         </div>
@@ -35,7 +35,9 @@ class BookDetail extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentBook: state.books.currentBook
+    currentBook: state.books.currentBook,
+    detail_state: state.books.detail_state,
+    loading: state.books.loading
   };
 };
 

@@ -26,6 +26,13 @@
   font-size: $font-title;
   color: $white;
   font-weight: bold;
+  &:not(:only-child) {
+    background-color: $green;
+  }
+  &:disabled {
+    background-color: $grey;
+  }
+
 }
 
 .book-detail-title {
@@ -39,7 +46,7 @@
   margin: 0;
 }
 
-.book-detail-text-group {
+.book-detail-text-group:not(:last-child) {
   margin-bottom: 10px;
 }
 
@@ -47,4 +54,11 @@
   font-size: 14px;
   color: $dark-grey;
   margin: 0 0 40px;
+}
+
+.return-data {
+  margin: 0;
+  font-size: $font-small;
+  color: $red;
+  font-weight: bold;
 }

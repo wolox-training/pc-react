@@ -1,0 +1,8 @@
+const bookDetailStates = {
+  NOT_RENTED: 'NOT_RENTED',
+  RENTED_BY_CONNECTED: 'RENTED_BY_CONNECTED',
+  AT_WISHLIST: 'AT_WISHLIST',
+  RENTED_NOT_AT_WISHLIST: 'RENTED_NOT_AT_WISHLIST'
+};
+
+export default bookDetailStates;

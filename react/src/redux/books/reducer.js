@@ -1,12 +1,19 @@
 import { ActionTypes } from './actions';
+import bookDetailStates from '../../constants/bookDetailStates';
 
 const initialState = {
   filters: {
     type: '',
     text: ''
   },
+  detail_state: {
+    bookState: '',
+    buttonDisabled: false,
+    returnBefore: false,
+  },
   books: [],
-  currentBook: {}
+  currentBook: {},
+  loading: false
 };
 
 function books(state = initialState, action) {
@@ -27,16 +34,39 @@ function books(state = initialState, action) {
         text: action.filterText
       }
     };
+  case ActionTypes.GET_BOOK_LOADING:
+
+    return {
+      ...state,
+      loading: true
+    };
   case ActionTypes.GET_BOOK:
 
     return {
       ...state,
-      currentBook: {...state.books.filter(x => x.id === Number(action.currentBook.id))[0], ...action.currentBook}
+      detail_state: {
+        ...state.detail_state,
+        bookState: action.bookState,
+        buttonDisabled: action.buttonDisabled,
+        returnBefore: action.returnBefore
+      },
+      currentBook: {...state.books.filter(x => x.id === Number(action.currentBook.id))[0], ...action.currentBook},
+      loading: false
     };
   case ActionTypes.GET_BOOKS:
     return {
       ...state,
       books: action.books
+    };
+  case ActionTypes.AT_WISHLIST:
+    return {
+      ...state,
+      detail_state: {
+        ...state.detail_state,
+        bookState: bookDetailStates.AT_WISHLIST,
+        buttonDisabled: true
+      },
+      loading: false
     };
   default:
     return state;

@@ -20,6 +20,10 @@
   font-size: 20px;
   color: #FFFFFF;
   font-weight: bold; }
+  .button-rent:not(:only-child) {
+    background-color: #A5CD39; }
+  .button-rent:disabled {
+    background-color: #D8D8D8; }
 
 .book-detail-title {
   font-size: 20px;
@@ -30,12 +34,18 @@
   font-weight: normal;
   margin: 0; }
 
-.book-detail-text-group {
+.book-detail-text-group:not(:last-child) {
   margin-bottom: 10px; }
 
 .book-detail-summary {
   font-size: 14px;
   color: #4A4A4A;
   margin: 0 0 40px; }
+
+.return-data {
+  margin: 0;
+  font-size: 12px;
+  color: #FF0000;
+  font-weight: bold; }
 
 /*# sourceMappingURL=styles.css.map */
