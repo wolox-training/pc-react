@@ -9,7 +9,7 @@ import routes from '../../constants/routes'
 import wbooksLogoSvg from '../../assets/wbooks_logo.svg';
 import addBookSvg from '../../assets/add_book.svg';
 import notificationsSvg from '../../assets/notifications.svg';
-import {logOut} from '../../redux/login/actions';
+import actionCreators from '../../redux/login/actions';
 
 import strings from './strings';
 import './styles.css';
@@ -22,7 +22,8 @@ class NavBar extends Component {
     this.setState(prevState => ({ dropdownOpen: !prevState.dropdownOpen }));
   }
   clickLogOut = () => {
-    this.props.dispatch(logOut());
+    sessionStorage.clear();
+    this.props.dispatch(actionCreators.logOut());
   };
 
 

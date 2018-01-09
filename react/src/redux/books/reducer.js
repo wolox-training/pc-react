@@ -1,46 +1,37 @@
-import { ActionTypes } from './actions';
+import { actionTypes } from './actions';
 
 const initialState = {
-  filters: {
-    type: '',
-    text: ''
-  },
+  filterType: '',
+  filterText: '',
   books: [],
   currentBook: {}
 };
 
-function books(state = initialState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
-  case ActionTypes.SET_BOOK_FILTER_TYPE:
+  case actionTypes.SET_BOOK_FILTER_TYPE:
     return {
       ...state,
-      filters: {
-        ...state.filters,
-        type: action.filterType
-      }
+      filterType: action.payload.filterType
     };
-  case ActionTypes.SET_BOOK_FILTER_TEXT:
+  case actionTypes.SET_BOOK_FILTER_TEXT:
     return {
       ...state,
-      filters: {
-        ...state.filters,
-        text: action.filterText
-      }
+      filterText: action.payload.filterText
     };
-  case ActionTypes.GET_BOOK:
-
+  case actionTypes.GET_BOOK_SUCCESS:
     return {
       ...state,
-      currentBook: {...state.books.filter(x => x.id === Number(action.currentBook.id))[0], ...action.currentBook}
+      currentBook: {...state.books.filter(x => x.id === Number(action.payload.currentBook.id))[0], ...action.payload.currentBook}
     };
-  case ActionTypes.GET_BOOKS:
+  case actionTypes.GET_BOOKS_SUCCESS:
     return {
       ...state,
-      books: action.books
+      books: action.payload.books
     };
   default:
     return state;
   }
 }
 
-export default books;
+export default reducer;

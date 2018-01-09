@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import routes from '../../constants/routes';
 import {validateEmail, validatePasswordLength, validatePasswordContent, validateNameContent, validateSurnameContent, validateRepeatPassword} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
-import {signUp} from '../../redux/login/actions';
+import actionCreators from '../../redux/login/actions';
 
 import './styles.css';
 import strings from './strings';
@@ -33,7 +33,7 @@ class SignUp extends Component {
     errorSurname = validateSurnameContent(this.state.surname);
 
     if(!errorEmail && !errorPassword && !errorRepeatPassword && !errorName && !errorSurname){
-      this.props.dispatch(signUp(this.state.email, this.state.password, this.state.repeatPassword, this.state.name, this.state.surname));
+      this.props.dispatch(actionCreators.signUp(this.state.email, this.state.password, this.state.repeatPassword, this.state.name, this.state.surname));
     }else{
       errorEmail = errorEmail || '';
       errorPassword = errorPassword || '';
@@ -102,8 +102,7 @@ class SignUp extends Component {
   }
 }
 const mapStateToProps = state => {
-  return {...state.login.signup_state}
-
+  return {...state.login.signupState}
 };
 
 export default connect(mapStateToProps)(SignUp);
