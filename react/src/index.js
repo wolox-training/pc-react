@@ -9,12 +9,14 @@ import registerServiceWorker from './registerServiceWorker';
 
 import books from './redux/books/reducer';
 import login from './redux/login/reducer';
+import users from './redux/users/reducer';
 
 
 let store = createStore(
   combineReducers({
     books,
-    login
+    login,
+    users
   }),
   applyMiddleware(thunk)
 );

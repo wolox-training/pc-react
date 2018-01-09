@@ -1,0 +1,30 @@
+.user-profile-detail {
+  display: grid;
+  grid-template-columns: 140px 60px 100px;
+  grid-template-rows: 40px 40px 30px;
+  grid-column-gap: 15px; }
+
+.img {
+  grid-row-start: 1;
+  grid-row-end: 4; }
+
+.name {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  font-size: 20px;
+  color: #A5CD39;
+  font-weight: bold;
+  margin-top: 10px; }
+
+.mail {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  font-size: 12px; }
+
+.leido, .comentario {
+  font-size: 14px; }
+
+.leido {
+  border-right: 1px solid #A5CD39; }
+
+/*# sourceMappingURL=styles.css.map */

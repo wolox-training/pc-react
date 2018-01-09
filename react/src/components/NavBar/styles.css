@@ -24,6 +24,12 @@
     margin: 0 15px;
     height: 40px; }
 
+.navbar-link {
+  text-decoration: none;
+  color: #000000; }
+  .navbar-link:hover {
+    text-decoration: none; }
+
 .avatar-container {
   margin: 0; }
 

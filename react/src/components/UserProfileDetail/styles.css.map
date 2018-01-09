@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAIA,oBAAqB;EACnB,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,gBAAgB;EACvC,kBAAkB,EAAE,cAAc;EAClC,eAAe,EAAE,IAAI;;AAGvB,IAAK;EACH,cAAc,EAAE,CAAC;EACjB,YAAY,EAAE,CAAC;;AAEjB,KAAM;EACJ,iBAAiB,EAAE,CAAC;EACpB,eAAe,EAAE,CAAC;EAClB,SAAS,ECjBE,IAAI;EDkBf,KAAK,EElBC,OAAO;EFmBb,WAAW,EAAE,IAAI;EACjB,UAAU,EAAE,IAAI;;AAGlB,KAAM;EACJ,iBAAiB,EAAE,CAAC;EACpB,eAAe,EAAE,CAAC;EAClB,SAAS,ECvBE,IAAI;;AD0BjB,mBAAoB;EAClB,SAAS,EC5BG,IAAI;;AD+BlB,MAAO;EACL,YAAY,EAAE,iBAAgB",
+"sources": ["../../../scss/components/UserProfileDetail/styles.scss","../../../scss/variables/_fonts.scss","../../../scss/variables/_colors.scss"],
+"names": [],
+"file": "styles.css"
+}

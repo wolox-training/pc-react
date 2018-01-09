@@ -1,0 +1,9 @@
+.user-profile {
+  max-width: 800px;
+  margin: 0 auto; }
+  .user-profile > div:not(:last-child) {
+    border-bottom: 2px solid #00ADEE;
+    padding-bottom: 30px;
+    margin-bottom: 30px; }
+
+/*# sourceMappingURL=styles.css.map */

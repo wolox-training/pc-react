@@ -44,9 +44,13 @@ class NavBar extends Component {
               <UserAvatar />
             </DropdownToggle>
             <DropdownMenu right>
+            <NavLink className="navbar-link" to={routes.USER()}>
               <DropdownItem onClick={() => {}}>
-                {strings.profile}
+
+                  {strings.profile}
+
               </DropdownItem>
+              </NavLink>
               <DropdownItem onClick={this.clickLogOut}>
                 {strings.logout}
               </DropdownItem>
