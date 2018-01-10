@@ -1,30 +1,61 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import BookImage from '../BookImage';
+import actionCreators from '../../redux/books/actions';
 
 import strings from './strings';
+import bookDetailStates from '../../constants/bookDetailStates';
 import './styles.css';
 
-const BookDetailData = book => {
+const BookDetailData = ({detailState, currentBook, loading, onClickWishlist}) => {
 
   return (
     <div className="book-detail-data">
-      <BookImage image_url={book.image_url} title={book.title} width={200} height={275} />
+      <BookImage image_url={currentBook.image_url} title={currentBook.title} width={200} height={275} />
       <div className="book-detail-subdata">
         <div className="book-detail-text-group">
-          <h2 className="book-detail-title">{book.title}</h2>
-          <h3 className="book-detail-subtitle">{book.author}</h3>
+          <h2 className="book-detail-title">{currentBook.title}</h2>
+          <h3 className="book-detail-subtitle">{currentBook.author}</h3>
         </div>
         <div className="book-detail-text-group">
-          <h3 className="book-detail-subtitle">{book.year}</h3>
-          <h3 className="book-detail-subtitle">{book.genre}</h3>
+          <h3 className="book-detail-subtitle">{currentBook.year}</h3>
+          <h3 className="book-detail-subtitle">{currentBook.genre}</h3>
         </div>
-        <p className = "book-detail-summary">{book.description}</p>
-
-        <button className="button-rent">{strings.rent}</button>
+        <p className = "book-detail-summary">{currentBook.description}</p>
+        <div className="book-detail-text-group">
+          {strings.stateText[detailState.bookState] && <p className="return-data">*{strings.stateText[detailState.bookState]} {detailState.returnBefore}</p> }
+          <button className="button-rent" disabled={detailState.buttonDisabled || loading} onClick={onClickWishlist}>{strings[detailState.bookState]}</button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default BookDetailData;
+BookDetailData.propTypes = {
+  detailState: PropTypes.shape({
+    buttonDisabled: PropTypes.bool,
+    bookState: PropTypes.string,
+    returnBefore: PropTypes.string
+  }),
+  currentBook: PropTypes.shape({
+    image_url: PropTypes.string,
+    title: PropTypes.string,
+    author: PropTypes.string,
+    year: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    genre: PropTypes.string,
+    description: PropTypes.string
+  }),
+  loading: PropTypes.bool,
+  onClickWishlist: PropTypes.func,
+  dispatch: PropTypes.func
+};
+
+function mapDispatchToProps(dispatch, props) {
+  return({
+    onClickWishlist: () => {props.detailState.bookState === bookDetailStates.RENTED_NOT_AT_WISHLIST && dispatch(actionCreators.addToWishlist(props.currentBook.id));}
+  });
+}
+
+export default connect(null, mapDispatchToProps)(BookDetailData);

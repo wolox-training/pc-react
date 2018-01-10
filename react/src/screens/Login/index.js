@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import NavLink from 'react-router-dom/NavLink';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import actionCreators from '../../redux/login/actions';
-import {validateEmail, validatePasswordLength, validatePasswordContent} from '../../utils/validations';
+import {validateEmail, validatePasswordLength} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
 import routes from '../../constants/routes';
 
@@ -67,6 +68,13 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  buttonText: PropTypes.string,
+  posting: PropTypes.bool,
+  error: PropTypes.string
+}
+
 const mapStateToProps = state => {
   return {...state.login.loginState}
 };
