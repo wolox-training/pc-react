@@ -1,6 +1,7 @@
 import React, { Component,Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
+import PropTypes from 'prop-types';
 
 import BookDetailCommentaries from '../../components/BookDetailCommentaries';
 import BookDetailData from '../../components/BookDetailData';
@@ -32,10 +33,28 @@ class BookDetail extends Component {
   }
 }
 
+BookDetail.propTypes = {
+  detailState: PropTypes.shape({
+    buttonDisabled: PropTypes.bool,
+    bookState: PropTypes.string,
+    returnBefore: PropTypes.string
+  }),
+  currentBook: PropTypes.shape({
+    image_url: PropTypes.string,
+    title: PropTypes.string,
+    author: PropTypes.string,
+    year: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    genre: PropTypes.string,
+    description: PropTypes.string
+  }),
+  loading: PropTypes.bool,
+  dispatch: PropTypes.func
+}
+
 const mapStateToProps = state => {
   return {
     currentBook: state.books.currentBook,
-    detail_state: state.books.detail_state,
+    detailState: state.books.detailState,
     loading: state.books.loading
   };
 };

@@ -4,10 +4,10 @@ import bookDetailStates from '../../constants/bookDetailStates';
 const initialState = {
   filterType: '',
   filterText: '',
-  detail_state: {
+  detailState: {
     bookState: '',
     buttonDisabled: false,
-    returnBefore: false,
+    returnBefore: null,
   },
   books: [],
   currentBook: {},
@@ -27,7 +27,6 @@ function reducer(state = initialState, action) {
       filterText: action.payload.filterText
     };
   case actionTypes.GET_BOOK_LOADING:
-
     return {
       ...state,
       loading: true
@@ -35,16 +34,20 @@ function reducer(state = initialState, action) {
   case actionTypes.GET_BOOK_SUCCESS:
     return {
       ...state,
-      detail_state: {
-        ...state.detail_state,
+      currentBook: {...state.books.filter(x => x.id === Number(action.payload.currentBook.id))[0], ...action.payload.currentBook},
+      loading: false
+    };
+  case actionTypes.SET_BOOK_STATE:
+    return {
+      ...state,
+      detailState: {
+        ...state.detailState,
         bookState: action.payload.bookState,
         buttonDisabled: action.payload.buttonDisabled,
         returnBefore: action.payload.returnBefore
       },
-      currentBook: {...state.books.filter(x => x.id === Number(action.payload.currentBook.id))[0], ...action.payload.currentBook},
       loading: false
-
-    };
+    }
   case actionTypes.GET_BOOKS_SUCCESS:
     return {
       ...state,
@@ -53,8 +56,8 @@ function reducer(state = initialState, action) {
   case actionTypes.AT_WISHLIST:
     return {
       ...state,
-      detail_state: {
-        ...state.detail_state,
+      detailState: {
+        ...state.detailState,
         bookState: bookDetailStates.AT_WISHLIST,
         buttonDisabled: true
       },

@@ -1,38 +1,61 @@
 import React from 'react';
-import connect from 'react-redux/es/connect/connect';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import BookImage from '../BookImage';
-import actionCreators from '../../redux/books/actions'
+import actionCreators from '../../redux/books/actions';
 
 import strings from './strings';
 import bookDetailStates from '../../constants/bookDetailStates';
 import './styles.css';
 
-const BookDetailData = props => {
+const BookDetailData = ({detailState, currentBook, loading, clickWishlist, dispatch}) => {
 
-  const clickWishlist = () => {
-    props.detail_state.bookState === bookDetailStates.RENTED_NOT_AT_WISHLIST && props.dispatch(actionCreators.addToWishlist(props.currentBook.id));
-  }
   return (
     <div className="book-detail-data">
-      <BookImage image_url={props.currentBook.image_url} title={props.currentBook.title} width={200} height={275} />
+      <BookImage image_url={currentBook.image_url} title={currentBook.title} width={200} height={275} />
       <div className="book-detail-subdata">
         <div className="book-detail-text-group">
-          <h2 className="book-detail-title">{props.currentBook.title}</h2>
-          <h3 className="book-detail-subtitle">{props.currentBook.author}</h3>
+          <h2 className="book-detail-title">{currentBook.title}</h2>
+          <h3 className="book-detail-subtitle">{currentBook.author}</h3>
         </div>
         <div className="book-detail-text-group">
-          <h3 className="book-detail-subtitle">{props.currentBook.year}</h3>
-          <h3 className="book-detail-subtitle">{props.currentBook.genre}</h3>
+          <h3 className="book-detail-subtitle">{currentBook.year}</h3>
+          <h3 className="book-detail-subtitle">{currentBook.genre}</h3>
         </div>
-        <p className = "book-detail-summary">{props.currentBook.description}</p>
+        <p className = "book-detail-summary">{currentBook.description}</p>
         <div className="book-detail-text-group">
-          {strings.state_text[props.detail_state.bookState] && <p className="return-data" >*{strings.state_text[props.detail_state.bookState]}</p> }
-          <button className="button-rent" disabled={props.detail_state.buttonDisabled || props.loading} onClick={clickWishlist}>{strings[props.detail_state.bookState]}</button>
+          {strings.stateText[detailState.bookState] && <p className="return-data" >*{strings.stateText[detailState.bookState]} {detailState.returnBefore}</p> }
+          <button className="button-rent" disabled={detailState.buttonDisabled || loading} onClick={clickWishlist}>{strings[detailState.bookState]}</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default connect()(BookDetailData);
+BookDetailData.propTypes = {
+  detailState: PropTypes.shape({
+    buttonDisabled: PropTypes.bool,
+    bookState: PropTypes.string,
+    returnBefore: PropTypes.string
+  }),
+  currentBook: PropTypes.shape({
+    image_url: PropTypes.string,
+    title: PropTypes.string,
+    author: PropTypes.string,
+    year: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    genre: PropTypes.string,
+    description: PropTypes.string
+  }),
+  loading: PropTypes.bool,
+  clickWishlist: PropTypes.func,
+  dispatch: PropTypes.func
+};
+
+function mapDispatchToProps(dispatch, props) {
+  return({
+    clickWishlist: () => {props.detailState.bookState === bookDetailStates.RENTED_NOT_AT_WISHLIST && dispatch(actionCreators.addToWishlist(props.currentBook.id));}
+  });
+}
+
+export default connect(null, mapDispatchToProps)(BookDetailData);
