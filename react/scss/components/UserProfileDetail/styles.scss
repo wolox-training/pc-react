@@ -10,11 +10,11 @@
   justify-content: center;
 }
 
-.img {
+.user-profile-detail-image {
   grid-row-start: 1;
   grid-row-end: 4;
 }
-.name {
+.user-profile-detail-name {
   grid-column-start: 2;
   grid-column-end: 4;
   font-size: $font-title;
@@ -23,16 +23,20 @@
   margin-top: 10px
 }
 
-.mail {
+.user-profile-detail-email {
   grid-column-start: 2;
   grid-column-end: 4;
   font-size: $font-small;
 }
 
-.leido, .comentario {
+.user-profile-detail-read-counter, .user-profile-detail-comment-counter {
   font-size: $font-medium;
 }
 
-.leido {
+.user-profile-detail-read-counter {
   border-right: 1px solid $green;
+}
+
+.user-profile-detail-number {
+  font-weight: bold;
 }

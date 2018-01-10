@@ -5,8 +5,13 @@ import './styles.css';
 
 const UserProfileBooks = props => {
   return (
-    <div className="book-detail-data">
-      Libros
+    <div className="user-profile-books">
+      <div>
+        <h3 className="user-profile-books-title">Leídos</h3>
+
+        <h3 className="user-profile-books-title">Wishlist</h3>
+        
+      </div>
     </div>
   );
 };
