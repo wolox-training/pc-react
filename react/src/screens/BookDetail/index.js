@@ -47,8 +47,7 @@ BookDetail.propTypes = {
     genre: PropTypes.string,
     description: PropTypes.string
   }),
-  loading: PropTypes.bool,
-  dispatch: PropTypes.func
+  loading: PropTypes.bool
 }
 
 const mapStateToProps = state => {

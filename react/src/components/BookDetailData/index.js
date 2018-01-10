@@ -9,7 +9,7 @@ import strings from './strings';
 import bookDetailStates from '../../constants/bookDetailStates';
 import './styles.css';
 
-const BookDetailData = ({detailState, currentBook, loading, clickWishlist, dispatch}) => {
+const BookDetailData = ({detailState, currentBook, loading, onClickWishlist}) => {
 
   return (
     <div className="book-detail-data">
@@ -25,8 +25,8 @@ const BookDetailData = ({detailState, currentBook, loading, clickWishlist, dispa
         </div>
         <p className = "book-detail-summary">{currentBook.description}</p>
         <div className="book-detail-text-group">
-          {strings.stateText[detailState.bookState] && <p className="return-data" >*{strings.stateText[detailState.bookState]} {detailState.returnBefore}</p> }
-          <button className="button-rent" disabled={detailState.buttonDisabled || loading} onClick={clickWishlist}>{strings[detailState.bookState]}</button>
+          {strings.stateText[detailState.bookState] && <p className="return-data">*{strings.stateText[detailState.bookState]} {detailState.returnBefore}</p> }
+          <button className="button-rent" disabled={detailState.buttonDisabled || loading} onClick={onClickWishlist}>{strings[detailState.bookState]}</button>
         </div>
       </div>
     </div>
@@ -48,13 +48,13 @@ BookDetailData.propTypes = {
     description: PropTypes.string
   }),
   loading: PropTypes.bool,
-  clickWishlist: PropTypes.func,
+  onClickWishlist: PropTypes.func,
   dispatch: PropTypes.func
 };
 
 function mapDispatchToProps(dispatch, props) {
   return({
-    clickWishlist: () => {props.detailState.bookState === bookDetailStates.RENTED_NOT_AT_WISHLIST && dispatch(actionCreators.addToWishlist(props.currentBook.id));}
+    onClickWishlist: () => {props.detailState.bookState === bookDetailStates.RENTED_NOT_AT_WISHLIST && dispatch(actionCreators.addToWishlist(props.currentBook.id));}
   });
 }
 
