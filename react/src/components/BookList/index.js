@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 import BookItem from './components/BookItem';
-import {getBooks} from '../../services/books';
 
 import './styles.css';
 
 class BookList extends Component {
-  state = {data: []};
-  componentWillMount(){
-    getBooks().then(
-      response => response.ok && this.setState({data: response.data})
-    );
-  }
   render() {
     const filterText = this.props.filterText;
-    const filterField = this.props.filterField;
+    const filterType = this.props.filterType;
     return (
       <div className="book-list">
         {
-          this.state.data.map((book) => {
+          this.props.books.map((book) => {
             if(
               !filterText ||
-              !filterField ||
-              book[filterField].toLowerCase().includes(filterText.toLowerCase())
+              !filterType ||
+              book[filterType].toLowerCase().includes(filterText.toLowerCase())
             ){
               return <BookItem key={book.id} {...book} />;
             }
@@ -35,4 +29,12 @@ class BookList extends Component {
   }
 }
 
-export default BookList;
+const mapStateToProps = state => {
+  return {
+    books: state.books.books,
+    filterType: state.books.filterType,
+    filterText: state.books.filterText
+  };
+};
+
+export default connect(mapStateToProps)(BookList);

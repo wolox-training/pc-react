@@ -4,13 +4,18 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import {connect} from 'react-redux';
 
+import actionCreators from '../../redux/books/actions';
 import BookSearch from '../../screens/BookSearch';
 import BookDetail from '../../screens/BookDetail';
 import NavBar from '../../components/NavBar';
 import routes from '../../constants/routes';
 
 class Dashboard extends Component {
+  componentWillMount() {
+    this.props.dispatch(actionCreators.getBooks());
+  }
   render() {
     return (
       <Router>
@@ -26,4 +31,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default connect()(Dashboard);

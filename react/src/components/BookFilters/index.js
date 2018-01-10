@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import search_image from '../../assets/search.svg';
 import filterFieldConstants from '../../constants/filterFieldConstants'
 
 import './styles.css';
 import strings from './strings'
+import actionCreators from '../../redux/books/actions';
 
 
 class BookFilters extends Component {
-  handleFilterTextChange = (e) => this.props.onFilterTextChange(e.target.value);
-  handleFilterFieldChange = (e) => this.props.onFilterFieldChange(e.target.value);
+  handleFilterTextChange = (e) => this.props.dispatch(actionCreators.setBookFilterText(e.target.value));
+  handleFilterFieldChange = (e) => this.props.dispatch(actionCreators.setBookFilterType(e.target.value));
 
   render() {
     return (
       <form className="book-filters">
         <select
-          value={this.props.filterField}
+          value={this.props.filterType}
           onChange={this.handleFilterFieldChange}
         >
           <option value={filterFieldConstants.DEFAULT_FILTER_FIELD} disabled hidden>{strings.selectFilter}</option>
@@ -35,4 +37,11 @@ class BookFilters extends Component {
   }
 }
 
-export default BookFilters;
+const mapStateToProps = state => {
+  return {
+    filterText: state.books.filterText,
+    filterType: state.books.filterType
+  }
+}
+
+export default connect(mapStateToProps)(BookFilters);

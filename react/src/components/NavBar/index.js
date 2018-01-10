@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import {connect} from 'react-redux';
 
 import UserAvatar from '../UserAvatar';
 import routes from '../../constants/routes'
 import wbooksLogoSvg from '../../assets/wbooks_logo.svg';
 import addBookSvg from '../../assets/add_book.svg';
 import notificationsSvg from '../../assets/notifications.svg';
+import actionCreators from '../../redux/login/actions';
 
 import strings from './strings';
 import './styles.css';
@@ -21,7 +23,7 @@ class NavBar extends Component {
   }
   clickLogOut = () => {
     sessionStorage.clear();
-    window.location.href = routes.LOGIN();
+    this.props.dispatch(actionCreators.logOut());
   };
 
 
@@ -57,4 +59,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default connect()(NavBar);

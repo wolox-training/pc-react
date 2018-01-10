@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 import routes from '../../constants/routes';
 import {validateEmail, validatePasswordLength, validatePasswordContent, validateNameContent, validateSurnameContent, validateRepeatPassword} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
-import {postSignUp} from '../../services/auth';
+import actionCreators from '../../redux/login/actions';
 
 import './styles.css';
 import strings from './strings';
 
 class SignUp extends Component {
   state = {
-    buttonText: strings.send,
-    posting: false,
     email: '',
     password: '',
     repeatPassword: '',
@@ -34,31 +33,7 @@ class SignUp extends Component {
     errorSurname = validateSurnameContent(this.state.surname);
 
     if(!errorEmail && !errorPassword && !errorRepeatPassword && !errorName && !errorSurname){
-      this.setState({buttonText: strings.sending, posting: true});
-      postSignUp(this.state.email, this.state.password, this.state.repeatPassword, this.state.name, this.state.surname)
-      .then(
-        (response) => {
-          if(response.ok){
-            window.location.href = routes.LOGIN();
-          }else{
-            this.setState({
-              buttonText: strings.send,
-              posting: false,
-              email: '',
-              password: '',
-              repeatPassword: '',
-              name: '',
-              surname: '',
-              errorEmail: response.data.error,
-              errorPassword: ' ',
-              errorRepeatPassword: ' ',
-              errorName: ' ',
-              errorSurname: ' ',
-
-            });
-          }
-        }
-      );
+      this.props.dispatch(actionCreators.signUp(this.state.email, this.state.password, this.state.repeatPassword, this.state.name, this.state.surname));
     }else{
       errorEmail = errorEmail || '';
       errorPassword = errorPassword || '';
@@ -87,7 +62,7 @@ class SignUp extends Component {
             header={strings.email}
             value={this.state.email}
             handler={this.handleEmailChange}
-            errorMessage={this.state.errorEmail}
+            errorMessage={this.state.errorEmail || this.props.error}
             type="text"
           />
           <InputWideWithHeader
@@ -119,12 +94,15 @@ class SignUp extends Component {
             type="text"
           />
           <div className="signup-submit-container">
-            <input type="submit" className="signup-submit" disabled={this.state.posting} value={this.state.buttonText} />
+            <input type="submit" className="signup-submit" disabled={this.props.posting} value={this.props.buttonText} />
           </div>
         </form>
       </div>
     );
   }
 }
+const mapStateToProps = state => {
+  return {...state.login.signupState}
+};
 
-export default SignUp;
+export default connect(mapStateToProps)(SignUp);

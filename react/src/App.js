@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch
 } from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
@@ -17,8 +18,8 @@ class App extends Component {
 
   componentWillMount(){
     api.setHeader('Authorization', sessionStorage.getItem('Authorization'));
-    console.log(sessionStorage.getItem('Authorization'));
   }
+
   render() {
     return (
       <Router>
@@ -31,5 +32,10 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    authorization: state.login.authorization
+  };
+};
 
-export default App;
+export default connect(mapStateToProps)(App);

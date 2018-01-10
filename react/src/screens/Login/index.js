@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import NavLink from 'react-router-dom/NavLink';
+import {connect} from 'react-redux'
 
-import {postLogin} from '../../services/auth';
+import actionCreators from '../../redux/login/actions';
 import {validateEmail, validatePasswordLength, validatePasswordContent} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
 import routes from '../../constants/routes';
-import api from '../../config/service';
 
 import './styles.css';
 import strings from './strings';
@@ -17,38 +17,16 @@ class Login extends Component {
     errorEmail: '',
     errorPassword: '',
     posting: false,
-    buttonText: strings.send
   };
 
   submitHandler = e => {
     e.preventDefault();
     let errorEmail, errorPassword;
     errorEmail = validateEmail(this.state.email);
-    //errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
+    errorPassword = validatePasswordLength(this.state.password);
 
     if(!errorEmail && !errorPassword){
-      this.setState({buttonText: strings.sending, posting: true});
-
-      postLogin(this.state.email, this.state.password)
-      .then(
-        (response) => {
-          if(response.ok){
-            sessionStorage.setItem('user_session', this.state.email);
-            sessionStorage.setItem('Authorization', response.data.access_token);
-            api.setHeader('Authorization', response.data.access_token);
-            window.location.href = routes.HOME();
-          }else{
-            this.setState({
-              buttonText: strings.send,
-              posting: false,
-              email: '',
-              password: '',
-              errorEmail: strings.errorLogin,
-              errorPassword: ' '
-            });
-          }
-        }
-      );
+      this.props.dispatch(actionCreators.logIn(this.state.email, this.state.password));
     }else{
       errorEmail = errorEmail || '';
       errorPassword = errorPassword || '';
@@ -68,7 +46,7 @@ class Login extends Component {
             header={strings.email}
             value={this.state.email}
             handler={this.handleEmailChange}
-            errorMessage={this.state.errorEmail}
+            errorMessage={this.state.errorEmail || this.props.error}
             type="text"
           />
           <InputWideWithHeader
@@ -79,7 +57,7 @@ class Login extends Component {
             type="password"
           />
           <div className="login-submit-container">
-            <input type="submit" className="login-submit" disabled={this.state.posting} value={this.state.buttonText} />
+            <input type="submit" className="login-submit" disabled={this.props.posting} value={this.props.buttonText} />
           </div>
         </form>
         <NavLink to={routes.SIGNUP()}>
@@ -89,5 +67,8 @@ class Login extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {...state.login.loginState}
+};
 
-export default Login;
+export default connect(mapStateToProps)(Login);
