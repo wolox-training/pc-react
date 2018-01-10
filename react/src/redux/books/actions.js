@@ -114,3 +114,19 @@ export const setBookFilterText = (filterText) => {
     filterText
   };
 };
+
+export const getProfileBooks = () => {
+  return async (dispatch) => {
+    dispatch({type: ActionTypes.BOOK_LOADING});
+    const responseData = await getUserData();
+    if(responseData.ok){
+      console.log(responseData)
+      const responseRead = await getReadBooks(responseData.data.id);
+      const responseWish = await getWishBooks(responseData.data.id);
+      if(responseRead.ok && responseWish.ok){
+        console.log(responseRead)
+        console.log(responseWish)
+      }
+    }
+  }
+}

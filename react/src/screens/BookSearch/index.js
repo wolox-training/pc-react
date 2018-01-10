@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 import BookList from '../../components/BookList';
 import BookFilters from '../../components/BookFilters';
@@ -11,10 +12,18 @@ class BookSearch extends Component {
     return (
       <div className="book-search">
         <BookFilters />
-        <BookList />
+        <BookList {...this.props} />
       </div>
     );
   }
 }
 
-export default BookSearch;
+const mapStateToProps = state => {
+  return {
+    books: state.books.books,
+    filterField: state.books.filters.type,
+    filterText: state.books.filters.text
+  };
+};
+
+export default connect(mapStateToProps)(BookSearch);

@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAIA,yBAA0B;EACxB,SAAS,ECJE,IAAI;EDKf,KAAK,EELC,OAAO;EFMb,WAAW,EAAE,IAAI",
+"sources": ["../../../scss/components/UserProfileBooks/styles.scss","../../../scss/variables/_fonts.scss","../../../scss/variables/_colors.scss"],
 "names": [],
 "file": "styles.css"
 }
