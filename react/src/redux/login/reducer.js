@@ -1,86 +1,86 @@
-import { ActionTypes } from './actions';
+import { actionTypes } from './actions';
 import strings from '../../screens/SignUp/strings';
 
 const initialState = {
   authorization: '',
   user_session: null,
-  signup_state: {
+  signupState: {
     buttonText: strings.send,
     posting: false,
     error: '',
   },
-  login_state: {
+  loginState: {
     buttonText: strings.send,
     posting: false,
     error: '',
   }
 };
 
-function login(state = initialState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
-  case ActionTypes.SIGN_UP_LOADING:
+  case actionTypes.SIGN_UP_LOADING:
     return {
       ...state,
-      signup_state: {
-        ...state.signup_state,
+      signupState: {
+        ...state.signupState,
         posting: true,
         buttonText: strings.sending,
         error: ''
       }
     };
-  case ActionTypes.SIGN_UP_SUCCESS:
+  case actionTypes.SIGN_UP_SUCCESS:
     return {
       ...state,
-      user_session: action.email,
-      authorization: action.access_token,
-      signup_state: {
-        ...state.signup_state,
+      user_session: action.payload.email,
+      authorization: action.payload.access_token,
+      signupState: {
+        ...state.signupState,
         posting: false,
         buttonText: strings.send,
       }
     };
-  case ActionTypes.SIGN_UP_FAILURE:
+  case actionTypes.SIGN_UP_FAILURE:
     return {
       ...state,
-      signup_state: {
-        ...state.signup_state,
+      signupState: {
+        ...state.signupState,
         posting: false,
-        error: action.error,
+        error: action.payload.error,
         buttonText: strings.send,
       }
     };
-  case ActionTypes.LOG_IN_LOADING:
+  case actionTypes.LOG_IN_LOADING:
     return {
       ...state,
-      login_state: {
-        ...state.login_state,
+      loginState: {
+        ...state.loginState,
         posting: true,
         buttonText: strings.sending,
         error: ''
       }
     };
-  case ActionTypes.LOG_IN_SUCCESS:
+  case actionTypes.LOG_IN_SUCCESS:
     return {
       ...state,
-      user_session: action.email,
-      authorization: action.access_token,
-      login_state: {
-        ...state.login_state,
+      user_session: action.payload.email,
+      authorization: action.payload.access_token,
+      loginState: {
+        ...state.loginState,
         posting: false,
         buttonText: strings.send,
       }
     };
-  case ActionTypes.LOG_IN_FAILURE:
+  case actionTypes.LOG_IN_FAILURE:
     return {
       ...state,
-      login_state: {
-        ...state.login_state,
+      loginState: {
+        ...state.loginState,
         posting: false,
-        error: action.error,
+        error: action.payload.error,
         buttonText: strings.send,
       }
     };
-  case ActionTypes.LOG_OUT:
+  case actionTypes.LOG_OUT:
     return {
       ...state,
       user_session: null,
@@ -91,4 +91,4 @@ function login(state = initialState, action) {
   }
 }
 
-export default login;
+export default reducer;

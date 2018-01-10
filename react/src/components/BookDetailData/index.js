@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux/es/connect/connect';
 
 import BookImage from '../BookImage';
-import {addToWishlist} from '../../redux/books/actions'
+import actionCreators from '../../redux/books/actions'
 
 import strings from './strings';
 import bookDetailStates from '../../constants/bookDetailStates';
@@ -11,11 +11,8 @@ import './styles.css';
 const BookDetailData = props => {
 
   const clickWishlist = () => {
-    if(props.detail_state.bookState === bookDetailStates.RENTED_NOT_AT_WISHLIST){
-      props.dispatch(addToWishlist(props.currentBook.id));
-    }
+    props.detail_state.bookState === bookDetailStates.RENTED_NOT_AT_WISHLIST && props.dispatch(actionCreators.addToWishlist(props.currentBook.id));
   }
-console.log(props)
   return (
     <div className="book-detail-data">
       <BookImage image_url={props.currentBook.image_url} title={props.currentBook.title} width={200} height={275} />

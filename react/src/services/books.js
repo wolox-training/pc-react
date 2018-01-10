@@ -23,7 +23,7 @@ export const getBookRentsService = (bookId) => {
 export const getBookWishesService = (userId) => {
 
   return api.get(
-    '/books/3/wishes'
+    `/users/${userId}/wishes`
   );
 };
 
@@ -34,6 +34,11 @@ export const getUserData = () => {
 export const postWishlist = (bookId, userId) => {
   return api.post(
     `/users/${userId}/wishes`,
-    {wish:{book_id: bookId, user_id: userId}}
+    {
+      wish: {
+        book_id: bookId,
+        user_id: userId
+      }
+    }
   );
 };
