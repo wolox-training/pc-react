@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: 140px 60px 100px;
   grid-template-rows: 40px 40px 30px;
-  grid-column-gap: 15px; }
+  grid-column-gap: 15px;
+  justify-content: center; }
 
 .img {
   grid-row-start: 1;
