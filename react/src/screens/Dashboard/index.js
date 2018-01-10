@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {getBooks} from '../../redux/books/actions';
+import actionCreators from '../../redux/books/actions';
 import BookSearch from '../../screens/BookSearch';
 import BookDetail from '../../screens/BookDetail';
 import NavBar from '../../components/NavBar';
@@ -14,7 +14,7 @@ import routes from '../../constants/routes';
 
 class Dashboard extends Component {
   componentWillMount() {
-    this.props.dispatch(getBooks());
+    this.props.dispatch(actionCreators.getBooks());
   }
   render() {
     return (

@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import connect from 'react-redux/es/connect/connect';
+import {connect} from 'react-redux';
 
 import CommentaryList from '../CommentaryList';
-import {getCommentaries} from '../../redux/books/actions';
+import BookService from '../../redux/books/actions';
 
 import CommentaryAdd from './CommentaryAdd';
 import strings from './strings';
@@ -12,7 +12,7 @@ const MAX_COMMENTARIES = 4;
 
 class BookDetailCommentaries extends Component {
   componentWillMount() {
-    this.props.dispatch(getCommentaries(this.props.bookId));
+    this.props.dispatch(BookService.getCommentaries(this.props.bookId));
   }
   render() {
     const bookId = this.props.bookId;
