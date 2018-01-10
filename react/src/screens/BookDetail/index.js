@@ -7,7 +7,6 @@ import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
 import routes from '../../constants/routes';
 import withErrorCatch from '../../components/WithErrorCatch';
-// import {getBook} from '../../services/books';
 import actionCreators from '../../redux/books/actions';
 
 import './styles.css';
@@ -26,7 +25,7 @@ class BookDetail extends Component {
         <div className="book-detail">
           <BookDetailData {...this.props.currentBook} />
           <BookDetailSuggestions />
-          <BookDetailCommentaries  bookId={this.props.currentBook.id}/>
+          <BookDetailCommentaries bookId={this.props.currentBook.id}/>
         </div>
       </Fragment>
     );

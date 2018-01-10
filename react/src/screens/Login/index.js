@@ -23,7 +23,7 @@ class Login extends Component {
     e.preventDefault();
     let errorEmail, errorPassword;
     errorEmail = validateEmail(this.state.email);
-    //errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
+    errorPassword = validatePasswordLength(this.state.password);
 
     if(!errorEmail && !errorPassword){
       this.props.dispatch(actionCreators.logIn(this.state.email, this.state.password));
