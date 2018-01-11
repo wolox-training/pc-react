@@ -52,7 +52,18 @@ const actionCreators = {
         dispatch({type: actionTypes.GET_PROFILE_BOOK_COMMENTS_FAILURE});
       }
     }
-  }
+  },
+  getNotifications: (userId) => {
+    return async (dispatch) => {
+      const responseNotifications = await UsersService.getNotifications(userId);
+      if(responseNotifications.ok){
+        console.log(responseNotifications)
+        // dispatch({type: actionTypes.GET_NOTIFICATIONS_SUCCESS, payload: {user: responseUser.data}});
+      }else{
+        dispatch({type: actionTypes.GET_NOTIFICATIONS_FAILURE});
+      }
+    }
+  },
 };
 
 export default actionCreators;

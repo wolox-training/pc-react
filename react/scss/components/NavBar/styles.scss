@@ -28,7 +28,6 @@
   flex-direction: row;
   & > * {
     margin: 0 15px;
-    height: 40px;
   }
 }
 
@@ -50,4 +49,8 @@
 
 .dropdown-item:hover {
   background-color: $blue;
+}
+
+.navbar-icon-image {
+  height: 40px;
 }

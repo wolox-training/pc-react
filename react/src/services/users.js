@@ -25,5 +25,10 @@ export default {
     return api.get(
       `/users/${userId}/comments`
     );
+  },
+  getNotifications: userId => {
+    return api.get(
+      `/users/${userId}/notifications`
+    );
   }
 };

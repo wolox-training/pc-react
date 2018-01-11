@@ -21,8 +21,7 @@
   align-items: center;
   flex-direction: row; }
   .navbar-icons-group > * {
-    margin: 0 15px;
-    height: 40px; }
+    margin: 0 15px; }
 
 .navbar-link {
   text-decoration: none;
@@ -38,5 +37,8 @@
 
 .dropdown-item:hover {
   background-color: #00ADEE; }
+
+.navbar-icon-image {
+  height: 40px; }
 
 /*# sourceMappingURL=styles.css.map */
