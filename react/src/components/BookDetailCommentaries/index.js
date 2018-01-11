@@ -22,7 +22,7 @@ class BookDetailCommentaries extends Component {
         <h2 className="green-subtitle">{strings.commentaries}</h2>
         <div className="commentaries-detail">
           <CommentaryAdd bookId={this.props.bookId}/>
-          {bookId && <CommentaryList max={MAX_COMMENTARIES} commentaries={this.props.currentBookCommentaries} />}
+          {bookId && <CommentaryList commentaries={this.props.currentBookCommentaries.sort((a, b) => b.id-a.id).slice(0, MAX_COMMENTARIES)} />}
         </div>
       </Fragment>
     );

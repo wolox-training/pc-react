@@ -95,11 +95,7 @@ const actionCreators = {
     return async (dispatch) => {
       dispatch({type: actionTypes.BOOK_LOADING});
       const responseCommentaries = await BookService.getBookCommentaries(bookId);
-      if(responseCommentaries.ok){
-        dispatch({type: actionTypes.GET_BOOK_COMMENTARIES, payload: {commentaries: responseCommentaries.data}});
-      }else{
-        dispatch({type: actionTypes.GET_BOOK_COMMENTARIES, payload: {commentaries: null}});
-      }
+        dispatch({type: actionTypes.GET_BOOK_COMMENTARIES, payload: {commentaries: (responseCommentaries.ok && responseCommentaries.data) || null}});
     }
   },
   postComment: (bookId, comment) => {
@@ -109,7 +105,7 @@ const actionCreators = {
       if(responseData.ok){
         const responsePost = await BookService.postBookComment(bookId, responseData.data.id, comment);
         if(responsePost.ok){
-          actionCreators.getCommentaries(bookId)(dispatch)
+          dispatch(actionCreators.getCommentaries(bookId))
         }
       }
     }
