@@ -1,4 +1,6 @@
-import {getBooksService, getBookService, getBookRentsService, getBookWishesService, getUserData, getBookCommentaries, postWishlist, postBookComment} from '../../services/books';
+import {getBooksService, getBookService, getBookRentsService, getBookCommentaries, postBookComment} from '../../services/books';
+import UsersService from '../../services/users';
+
 import bookDetailStates from '../../constants/bookDetailStates';
 
 export const ActionTypes = {
@@ -27,28 +29,21 @@ export const getBook = (id) => {
   return async (dispatch) => {
     dispatch({type: ActionTypes.BOOK_LOADING});
     const responseBook = await getBookService(id);
-    console.log(responseBook)
     if(responseBook.ok){
       const responseRents = await getBookRentsService(id);
-      // console.log(responseRents);
       const rentData = responseRents.data.some(rent => rent.user.email === sessionStorage.getItem('user_session'));
       if(rentData){
-        // console.log(bookDetailStates.RENTED_BY_CONNECTED)
         dispatch({type: ActionTypes.GET_BOOK, currentBook: responseBook.data, bookState: bookDetailStates.RENTED_BY_CONNECTED, buttonDisabled: true, returnBefore: rentData.to});
       }else{
         if(responseRents.data.some(rent => rent.returned_at)){
-          // console.log(bookDetailStates.NOT_RENTED)
           dispatch({type: ActionTypes.GET_BOOK, currentBook: responseBook.data, bookState: bookDetailStates.NOT_RENTED, buttonDisabled: false, returnBefore: false});
         }else{
-          const responseData = await getUserData();
+          const responseData = await UsersService.getConnectedUser();
           if(responseData.ok){
-            const responseWish = await getBookWishesService(responseData.data.id);
-            console.log(responseWish);
+            const responseWish = await UsersService.getBookWishesService(responseData.data.id);
             if(responseWish.ok && responseWish.data.find(wish => wish.book.id === responseBook.data.id)){
-              console.log(bookDetailStates.AT_WISHLIST)
               dispatch({type: ActionTypes.GET_BOOK, currentBook: responseBook.data, bookState: bookDetailStates.AT_WISHLIST, buttonDisabled: true, returnBefore: false});
             }else {
-              console.log(bookDetailStates.RENTED_NOT_AT_WISHLIST)
               dispatch({type: ActionTypes.GET_BOOK, currentBook: responseBook.data, bookState: bookDetailStates.RENTED_NOT_AT_WISHLIST, buttonDisabled: false, returnBefore: false});
             }
           }
@@ -63,10 +58,9 @@ export const getBook = (id) => {
 export const addToWishlist = (bookId) => {
   return async (dispatch) => {
     dispatch({type: ActionTypes.BOOK_LOADING});
-    const responseData = await getUserData();
+    const responseData = await UsersService.getConnectedUser();
     if(responseData.ok){
-      const responsePost = await postWishlist(bookId, responseData.data.id);
-      console.log(responsePost)
+      const responsePost = await UsersService.postWishlist(bookId, responseData.data.id);
       if(responsePost.ok){
         dispatch({type: ActionTypes.AT_WISHLIST});
       }
@@ -78,7 +72,6 @@ export const getCommentaries = (bookId) => {
   return async (dispatch) => {
     dispatch({type: ActionTypes.BOOK_LOADING});
     const responseCommentaries = await getBookCommentaries(bookId);
-    console.log(responseCommentaries)
     if(responseCommentaries.ok){
       dispatch({type: ActionTypes.GET_BOOK_COMMENTARIES, commentaries: responseCommentaries.data});
     }else{
@@ -90,10 +83,9 @@ export const getCommentaries = (bookId) => {
 export const postComment = (bookId, comment) => {
   return async (dispatch) => {
     dispatch({type: ActionTypes.BOOK_LOADING});
-    const responseData = await getUserData();
+    const responseData = await UsersService.getConnectedUser();
     if(responseData.ok){
       const responsePost = await postBookComment(bookId, responseData.data.id, comment);
-      console.log(responsePost)
       if(responsePost.ok){
         getCommentaries(bookId)(dispatch)
       }
@@ -114,19 +106,3 @@ export const setBookFilterText = (filterText) => {
     filterText
   };
 };
-
-export const getProfileBooks = () => {
-  return async (dispatch) => {
-    dispatch({type: ActionTypes.BOOK_LOADING});
-    const responseData = await getUserData();
-    if(responseData.ok){
-      console.log(responseData)
-      const responseRead = await getReadBooks(responseData.data.id);
-      const responseWish = await getWishBooks(responseData.data.id);
-      if(responseRead.ok && responseWish.ok){
-        console.log(responseRead)
-        console.log(responseWish)
-      }
-    }
-  }
-}

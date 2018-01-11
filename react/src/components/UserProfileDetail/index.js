@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import UserAvatar from '../UserAvatar';
 
+import strings from './strings.js';
 import styles from './styles.js';
 import './styles.css';
 
@@ -20,10 +21,10 @@ const UserProfileDetail = ({user}) => {
         {user.email}
       </div>
       <div className="user-profile-detail-read-counter">
-        <span className="user-profile-detail-number">{user.rents_counter}</span> leidos
+        <span className="user-profile-detail-number">{user.rents_counter}</span> {strings.read}
       </div>
       <div className="user-profile-detail-comment-counter">
-        <span className="user-profile-detail-number">{user.comments_counter}</span> comentarios
+        <span className="user-profile-detail-number">{user.comments_counter}</span> {strings.comments}
       </div>
     </div>
   );

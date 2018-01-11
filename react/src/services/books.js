@@ -20,27 +20,9 @@ export const getBookRentsService = (bookId) => {
   );
 };
 
-export const getBookWishesService = (userId) => {
-
-  return api.get(
-    `/users/${userId}/wishes`
-  );
-};
-
-export const getUserData = () => {
-  return api.get('/users/me');
-};
-
 export const getBookCommentaries = (bookId) => {
   return api.get(
     `/books/${bookId}/comments`
-  );
-};
-
-export const postWishlist = (bookId, userId) => {
-  return api.post(
-    `/users/${userId}/wishes`,
-    {wish:{book_id: bookId, user_id: userId}}
   );
 };
 

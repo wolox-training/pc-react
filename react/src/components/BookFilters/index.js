@@ -38,7 +38,6 @@ class BookFilters extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state)
   return {
     filters: {
       text: state.books.filters.text,

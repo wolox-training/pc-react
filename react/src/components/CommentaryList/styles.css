@@ -16,6 +16,12 @@
   grid-column-start: 2;
   grid-column-end: 3; }
 
+.commentary-book-link {
+  text-align: right;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline; }
+
 .commentary-date {
   margin: 0;
   font-size: 12px;

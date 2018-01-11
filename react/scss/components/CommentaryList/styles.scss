@@ -21,7 +21,13 @@
   grid-row-end: 2;
   grid-column-start: 2;
   grid-column-end: 3;
+}
 
+.commentary-book-link {
+  text-align: right;
+  font-size: $font-medium;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .commentary-date {

@@ -1,3 +1,9 @@
 @import '../../variables/_colors';
 @import '../../variables/_fonts';
 @import '../../variables/_sizes';
+
+.user-profile-commentaries-title {
+  font-size: $font-title;
+  color: $green;
+  font-weight: bold;
+}
