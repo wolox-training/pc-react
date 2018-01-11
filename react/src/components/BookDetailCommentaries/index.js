@@ -14,9 +14,13 @@ class BookDetailCommentaries extends Component {
   componentWillMount() {
     this.props.dispatch(getCommentaries(this.props.bookId));
   }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.bookId !== this.props.bookId){
+      this.props.dispatch(getCommentaries(nextProps.bookId));
+    }
+  }
   render() {
     const bookId = this.props.bookId;
-
     return (
       <Fragment>
         <h2 className="green-subtitle">{strings.commentaries}</h2>

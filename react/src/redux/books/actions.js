@@ -1,4 +1,4 @@
-import {getBooksService, getBookService, getBookRentsService, getBookCommentaries, postBookComment} from '../../services/books';
+import {getBooksService, getBookService, getBookRentsService, getBookCommentaries, postBookComment, getBookSuggestions} from '../../services/books';
 import UsersService from '../../services/users';
 
 import bookDetailStates from '../../constants/bookDetailStates';
@@ -12,7 +12,9 @@ export const ActionTypes = {
   SET_BOOK_FILTER_TYPE: 'SET_BOOK_FILTER_TYPE',
   SET_BOOK_FILTER_TEXT: 'SET_BOOK_FILTER_TEXT',
   NEW_COMMENT_SUCCESS: 'NEW_COMMENT_SUCCESS',
-  NEW_COMMENT_FAILURE: 'NEW_COMMENT_FAILURE'
+  NEW_COMMENT_FAILURE: 'NEW_COMMENT_FAILURE',
+  GET_BOOK_SUGGESTIONS_SUCCESS: 'GET_BOOK_SUGGESTIONS_SUCCESS',
+  GET_BOOK_SUGGESTIONS_FAILURE: 'GET_BOOK_SUGGESTIONS_FAILURE'
 };
 
 export const getBooks = () => {
@@ -106,3 +108,15 @@ export const setBookFilterText = (filterText) => {
     filterText
   };
 };
+
+export const getSuggestions = (bookId) => {
+  return async (dispatch) => {
+    dispatch({type: ActionTypes.BOOK_LOADING});
+    const responseSuggestions = await getBookSuggestions(bookId);
+    if(responseSuggestions.ok){
+      dispatch({type: ActionTypes.GET_BOOK_SUGGESTIONS_SUCCESS, payload: {currentBookSuggestion: responseSuggestions.data}});
+    }else{
+      dispatch({type: ActionTypes.GET_BOOK_SUGGESTIONS_FAILURE});
+    }
+  }
+}

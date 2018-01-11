@@ -32,3 +32,9 @@ export const postBookComment = (bookId, userId, comment) => {
     {comment:{book_id: bookId, user_id: userId, content: comment}}
   );
 };
+
+export const getBookSuggestions = (bookId) => {
+  return api.get(
+    `/books/${bookId}/suggestions`
+  );
+};

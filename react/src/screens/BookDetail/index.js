@@ -7,7 +7,6 @@ import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
 import routes from '../../constants/routes';
 import withErrorCatch from '../../components/WithErrorCatch';
-// import {getBook} from '../../services/books';
 import {getBook} from '../../redux/books/actions';
 
 import './styles.css';
@@ -17,6 +16,11 @@ class BookDetail extends Component {
   componentWillMount() {
     this.props.dispatch(getBook(this.props.match.params.id));
   }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.match.params.id !== this.props.match.params.id){
+      this.props.dispatch(getBook(nextProps.match.params.id));
+    }
+  }
   render() {
     return (
       <Fragment>
@@ -25,8 +29,8 @@ class BookDetail extends Component {
         </NavLink>
         <div className="book-detail">
           <BookDetailData {...this.props} />
-          <BookDetailSuggestions />
-          <BookDetailCommentaries  bookId={this.props.match.params.id}/>
+          <BookDetailSuggestions bookId={this.props.match.params.id}/>
+          <BookDetailCommentaries bookId={this.props.match.params.id}/>
         </div>
       </Fragment>
     );

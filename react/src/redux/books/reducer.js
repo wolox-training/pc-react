@@ -14,6 +14,7 @@ const initialState = {
   books: [],
   currentBook: {},
   currentBookCommentaries: [],
+  currentBookSuggestion: [],
   loading: false
 };
 
@@ -79,6 +80,12 @@ function books(state = initialState, action) {
     return {
       ...state,
       currentBookCommentaries: action.payload.commentaries,
+      loading: false
+    };
+  case ActionTypes.GET_BOOK_SUGGESTIONS_SUCCESS:
+    return {
+      ...state,
+      currentBookSuggestion: action.payload.currentBookSuggestion,
       loading: false
     };
   default:
