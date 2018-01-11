@@ -41,4 +41,14 @@
 .navbar-icon-image {
   height: 40px; }
 
+.navbar-notifications-unread {
+  position: absolute;
+  background-color: #FF0000;
+  border-radius: 100%;
+  padding: 1px;
+  color: #FFFFFF;
+  font-size: 9px;
+  font-weight: bold;
+  left: 25px; }
+
 /*# sourceMappingURL=styles.css.map */

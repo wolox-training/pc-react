@@ -6,7 +6,8 @@ const initialState = {
     readBooks: [],
     wishBooks: [],
     comments: [],
-  }
+  },
+  notifications: []
 };
 
 function reducer(state = initialState, action) {
@@ -35,6 +36,11 @@ function reducer(state = initialState, action) {
         ...state.profileState,
         comments: action.payload.comments,
       }
+    };
+  case actionTypes.GET_NOTIFICATIONS_SUCCESS:
+    return {
+      ...state,
+      notifications: action.payload.notifications
     };
   default:
     return state;

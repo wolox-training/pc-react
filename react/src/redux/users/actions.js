@@ -7,6 +7,8 @@ export const actionTypes = {
   GET_PROFILE_BOOKS_FAILURE: 'GET_PROFILE_BOOKS_FAILURE',
   GET_PROFILE_BOOK_COMMENTS_SUCCESS: 'GET_PROFILE_BOOK_COMMENTS_SUCCESS',
   GET_PROFILE_BOOK_COMMENTS_FAILURE: 'GET_PROFILE_BOOK_COMMENTS_FAILURE',
+  GET_NOTIFICATIONS_SUCCESS: 'GET_NOTIFICATIONS_SUCCESS',
+  GET_NOTIFICATIONS_FAILURE: 'GET_NOTIFICATIONS_FAILURE'
 };
 
 const MAX_IMAGES_PROFILE = 4;
@@ -57,13 +59,22 @@ const actionCreators = {
     return async (dispatch) => {
       const responseNotifications = await UsersService.getNotifications(userId);
       if(responseNotifications.ok){
-        console.log(responseNotifications)
-        // dispatch({type: actionTypes.GET_NOTIFICATIONS_SUCCESS, payload: {user: responseUser.data}});
+        dispatch({type: actionTypes.GET_NOTIFICATIONS_SUCCESS, payload: {notifications: responseNotifications.data}});
       }else{
         dispatch({type: actionTypes.GET_NOTIFICATIONS_FAILURE});
       }
     }
   },
+  // postReadNotification: (userId, notificationId) => {
+  //   return async (dispatch) => {
+  //     const responseNotifications = await UsersService.getNotifications(userId);
+  //     if(responseNotifications.ok){
+  //       dispatch({type: actionTypes.POST_NOTIFICATION_SUCCESS});
+  //     }else{
+  //       dispatch({type: actionTypes.POST_NOTIFICATION_FAILURE});
+  //     }
+  //   }
+  // }
 };
 
 export default actionCreators;

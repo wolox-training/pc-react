@@ -9,9 +9,8 @@ import UserAvatar from '../UserAvatar';
 import routes from '../../constants/routes'
 import wbooksLogoSvg from '../../assets/wbooks_logo.svg';
 import addBookSvg from '../../assets/add_book.svg';
-import notificationsSvg from '../../assets/notifications.svg';
 import {logOut} from '../../redux/login/actions';
-import NotificationList from '../NotificationList';
+import NotificationMenu from './components/NotificationMenu';
 
 import strings from './strings';
 import './styles.css';
@@ -19,20 +18,19 @@ import './styles.css';
 class NavBar extends Component {
   state = {
     dropdownUserOpen: false,
-    dropdownNotificationsOpen: false
   };
   toggleUser = () => {
     this.setState(prevState => ({ dropdownUserOpen: !prevState.dropdownUserOpen }));
   }
-  toggleNotifications = () => {
-    this.setState(prevState => ({ dropdownNotificationsOpen: !prevState.dropdownNotificationsOpen }));
-  }
+
+
   clickLogOut = () => {
     this.props.dispatch(logOut());
   };
 
   componentWillMount() {
     this.props.dispatch(actionCreators.getUser());
+    this.props.dispatch(actionCreators.getNotifications(this.props.user.id));
   }
 
   render() {
@@ -43,16 +41,8 @@ class NavBar extends Component {
         </NavLink>
         <div className="navbar-icons-group">
 
-          <Dropdown isOpen={this.state.dropdownNotificationsOpen} toggle={this.toggleNotifications}>
-            <DropdownToggle
-              tag="div"
-              data-toggle="dropdown"
-              aria-expanded={this.state.dropdownNotificationsOpen}
-            >
-              <img src={notificationsSvg} className="navbar-icon-image" alt={strings.notifications} />
-            </DropdownToggle>
-            <NotificationList userId={this.props.user.id} />
-          </Dropdown>
+          <NotificationMenu notifications={this.props.notifications} />
+
 
           <img src={addBookSvg} className="navbar-icon-image" alt={strings.addbook} />
 
@@ -84,7 +74,8 @@ class NavBar extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.users.profileState.user
+    user: state.users.profileState.user,
+    notifications: state.users.notifications
   };
 };
 

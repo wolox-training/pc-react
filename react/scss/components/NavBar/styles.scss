@@ -54,3 +54,14 @@
 .navbar-icon-image {
   height: 40px;
 }
+
+.navbar-notifications-unread {
+  position: absolute;
+  background-color: $red;
+  border-radius: 100%;
+  padding: 1px;
+  color: $white;
+  font-size: 9px;
+  font-weight: bold;
+  left: 25px;
+}
