@@ -26,7 +26,6 @@ class NavBar extends Component {
     this.props.dispatch(actionCreators.logOut());
   };
 
-
   render() {
     return (
       <nav className="navbar">
@@ -47,9 +46,7 @@ class NavBar extends Component {
             <DropdownMenu right>
             <NavLink className="navbar-link" to={routes.USER()}>
               <DropdownItem onClick={() => {}}>
-
                   {strings.profile}
-
               </DropdownItem>
               </NavLink>
               <DropdownItem onClick={this.clickLogOut}>

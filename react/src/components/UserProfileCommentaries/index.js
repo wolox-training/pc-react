@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import connect from 'react-redux/es/connect/connect';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import actionCreators from '../../redux/users/actions';
@@ -25,7 +25,7 @@ class UserProfileCommentaries extends Component {
 }
 
 UserProfileCommentaries.propTypes = {
-  comments: PropTypes.array
+  comments: PropTypes.array.isRequired
 };
 
 export default connect()(UserProfileCommentaries);
