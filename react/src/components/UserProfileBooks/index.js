@@ -10,7 +10,7 @@ import './styles.css';
 
 class UserProfileBooks extends Component {
   componentWillMount() {
-    this.props.dispatch(actionCreators.getProfileBooks());
+    this.props.getProfileBooks();
   }
   render() {
     return (
@@ -27,6 +27,13 @@ class UserProfileBooks extends Component {
 UserProfileBooks.propTypes = {
   readBooks: PropTypes.array.isRequired,
   wishBooks: PropTypes.array.isRequired,
+  getProfileBooks: PropTypes.func.isRequired
 };
 
-export default connect()(UserProfileBooks);
+const mapDispatchToProps = dispatch => {
+  return({
+    getProfileBooks: () => {dispatch(actionCreators.getProfileBooks());}
+  });
+};
+
+export default connect(null, mapDispatchToProps)(UserProfileBooks);

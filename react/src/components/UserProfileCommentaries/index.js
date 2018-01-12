@@ -10,7 +10,7 @@ import './styles.css';
 
 class UserProfileCommentaries extends Component {
   componentWillMount() {
-    this.props.dispatch(actionCreators.getProfileBookComments());
+    this.props.getProfileBookComments();
   }
   render () {
     return (
@@ -25,7 +25,14 @@ class UserProfileCommentaries extends Component {
 }
 
 UserProfileCommentaries.propTypes = {
-  comments: PropTypes.array.isRequired
+  comments: PropTypes.array.isRequired,
+  getProfileBookComments: PropTypes.func.isRequired
 };
 
-export default connect()(UserProfileCommentaries);
+const mapDispatchToProps = dispatch => {
+  return({
+    getProfileBookComments: () => {dispatch(actionCreators.getProfileBookComments());}
+  });
+};
+
+export default connect(null, mapDispatchToProps)(UserProfileCommentaries);
