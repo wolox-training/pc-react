@@ -1,0 +1,39 @@
+@import '../../../../variables/_colors';
+@import '../../../../variables/_fonts';
+@import '../../../../variables/_sizes';
+
+.navbar-add-suggestion-modal {
+  position: absolute;
+  top: 100px;
+  left: 30%;
+  right: 30%;
+  bottom: 20%;
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  outline: none;
+  padding: 20px;
+  min-height: 600px;
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-add-suggestion-modal-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.navbar-add-suggestion-modal-icon {
+  height: 50px;
+}
+
+.navbar-add-suggestion-modal-title {
+  font-size: $font-title;
+  color: $dark-grey;
+  font-weight: bold;
+}
