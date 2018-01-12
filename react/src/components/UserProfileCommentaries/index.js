@@ -8,8 +8,6 @@ import CommentaryList from '../CommentaryList';
 import strings from './strings.js';
 import './styles.css';
 
-const MAX_COMMENTARIES = 4;
-
 class UserProfileCommentaries extends Component {
   componentWillMount() {
     this.props.dispatch(actionCreators.getProfileBookComments());
@@ -20,7 +18,7 @@ class UserProfileCommentaries extends Component {
         <div className="user-profile-commentaries-title">
           {strings.comments}
         </div>
-        <CommentaryList max={MAX_COMMENTARIES} commentaries={this.props.comments} bookLink />
+        <CommentaryList commentaries={this.props.comments} bookLink />
       </div>
     );
   }

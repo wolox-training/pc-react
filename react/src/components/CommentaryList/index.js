@@ -13,7 +13,7 @@ class CommentaryList extends Component {
     return (
       <div>
         {
-          this.props.commentaries.sort((a, b) => b.id-a.id).slice(0, this.props.max).map((commentary, i) => {
+          this.props.commentaries.map((commentary, i) => {
             return (
               <div className="commentary" key={i}>
                 <UserAvatar src={commentary.user.image_url}/>
