@@ -1,0 +1,39 @@
+.navbar-add-suggestion-modal-field-group {
+  margin-bottom: 20px;
+  text-align: left; }
+
+.navbar-add-suggestion-modal-field-title {
+  margin: 0 0 5px 5px;
+  font-size: 12px;
+  font-weight: normal; }
+
+.navbar-add-suggestion-modal-field {
+  height: 35px;
+  width: 100%;
+  border: 0;
+  background-color: #F4F4F4; }
+
+.navbar-add-suggestion-modal-button-cancel,
+.navbar-add-suggestion-modal-button-accept {
+  width: 175px;
+  height: 40px;
+  border: 0;
+  font-size: 14px;
+  color: #FFFFFF;
+  font-weight: bold; }
+
+.navbar-add-suggestion-modal-button-cancel {
+  background-color: #D8D8D8; }
+
+.navbar-add-suggestion-modal-button-accept {
+  background-color: #00ADEE; }
+
+.navbar-add-suggestion-modal-fields-inline,
+.navbar-add-suggestion-modal-button-group {
+  display: flex;
+  justify-content: center; }
+  .navbar-add-suggestion-modal-fields-inline > *:not(:last-child),
+  .navbar-add-suggestion-modal-button-group > *:not(:last-child) {
+    margin-right: 20px; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 
 import addBookSvg from '../../../../assets/add_book.svg';
 
+import SuggestionForm from './components/SuggestionForm';
 import strings from './strings.js';
 import './styles.css';
 
@@ -38,7 +39,7 @@ class AddSuggestionMenu extends Component {
         >
           <img  src={addBookSvg} className="navbar-add-suggestion-modal-icon" alt={strings.addbook} />
           <h2 className="navbar-add-suggestion-modal-title">{strings.suggestbooks}</h2>
-
+          <SuggestionForm />
         </Modal>
       </Fragment>
     );

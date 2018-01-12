@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form'
 
 import App from './App.js';
 import registerServiceWorker from './registerServiceWorker';
@@ -16,7 +17,8 @@ let store = createStore(
   combineReducers({
     books,
     login,
-    users
+    users,
+    form: formReducer
   }),
   applyMiddleware(thunk)
 );
