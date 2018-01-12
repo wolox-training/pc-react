@@ -11,6 +11,7 @@ const initialState = {
   },
   books: [],
   currentBook: {},
+  currentBookCommentaries: [],
   loading: false
 };
 
@@ -26,7 +27,7 @@ function reducer(state = initialState, action) {
       ...state,
       filterText: action.payload.filterText
     };
-  case actionTypes.GET_BOOK_LOADING:
+  case actionTypes.BOOK_LOADING:
     return {
       ...state,
       loading: true
@@ -61,6 +62,12 @@ function reducer(state = initialState, action) {
         bookState: bookDetailStates.AT_WISHLIST,
         buttonDisabled: true
       },
+      loading: false
+    };
+  case actionTypes.GET_BOOK_COMMENTARIES:
+    return {
+      ...state,
+      currentBookCommentaries: action.payload.commentaries,
       loading: false
     };
   default:

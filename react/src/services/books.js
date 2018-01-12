@@ -34,5 +34,16 @@ export default {
         }
       }
     );
+  },
+  getBookCommentaries: (bookId) => {
+    return api.get(
+      `/books/${bookId}/comments`
+    );
+  },
+  postBookComment: (bookId, userId, comment) => {
+    return api.post(
+      `/books/${bookId}/comments`,
+      {comment:{book_id: bookId, user_id: userId, content: comment}}
+    );
   }
 };

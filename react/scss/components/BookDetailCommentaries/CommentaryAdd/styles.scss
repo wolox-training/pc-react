@@ -28,4 +28,7 @@
   color: $white;
   font-weight: bold;
   display: block;
+  &:disabled {
+    background-color: $grey;
+  }
 }

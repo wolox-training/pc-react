@@ -1,17 +1,17 @@
 import BookService from '../../services/books';
 import bookDetailStates from '../../constants/bookDetailStates';
 
-
 export const actionTypes = {
   GET_BOOK_SUCCESS: 'GET_BOOK_SUCCESS',
   GET_BOOK_FAILURE: 'GET_BOOK_FAILURE',
   GET_BOOKS_SUCCESS: 'GET_BOOKS_SUCCESS',
   GET_BOOKS_FAILURE: 'GET_BOOKS_FAILURE',
-  GET_BOOK_LOADING: 'GET_BOOK_LOADING',
+  BOOK_LOADING: 'BOOK_LOADING',
   SET_BOOK_STATE: 'SET_BOOK_STATE',
   AT_WISHLIST: 'AT_WISHLIST',
   SET_BOOK_FILTER_TYPE: 'SET_BOOK_FILTER_TYPE',
   SET_BOOK_FILTER_TEXT: 'SET_BOOK_FILTER_TEXT',
+  GET_BOOK_COMMENTARIES: 'GET_BOOK_COMMENTARIES',
 };
 
 const privateActionCreators = {
@@ -34,7 +34,7 @@ const actionCreators = {
   },
   getBook: (id) => {
     return async (dispatch) => {
-      dispatch({type: actionTypes.GET_BOOK_LOADING});
+      dispatch({type: actionTypes.BOOK_LOADING});
       const responseBook = await BookService.getBookService(id);
       if(responseBook.ok){
         const responseRents = await BookService.getBookRentsService(id);
@@ -81,12 +81,31 @@ const actionCreators = {
   },
   addToWishlist: (bookId) => {
     return async (dispatch) => {
-      dispatch({type: actionTypes.GET_BOOK_LOADING});
+      dispatch({type: actionTypes.BOOK_LOADING});
       const responseData = await BookService.getUserData();
       if(responseData.ok){
         const responsePost = await BookService.postWishlist(bookId, responseData.data.id);
         if(responsePost.ok){
           dispatch({type: actionTypes.AT_WISHLIST});
+        }
+      }
+    }
+  },
+  getCommentaries: (bookId) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responseCommentaries = await BookService.getBookCommentaries(bookId);
+        dispatch({type: actionTypes.GET_BOOK_COMMENTARIES, payload: {commentaries: (responseCommentaries.ok && responseCommentaries.data) || null}});
+    }
+  },
+  postComment: (bookId, comment) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responseData = await BookService.getUserData();
+      if(responseData.ok){
+        const responsePost = await BookService.postBookComment(bookId, responseData.data.id, comment);
+        if(responsePost.ok){
+          dispatch(actionCreators.getCommentaries(bookId))
         }
       }
     }

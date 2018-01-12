@@ -10,7 +10,6 @@ import bookDetailStates from '../../constants/bookDetailStates';
 import './styles.css';
 
 const BookDetailData = ({detailState, currentBook, loading, onClickWishlist}) => {
-
   return (
     <div className="book-detail-data">
       <BookImage image_url={currentBook.image_url} title={currentBook.title} width={200} height={275} />

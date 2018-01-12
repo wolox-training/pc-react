@@ -29,11 +29,11 @@ class BookList extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    books: state.books.books,
-    filterType: state.books.filterType,
-    filterText: state.books.filterText
+    books: store.books.books,
+    filterType: store.books.filterType,
+    filterText: store.books.filterText
   };
 };
 
