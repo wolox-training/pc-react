@@ -16,11 +16,11 @@ import strings from './strings';
 
 class BookDetail extends Component {
   componentWillMount() {
-    this.props.getBook(this.props.match.params.id);
+    this.props.getBook(this.props.id);
   }
   componentWillReceiveProps(nextProps) {
-    if(nextProps.match.params.id !== this.props.match.params.id){
-      this.props.getBook(nextProps.match.params.id);
+    if(nextProps.id !== this.props.id){
+      this.props.getBook(nextProps.id);
     }
   }
   render() {
@@ -31,8 +31,8 @@ class BookDetail extends Component {
         </NavLink>
         <div className="book-detail">
           <BookDetailData {...this.props} />
-          <BookDetailSuggestions bookId={Number(this.props.match.params.id)} />
-          <BookDetailCommentaries bookId={Number(this.props.match.params.id)} />
+          <BookDetailSuggestions bookId={this.props.id} />
+          <BookDetailCommentaries bookId={this.props.id} />
         </div>
       </Fragment>
     );
@@ -54,14 +54,16 @@ BookDetail.propTypes = {
     description: PropTypes.string
   }),
   loading: PropTypes.bool,
-  getBook: PropTypes.func.isRequired
+  getBook: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
 };
 
-const mapStateToProps = store => {
+const mapStateToProps = (store, props) => {
   return {
     currentBook: store.books.currentBook,
     detailState: store.books.detailState,
-    loading: store.books.loading
+    loading: store.books.loading,
+    id: Number(props.match.params.id)
   };
 };
 
