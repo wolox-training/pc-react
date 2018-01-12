@@ -16,6 +16,7 @@
   min-width: 500px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -30,6 +31,7 @@
 
 .navbar-add-suggestion-modal-icon {
   height: 50px;
+  margin-bottom: 20px;
 }
 
 .navbar-add-suggestion-modal-title {

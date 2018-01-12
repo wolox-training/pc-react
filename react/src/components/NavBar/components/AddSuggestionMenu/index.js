@@ -22,6 +22,9 @@ class AddSuggestionMenu extends Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
+  onSubmitHandler(){
+    console.log('hola');
+  }
   componentWillMount() {
     Modal.setAppElement('body');
   }
@@ -39,7 +42,7 @@ class AddSuggestionMenu extends Component {
         >
           <img  src={addBookSvg} className="navbar-add-suggestion-modal-icon" alt={strings.addbook} />
           <h2 className="navbar-add-suggestion-modal-title">{strings.suggestbooks}</h2>
-          <SuggestionForm />
+          <SuggestionForm onCancelClick={this.closeModal} submitHandler={this.onSubmitHandler}/>
         </Modal>
       </Fragment>
     );

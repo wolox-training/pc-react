@@ -12,6 +12,7 @@
   min-width: 500px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center; }
 
 .navbar-add-suggestion-modal-overlay {
@@ -23,7 +24,8 @@
   background-color: rgba(0, 0, 0, 0.75); }
 
 .navbar-add-suggestion-modal-icon {
-  height: 50px; }
+  height: 50px;
+  margin-bottom: 20px; }
 
 .navbar-add-suggestion-modal-title {
   font-size: 20px;
