@@ -23,7 +23,6 @@ class NavBar extends Component {
     this.setState(prevState => ({ dropdownUserOpen: !prevState.dropdownUserOpen }));
   }
 
-
   clickLogOut = () => {
     this.props.dispatch(logOut());
   };
@@ -40,12 +39,8 @@ class NavBar extends Component {
           <img className="wbooks-logo" src={wbooksLogoSvg} alt="Wbooks" />
         </NavLink>
         <div className="navbar-icons-group">
-
           <NotificationMenu {...this.props} />
-
-
           <img src={addBookSvg} className="navbar-icon-image" alt={strings.addbook} />
-
           <Dropdown isOpen={this.state.dropdownUserOpen} toggle={this.toggleUser}>
             <DropdownToggle
               tag="div"
@@ -65,7 +60,6 @@ class NavBar extends Component {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-
         </div>
       </nav>
     );
