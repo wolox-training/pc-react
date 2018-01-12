@@ -4,13 +4,15 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import 'bootstrap/dist/css/bootstrap.css';
 import {connect} from 'react-redux';
 
-import actionCreators from '../../redux/users/actions';
+import usersActionCreators from '../../redux/users/actions';
 import UserAvatar from '../UserAvatar';
 import routes from '../../constants/routes'
 import wbooksLogoSvg from '../../assets/wbooks_logo.svg';
 import addBookSvg from '../../assets/add_book.svg';
-import {logOut} from '../../redux/login/actions';
 import NotificationMenu from './components/NotificationMenu';
+import loginActionCreators from '../../redux/login/actions';
+import {getUnreadNotifications} from '../../selectors';
+
 
 import strings from './strings';
 import './styles.css';
@@ -24,12 +26,13 @@ class NavBar extends Component {
   }
 
   clickLogOut = () => {
-    this.props.dispatch(logOut());
+    sessionStorage.clear();
+    this.props.dispatch(loginActionCreators.logOut());
   };
 
   componentWillMount() {
-    this.props.dispatch(actionCreators.getUser());
-    this.props.dispatch(actionCreators.getNotifications(this.props.user.id));
+    this.props.dispatch(usersActionCreators.getUser());
+    this.props.dispatch(usersActionCreators.getNotifications(this.props.user.id));
   }
 
   render() {
@@ -66,10 +69,10 @@ class NavBar extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    user: state.users.profileState.user,
-    notifications: state.users.notifications.filter(notification => !notification.read)
+    user: store.users.profileState.user,
+    notifications: getUnreadNotifications(store)
   };
 };
 

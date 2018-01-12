@@ -7,6 +7,7 @@ import actionCreators from '../../redux/users/actions';
 import UserProfileDetail from '../../components/UserProfileDetail';
 import UserProfileBooks from '../../components/UserProfileBooks';
 import UserProfileCommentaries from '../../components/UserProfileCommentaries';
+import {getLastProfileCommentaries} from '../../selectors';
 
 import './styles.css';
 
@@ -41,9 +42,12 @@ UserProfile.propTypes = {
   })
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    profileState: state.users.profileState
+    profileState: {
+      ...store.users.profileState,
+      comments: getLastProfileCommentaries(store)
+    }
   };
 };
 

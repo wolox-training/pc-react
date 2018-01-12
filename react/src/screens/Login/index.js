@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import NavLink from 'react-router-dom/NavLink';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
-import {logIn} from '../../redux/login/actions';
-import {validateEmail, validatePasswordLength, validatePasswordContent} from '../../utils/validations';
+import actionCreators from '../../redux/login/actions';
+import {validateEmail, validatePasswordLength} from '../../utils/validations';
 import InputWideWithHeader from '../../components/InputWideWithHeader';
 import routes from '../../constants/routes';
 
@@ -23,10 +24,10 @@ class Login extends Component {
     e.preventDefault();
     let errorEmail, errorPassword;
     errorEmail = validateEmail(this.state.email);
-    //errorPassword = validatePasswordLength(this.state.password) || validatePasswordContent(this.state.password);
+    errorPassword = validatePasswordLength(this.state.password);
 
     if(!errorEmail && !errorPassword){
-      this.props.dispatch(logIn(this.state.email, this.state.password));
+      this.props.dispatch(actionCreators.logIn(this.state.email, this.state.password));
     }else{
       errorEmail = errorEmail || '';
       errorPassword = errorPassword || '';
@@ -67,9 +68,15 @@ class Login extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {...state.login.login_state}
 
+Login.propTypes = {
+  buttonText: PropTypes.string,
+  posting: PropTypes.bool,
+  error: PropTypes.string
+}
+
+const mapStateToProps = store => {
+  return {...store.login.loginState}
 };
 
 export default connect(mapStateToProps)(Login);

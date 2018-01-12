@@ -3,6 +3,7 @@ import { DropdownItem } from 'reactstrap';
 
 import BookImage from '../../../../../BookImage';
 
+import strings from './strings.js';
 import './styles.css';
 
 class NotificationItem extends PureComponent {
@@ -10,20 +11,20 @@ class NotificationItem extends PureComponent {
     return (
       <DropdownItem onClick={() => this.props.onClickFunction(this.props.userId, this.props.notificationId)} className="navbar-notification-item">
         <div className="navbar-notification-item-image">
-          <BookImage image_url="http://wolox-training.s3.amazonaws.com/uploads/6963511-M.jpg" title="Libro" width="55px" height="80px" />
+          <BookImage image_url="http://wolox-training.s3.amazonaws.com/uploads/6963511-M.jpg" title={strings.book} width="55px" height="80px" />
         </div>
         <div className="text-column">
           <div className="navbar-notification-item-reason">
             {this.props.notificationBody}
           </div>
           <div className="navbar-notification-item-book-title">
-            Title
+            {strings.title}
           </div>
           <div className="navbar-notification-item-book-author">
-            Author
+            {strings.author}
           </div>
           <div className="navbar-notification-item-date">
-            Fecha de devolución: XX/XX/XX
+            {strings.returndate}
           </div>
         </div>
       </DropdownItem>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import connect from 'react-redux/es/connect/connect';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import actionCreators from '../../redux/users/actions';
@@ -8,11 +8,9 @@ import CommentaryList from '../CommentaryList';
 import strings from './strings.js';
 import './styles.css';
 
-const MAX_COMMENTARIES = 4;
-
 class UserProfileCommentaries extends Component {
   componentWillMount() {
-    this.props.dispatch(actionCreators.getProfileBookComments());
+    this.props.getProfileBookComments();
   }
   render () {
     return (
@@ -20,14 +18,21 @@ class UserProfileCommentaries extends Component {
         <div className="user-profile-commentaries-title">
           {strings.comments}
         </div>
-        <CommentaryList max={MAX_COMMENTARIES} commentaries={this.props.comments} bookLink />
+        <CommentaryList commentaries={this.props.comments} bookLink />
       </div>
     );
   }
 }
 
 UserProfileCommentaries.propTypes = {
-  comments: PropTypes.array
+  comments: PropTypes.array.isRequired,
+  getProfileBookComments: PropTypes.func.isRequired
 };
 
-export default connect()(UserProfileCommentaries);
+const mapDispatchToProps = dispatch => {
+  return({
+    getProfileBookComments: () => {dispatch(actionCreators.getProfileBookComments());}
+  });
+};
+
+export default connect(null, mapDispatchToProps)(UserProfileCommentaries);

@@ -1,24 +1,26 @@
 import React, { Component,Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
+import PropTypes from 'prop-types';
 
 import BookDetailCommentaries from '../../components/BookDetailCommentaries';
 import BookDetailData from '../../components/BookDetailData';
 import BookDetailSuggestions from '../../components/BookDetailSuggestions';
 import routes from '../../constants/routes';
 import withErrorCatch from '../../components/WithErrorCatch';
-import {getBook} from '../../redux/books/actions';
+import actionCreators from '../../redux/books/actions';
+
 
 import './styles.css';
 import strings from './strings';
 
 class BookDetail extends Component {
   componentWillMount() {
-    this.props.dispatch(getBook(this.props.match.params.id));
+    this.props.getBook(this.props.id);
   }
   componentWillReceiveProps(nextProps) {
-    if(nextProps.match.params.id !== this.props.match.params.id){
-      this.props.dispatch(getBook(nextProps.match.params.id));
+    if(nextProps.id !== this.props.id){
+      this.props.getBook(nextProps.id);
     }
   }
   render() {
@@ -29,20 +31,46 @@ class BookDetail extends Component {
         </NavLink>
         <div className="book-detail">
           <BookDetailData {...this.props} />
-          <BookDetailSuggestions bookId={this.props.match.params.id}/>
-          <BookDetailCommentaries bookId={this.props.match.params.id}/>
+          <BookDetailSuggestions bookId={this.props.id} />
+          <BookDetailCommentaries bookId={this.props.id} />
         </div>
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
+BookDetail.propTypes = {
+  detailState: PropTypes.shape({
+    buttonDisabled: PropTypes.bool,
+    bookState: PropTypes.string,
+    returnBefore: PropTypes.string
+  }),
+  currentBook: PropTypes.shape({
+    image_url: PropTypes.string,
+    title: PropTypes.string,
+    author: PropTypes.string,
+    year: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    genre: PropTypes.string,
+    description: PropTypes.string
+  }),
+  loading: PropTypes.bool,
+  getBook: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
+};
+
+const mapStateToProps = (store, props) => {
   return {
-    currentBook: state.books.currentBook,
-    detail_state: state.books.detail_state,
-    loading: state.books.loading
+    currentBook: store.books.currentBook,
+    detailState: store.books.detailState,
+    loading: store.books.loading,
+    id: Number(props.match.params.id)
   };
 };
 
-export default connect(mapStateToProps)(withErrorCatch(BookDetail));
+const mapDispatchToProps = (dispatch) => {
+  return({
+    getBook: bookId => dispatch(actionCreators.getBook(bookId))
+  });
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorCatch(BookDetail));

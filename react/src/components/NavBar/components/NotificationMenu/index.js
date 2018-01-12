@@ -24,35 +24,37 @@ class NotificationMenu extends Component {
     this.props.history.push(routes.DETAIL(5));
   }
   render(){
-    return (<Dropdown isOpen={this.state.dropdownNotificationsOpen} toggle={this.toggleNotifications}>
-      <DropdownToggle
-        tag="div"
-        data-toggle="dropdown"
-        aria-expanded={this.state.dropdownNotificationsOpen}
-      >
-        <img src={notificationsSvg} className="navbar-icon-image" alt={strings.notifications} />
-        {this.props.notifications.length > 0 && <span className="navbar-notifications-unread">{this.props.notifications.length}</span>}
-      </DropdownToggle>
-      <DropdownMenu right>
-        {
-          this.props.notifications.slice(0,MAX_NOTIFICATIONS).map(notification => {
-            return (
-              <NotificationItem
-                onClickFunction={this.readComment}
-                userId={this.props.user.id}
-                notificationId={notification.id}
-                notificationReason={notification.reason}
-                notificationBody={notification.body && notification.body.substring(0, MAX_CHARS)}
-                key={notification.id}
-              />
-            );
-          })
-        }
-        {
-          this.props.notifications.length > MAX_NOTIFICATIONS && <DropdownItem disabled>+{this.props.notifications.length-MAX_NOTIFICATIONS} notificaciones</DropdownItem>
-        }
-      </DropdownMenu>
-    </Dropdown>);
+    return (
+      <Dropdown isOpen={this.state.dropdownNotificationsOpen} toggle={this.toggleNotifications}>
+        <DropdownToggle
+          tag="div"
+          data-toggle="dropdown"
+          aria-expanded={this.state.dropdownNotificationsOpen}
+        >
+          <img src={notificationsSvg} className="navbar-icon-image" alt={strings.notifications} />
+          {this.props.notifications.length > 0 && <span className="navbar-notifications-unread">{this.props.notifications.length}</span>}
+        </DropdownToggle>
+        <DropdownMenu right>
+          {
+            this.props.notifications.slice(0,MAX_NOTIFICATIONS).map(notification => {
+              return (
+                <NotificationItem
+                  onClickFunction={this.readComment}
+                  userId={this.props.user.id}
+                  notificationId={notification.id}
+                  notificationReason={notification.reason}
+                  notificationBody={notification.body && notification.body.substring(0, MAX_CHARS)}
+                  key={notification.id}
+                />
+              );
+            })
+          }
+          {
+            this.props.notifications.length > MAX_NOTIFICATIONS && <DropdownItem disabled>+{this.props.notifications.length-MAX_NOTIFICATIONS} notificaciones</DropdownItem>
+          }
+        </DropdownMenu>
+      </Dropdown>
+    );
   }
 }
 

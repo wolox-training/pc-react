@@ -5,7 +5,6 @@ export default {
     return api.get('/users/me');
   },
   getBookWishesService: (userId) => {
-
     return api.get(
       `/users/${userId}/wishes`
     );
