@@ -31,7 +31,7 @@ class NotificationMenu extends Component {
         aria-expanded={this.state.dropdownNotificationsOpen}
       >
         <img src={notificationsSvg} className="navbar-icon-image" alt={strings.notifications} />
-        <span className="navbar-notifications-unread">{this.props.notifications.length}</span>
+        {this.props.notifications.length > 0 && <span className="navbar-notifications-unread">{this.props.notifications.length}</span>}
       </DropdownToggle>
       <DropdownMenu right>
         {
