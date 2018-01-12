@@ -12,6 +12,7 @@ const initialState = {
   books: [],
   currentBook: {},
   currentBookCommentaries: [],
+  currentBookSuggestion: [],
   loading: false
 };
 
@@ -68,6 +69,12 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       currentBookCommentaries: action.payload.commentaries,
+      loading: false
+    };
+  case actionTypes.GET_BOOK_SUGGESTIONS_SUCCESS:
+    return {
+      ...state,
+      currentBookSuggestion: action.payload.currentBookSuggestion,
       loading: false
     };
   default:

@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAIA,YAAa;EACX,SAAS,EAAE,KAAK;EAChB,MAAM,EAAE,WAAW;EAEnB,mCAAwB;IACtB,aAAa,EAAE,iBAAe;IAC9B,aAAa,EAAE,IAAI;;AAIvB,eAAgB;EACd,KAAK,ECdC,OAAO;EDeb,SAAS,EEfE,IAAI",
+"mappings": "AAIA,YAAa;EACX,SAAS,EAAE,KAAK;EAChB,MAAM,EAAE,WAAW;EAEnB,mCAAwB;IACtB,aAAa,EAAE,iBAAe;IAC9B,aAAa,EAAE,IAAI;;AAIvB,eAAgB;EACd,KAAK,ECdC,OAAO;EDeb,SAAS,EEfE,IAAI;EFgBf,WAAW,EAAE,IAAI",
 "sources": ["../../../scss/screens/BookDetail/styles.scss","../../../scss/variables/_colors.scss","../../../scss/variables/_fonts.scss"],
 "names": [],
 "file": "styles.css"

@@ -51,10 +51,10 @@ BookDetailData.propTypes = {
   dispatch: PropTypes.func
 };
 
-function mapDispatchToProps(dispatch, props) {
+const mapDispatchToProps = (dispatch, props) => {
   return({
     onClickWishlist: () => {props.detailState.bookState === bookDetailStates.RENTED_NOT_AT_WISHLIST && dispatch(actionCreators.addToWishlist(props.currentBook.id));}
   });
-}
+};
 
 export default connect(null, mapDispatchToProps)(BookDetailData);

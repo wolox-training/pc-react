@@ -3,7 +3,8 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  flex-direction: row; }
+  flex-direction: row;
+  min-height: 195px; }
 
 .image-item {
   margin: 35px;

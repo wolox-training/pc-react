@@ -12,6 +12,10 @@ export const actionTypes = {
   SET_BOOK_FILTER_TYPE: 'SET_BOOK_FILTER_TYPE',
   SET_BOOK_FILTER_TEXT: 'SET_BOOK_FILTER_TEXT',
   GET_BOOK_COMMENTARIES: 'GET_BOOK_COMMENTARIES',
+  NEW_COMMENT_SUCCESS: 'NEW_COMMENT_SUCCESS',
+  NEW_COMMENT_FAILURE: 'NEW_COMMENT_FAILURE',
+  GET_BOOK_SUGGESTIONS_SUCCESS: 'GET_BOOK_SUGGESTIONS_SUCCESS',
+  GET_BOOK_SUGGESTIONS_FAILURE: 'GET_BOOK_SUGGESTIONS_FAILURE'
 };
 
 const privateActionCreators = {
@@ -107,6 +111,17 @@ const actionCreators = {
         if(responsePost.ok){
           dispatch(actionCreators.getCommentaries(bookId))
         }
+      }
+    }
+  },
+  getSuggestions: (bookId) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responseSuggestions = await BookService.getBookSuggestions(bookId);
+      if(responseSuggestions.ok){
+        dispatch({type: actionTypes.GET_BOOK_SUGGESTIONS_SUCCESS, payload: {currentBookSuggestion: responseSuggestions.data}});
+      }else{
+        dispatch({type: actionTypes.GET_BOOK_SUGGESTIONS_FAILURE});
       }
     }
   }

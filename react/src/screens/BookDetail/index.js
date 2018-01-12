@@ -10,12 +10,18 @@ import routes from '../../constants/routes';
 import withErrorCatch from '../../components/WithErrorCatch';
 import actionCreators from '../../redux/books/actions';
 
+
 import './styles.css';
 import strings from './strings';
 
 class BookDetail extends Component {
   componentWillMount() {
-    this.props.dispatch(actionCreators.getBook(this.props.match.params.id));
+    this.props.getBook(this.props.id);
+  }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.id !== this.props.id){
+      this.props.getBook(nextProps.id);
+    }
   }
   render() {
     return (
@@ -25,8 +31,8 @@ class BookDetail extends Component {
         </NavLink>
         <div className="book-detail">
           <BookDetailData {...this.props} />
-          <BookDetailSuggestions />
-          <BookDetailCommentaries  bookId={this.props.match.params.id}/>
+          <BookDetailSuggestions bookId={this.props.id} />
+          <BookDetailCommentaries bookId={this.props.id} />
         </div>
       </Fragment>
     );
@@ -47,15 +53,24 @@ BookDetail.propTypes = {
     genre: PropTypes.string,
     description: PropTypes.string
   }),
-  loading: PropTypes.bool
-}
+  loading: PropTypes.bool,
+  getBook: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
+};
 
-const mapStateToProps = store => {
+const mapStateToProps = (store, props) => {
   return {
     currentBook: store.books.currentBook,
     detailState: store.books.detailState,
-    loading: store.books.loading
+    loading: store.books.loading,
+    id: Number(props.match.params.id)
   };
 };
 
-export default connect(mapStateToProps)(withErrorCatch(BookDetail));
+const mapDispatchToProps = (dispatch) => {
+  return({
+    getBook: bookId => dispatch(actionCreators.getBook(bookId))
+  });
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorCatch(BookDetail));
