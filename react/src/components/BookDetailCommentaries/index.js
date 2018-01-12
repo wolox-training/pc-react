@@ -3,12 +3,11 @@ import {connect} from 'react-redux';
 
 import CommentaryList from '../CommentaryList';
 import BookService from '../../redux/books/actions';
+import {getLastCommentaries} from '../../selectors';
 
 import CommentaryAdd from './CommentaryAdd';
 import strings from './strings';
 import './styles.css';
-
-const MAX_COMMENTARIES = 4;
 
 class BookDetailCommentaries extends Component {
   componentWillMount() {
@@ -22,16 +21,16 @@ class BookDetailCommentaries extends Component {
         <h2 className="green-subtitle">{strings.commentaries}</h2>
         <div className="commentaries-detail">
           <CommentaryAdd bookId={this.props.bookId}/>
-          {bookId && <CommentaryList commentaries={this.props.currentBookCommentaries.sort((a, b) => b.id-a.id).slice(0, MAX_COMMENTARIES)} />}
+          {bookId && <CommentaryList commentaries={this.props.currentBookCommentaries} />}
         </div>
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    currentBookCommentaries: state.books.currentBookCommentaries
+    currentBookCommentaries: getLastCommentaries(store)
   };
 };
 

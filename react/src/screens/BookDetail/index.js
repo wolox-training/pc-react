@@ -50,11 +50,11 @@ BookDetail.propTypes = {
   loading: PropTypes.bool
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    currentBook: state.books.currentBook,
-    detailState: state.books.detailState,
-    loading: state.books.loading
+    currentBook: store.books.currentBook,
+    detailState: store.books.detailState,
+    loading: store.books.loading
   };
 };
 

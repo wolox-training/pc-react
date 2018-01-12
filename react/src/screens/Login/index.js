@@ -75,8 +75,8 @@ Login.propTypes = {
   error: PropTypes.string
 }
 
-const mapStateToProps = state => {
-  return {...state.login.loginState}
+const mapStateToProps = store => {
+  return {...store.login.loginState}
 };
 
 export default connect(mapStateToProps)(Login);

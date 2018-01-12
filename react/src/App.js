@@ -32,9 +32,9 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    authorization: state.login.authorization
+    authorization: store.login.authorization
   };
 };
 

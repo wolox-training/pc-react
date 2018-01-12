@@ -47,9 +47,9 @@ class CommentaryAdd extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    loading: state.books.loading
+    loading: store.books.loading
   };
 };
 

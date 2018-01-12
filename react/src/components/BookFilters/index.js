@@ -37,10 +37,10 @@ class BookFilters extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    filterText: state.books.filterText,
-    filterType: state.books.filterType
+    filterText: store.books.filterText,
+    filterType: store.books.filterType
   }
 }
 
