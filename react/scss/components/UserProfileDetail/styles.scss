@@ -1,0 +1,42 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.user-profile-detail {
+  display: grid;
+  grid-template-columns: 140px 60px 100px;
+  grid-template-rows: 40px 40px 30px;
+  grid-column-gap: 15px;
+  justify-content: center;
+}
+
+.user-profile-detail-image {
+  grid-row-start: 1;
+  grid-row-end: 4;
+}
+.user-profile-detail-name {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  font-size: $font-title;
+  color: $green;
+  font-weight: bold;
+  margin-top: 10px
+}
+
+.user-profile-detail-email {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  font-size: $font-small;
+}
+
+.user-profile-detail-read-counter, .user-profile-detail-comment-counter {
+  font-size: $font-medium;
+}
+
+.user-profile-detail-read-counter {
+  border-right: 1px solid $green;
+}
+
+.user-profile-detail-number {
+  font-weight: bold;
+}

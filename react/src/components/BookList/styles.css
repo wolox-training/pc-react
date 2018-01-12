@@ -3,6 +3,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  flex-direction: row; }
+  flex-direction: row;
+  min-height: 300px; }
 
 /*# sourceMappingURL=styles.css.map */

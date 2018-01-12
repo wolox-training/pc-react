@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAIA,gCAAiC;EAC/B,SAAS,ECJE,IAAI;EDKf,KAAK,EELC,OAAO;EFMb,WAAW,EAAE,IAAI",
+"sources": ["../../../scss/components/UserProfileCommentaries/styles.scss","../../../scss/variables/_fonts.scss","../../../scss/variables/_colors.scss"],
+"names": [],
+"file": "styles.css"
+}

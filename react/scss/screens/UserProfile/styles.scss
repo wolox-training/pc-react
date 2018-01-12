@@ -1,0 +1,13 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.user-profile {
+  max-width: 800px;
+  margin: 0 auto;
+  & > div:not(:last-child){
+    border-bottom: 2px solid $blue;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+}

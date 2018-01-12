@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import CommentaryList from '../CommentaryList';
 import BookService from '../../redux/books/actions';
-import {getLastCommentaries} from '../../selectors';
+import {getLastBookCommentaries} from '../../selectors';
 
 import CommentaryAdd from './CommentaryAdd';
 import strings from './strings';
@@ -30,7 +30,7 @@ class BookDetailCommentaries extends Component {
 
 const mapStateToProps = store => {
   return {
-    currentBookCommentaries: getLastCommentaries(store)
+    currentBookCommentaries: getLastBookCommentaries(store)
   };
 };
 
