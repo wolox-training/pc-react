@@ -13,17 +13,17 @@ class NotificationItem extends PureComponent {
           <BookImage image_url="http://wolox-training.s3.amazonaws.com/uploads/6963511-M.jpg" title="Libro" width="55px" height="80px" />
         </div>
         <div className="text-column">
-          <div className="text1">
-            text1
+          <div className="navbar-notification-item-reason">
+            {this.props.notificationBody}
           </div>
-          <div className="text2">
-            text2
+          <div className="navbar-notification-item-book-title">
+            Title
           </div>
-          <div className="text3">
-            text3
+          <div className="navbar-notification-item-book-author">
+            Author
           </div>
-          <div className="text4">
-            text4
+          <div className="navbar-notification-item-date">
+            Fecha de devolución: XX/XX/XX
           </div>
         </div>
       </DropdownItem>

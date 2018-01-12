@@ -4,7 +4,7 @@
 
 .navbar-notification-item {
   display: flex;
-  width: 200px;
+  width: 300px;
   padding: 5px;
 }
 
@@ -15,4 +15,27 @@
 
 .navbar-notification-item-image {
   margin: 5px;
+}
+
+.navbar-notification-item-reason {
+  font-size: $font-medium;
+  font-weight: lighter;
+  font-style: italic;
+  padding-bottom: 5px;
+}
+
+.navbar-notification-item-book-title {
+  font-size: $font-medium;
+  font-weight: bold;
+}
+
+.navbar-notification-item-book-author {
+  font-size: $font-small;
+  color: $dark-grey;
+  padding-bottom: 5px;
+}
+
+.navbar-notification-item-date {
+  font-size: $font-small;
+  color: $red;
 }

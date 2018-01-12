@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAIA,yBAA0B;EACxB,OAAO,EAAE,IAAI;EACb,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;;AAGd,YAAa;EACX,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;;AAGxB,+BAAgC;EAC9B,MAAM,EAAE,GAAG",
-"sources": ["../../../../../../../scss/components/NavBar/components/NotificationMenu/components/NotificationItem/styles.scss"],
+"mappings": "AAIA,yBAA0B;EACxB,OAAO,EAAE,IAAI;EACb,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;;AAGd,YAAa;EACX,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;;AAGxB,+BAAgC;EAC9B,MAAM,EAAE,GAAG;;AAGb,gCAAiC;EAC/B,SAAS,ECjBG,IAAI;EDkBhB,WAAW,EAAE,OAAO;EACpB,UAAU,EAAE,MAAM;EAClB,cAAc,EAAE,GAAG;;AAGrB,oCAAqC;EACnC,SAAS,ECxBG,IAAI;EDyBhB,WAAW,EAAE,IAAI;;AAGnB,qCAAsC;EACpC,SAAS,EC5BE,IAAI;ED6Bf,KAAK,EE5BK,OAAO;EF6BjB,cAAc,EAAE,GAAG;;AAGrB,8BAA+B;EAC7B,SAAS,EClCE,IAAI;EDmCf,KAAK,EEpCD,OAAO",
+"sources": ["../../../../../../../scss/components/NavBar/components/NotificationMenu/components/NotificationItem/styles.scss","../../../../../../../scss/variables/_fonts.scss","../../../../../../../scss/variables/_colors.scss"],
 "names": [],
 "file": "styles.css"
 }

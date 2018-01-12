@@ -1,6 +1,6 @@
 .navbar-notification-item {
   display: flex;
-  width: 200px;
+  width: 300px;
   padding: 5px; }
 
 .text-column {
@@ -9,5 +9,24 @@
 
 .navbar-notification-item-image {
   margin: 5px; }
+
+.navbar-notification-item-reason {
+  font-size: 14px;
+  font-weight: lighter;
+  font-style: italic;
+  padding-bottom: 5px; }
+
+.navbar-notification-item-book-title {
+  font-size: 14px;
+  font-weight: bold; }
+
+.navbar-notification-item-book-author {
+  font-size: 12px;
+  color: #4A4A4A;
+  padding-bottom: 5px; }
+
+.navbar-notification-item-date {
+  font-size: 12px;
+  color: #FF0000; }
 
 /*# sourceMappingURL=styles.css.map */
