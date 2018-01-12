@@ -8,7 +8,9 @@ export const actionTypes = {
   GET_PROFILE_BOOK_COMMENTS_SUCCESS: 'GET_PROFILE_BOOK_COMMENTS_SUCCESS',
   GET_PROFILE_BOOK_COMMENTS_FAILURE: 'GET_PROFILE_BOOK_COMMENTS_FAILURE',
   GET_NOTIFICATIONS_SUCCESS: 'GET_NOTIFICATIONS_SUCCESS',
-  GET_NOTIFICATIONS_FAILURE: 'GET_NOTIFICATIONS_FAILURE'
+  GET_NOTIFICATIONS_FAILURE: 'GET_NOTIFICATIONS_FAILURE',
+  POST_NOTIFICATION_SUCCESS: 'POST_NOTIFICATION_SUCCESS',
+  POST_NOTIFICATION_FAILURE: 'POST_NOTIFICATION_FAILURE',
 };
 
 const MAX_IMAGES_PROFILE = 4;
@@ -65,16 +67,17 @@ const actionCreators = {
       }
     }
   },
-  // postReadNotification: (userId, notificationId) => {
-  //   return async (dispatch) => {
-  //     const responseNotifications = await UsersService.getNotifications(userId);
-  //     if(responseNotifications.ok){
-  //       dispatch({type: actionTypes.POST_NOTIFICATION_SUCCESS});
-  //     }else{
-  //       dispatch({type: actionTypes.POST_NOTIFICATION_FAILURE});
-  //     }
-  //   }
-  // }
+  postReadNotification: (userId, notificationId) => {
+    return async (dispatch) => {
+      const responseNotification = await UsersService.putReadNotification(userId, notificationId);
+      if(responseNotification.ok){
+        dispatch({type: actionTypes.POST_NOTIFICATION_SUCCESS});
+        dispatch(actionCreators.getNotifications(userId));
+      }else{
+        dispatch({type: actionTypes.POST_NOTIFICATION_FAILURE});
+      }
+    }
+  }
 };
 
 export default actionCreators;

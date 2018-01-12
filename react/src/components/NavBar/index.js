@@ -41,7 +41,7 @@ class NavBar extends Component {
         </NavLink>
         <div className="navbar-icons-group">
 
-          <NotificationMenu notifications={this.props.notifications} />
+          <NotificationMenu {...this.props} />
 
 
           <img src={addBookSvg} className="navbar-icon-image" alt={strings.addbook} />
@@ -75,7 +75,7 @@ class NavBar extends Component {
 const mapStateToProps = state => {
   return {
     user: state.users.profileState.user,
-    notifications: state.users.notifications
+    notifications: state.users.notifications.filter(notification => !notification.read)
   };
 };
 

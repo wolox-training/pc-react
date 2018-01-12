@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAIA,yBAA0B;EACxB,OAAO,EAAE,IAAI;EACb,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,GAAG;;AAGd,YAAa;EACX,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;;AAGxB,+BAAgC;EAC9B,MAAM,EAAE,GAAG",
+"sources": ["../../../../../../../scss/components/NavBar/components/NotificationMenu/components/NotificationItem/styles.scss"],
+"names": [],
+"file": "styles.css"
+}

@@ -1,0 +1,18 @@
+@import '../../../../../../variables/_colors';
+@import '../../../../../../variables/_fonts';
+@import '../../../../../../variables/_sizes';
+
+.navbar-notification-item {
+  display: flex;
+  width: 200px;
+  padding: 5px;
+}
+
+.text-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-notification-item-image {
+  margin: 5px;
+}

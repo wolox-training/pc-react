@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {withRouter} from "react-router-dom";
 
+import routes from '../../../../constants/routes';
 import notificationsSvg from '../../../../assets/notifications.svg';
 import NotificationItem from './components/NotificationItem';
+import actionCreators from '../../../../redux/users/actions';
 
 import strings from './strings.js';
 
 const MAX_CHARS = 50;
-const MAX_NOTIFICATIONS = 10;
+const MAX_NOTIFICATIONS = 5;
 
 class NotificationMenu extends Component {
   state = {
@@ -16,8 +19,9 @@ class NotificationMenu extends Component {
   toggleNotifications = () => {
     this.setState(prevState => ({ dropdownNotificationsOpen: !prevState.dropdownNotificationsOpen }));
   }
-  readComment = (notificationId) => {
-    console.log(notificationId)
+  readComment = (userId, notificationId) => {
+    this.props.dispatch(actionCreators.postReadNotification(userId, notificationId));
+    this.props.history.push(routes.DETAIL(5));
   }
   render(){
     return (<Dropdown isOpen={this.state.dropdownNotificationsOpen} toggle={this.toggleNotifications}>
@@ -31,9 +35,16 @@ class NotificationMenu extends Component {
       </DropdownToggle>
       <DropdownMenu right>
         {
-          this.props.notifications.filter(notification => !notification.read).slice(0,MAX_NOTIFICATIONS).map(notification => {
+          this.props.notifications.slice(0,MAX_NOTIFICATIONS).map(notification => {
             return (
-              <NotificationItem onClickFunction={this.readComment} notificationId={notification.id} notificationReason={notification.reason} notificationBody={notification.body && notification.body.substring(0, MAX_CHARS)} />
+              <NotificationItem
+                onClickFunction={this.readComment}
+                userId={this.props.user.id}
+                notificationId={notification.id}
+                notificationReason={notification.reason}
+                notificationBody={notification.body && notification.body.substring(0, MAX_CHARS)}
+                key={notification.id}
+              />
             );
           })
         }
@@ -45,4 +56,4 @@ class NotificationMenu extends Component {
   }
 }
 
-export default NotificationMenu;
+export default withRouter(NotificationMenu);
