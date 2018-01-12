@@ -18,11 +18,11 @@ class BookSearch extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    books: state.books.books,
-    filterField: state.books.filters.type,
-    filterText: state.books.filters.text
+    books: store.books.books,
+    filterType: store.books.filterType,
+    filterText: store.books.filterText
   };
 };
 
