@@ -15,6 +15,7 @@ const initialState = {
   currentBook: {},
   currentBookCommentaries: [],
   currentBookSuggestion: [],
+  suggestionModalIsOpen: false,
   loading: false
 };
 
@@ -86,6 +87,18 @@ function books(state = initialState, action) {
     return {
       ...state,
       currentBookSuggestion: action.payload.currentBookSuggestion,
+      loading: false
+    };
+  case ActionTypes.CLOSE_SUGGESTION_MODAL:
+    return {
+      ...state,
+      suggestionModalIsOpen: false,
+      loading: false
+    };
+  case ActionTypes.OPEN_SUGGESTION_MODAL:
+    return {
+      ...state,
+      suggestionModalIsOpen: true,
       loading: false
     };
   default:

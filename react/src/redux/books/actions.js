@@ -1,4 +1,4 @@
-import {getBooksService, getBookService, getBookRentsService, getBookCommentaries, postBookComment, getBookSuggestions} from '../../services/books';
+import {getBooksService, getBookService, getBookRentsService, getBookCommentaries, postBookComment, getBookSuggestions, postBookSuggestion} from '../../services/books';
 import UsersService from '../../services/users';
 
 import bookDetailStates from '../../constants/bookDetailStates';
@@ -14,7 +14,11 @@ export const ActionTypes = {
   NEW_COMMENT_SUCCESS: 'NEW_COMMENT_SUCCESS',
   NEW_COMMENT_FAILURE: 'NEW_COMMENT_FAILURE',
   GET_BOOK_SUGGESTIONS_SUCCESS: 'GET_BOOK_SUGGESTIONS_SUCCESS',
-  GET_BOOK_SUGGESTIONS_FAILURE: 'GET_BOOK_SUGGESTIONS_FAILURE'
+  GET_BOOK_SUGGESTIONS_FAILURE: 'GET_BOOK_SUGGESTIONS_FAILURE',
+  POST_BOOK_SUGGESTION_SUCCESS: 'CLOSE_SUGGESTION_MODAL',
+  POST_BOOK_SUGGESTION_FAILURE: 'POST_BOOK_SUGGESTION_FAILURE',
+  CLOSE_SUGGESTION_MODAL: 'CLOSE_SUGGESTION_MODAL',
+  OPEN_SUGGESTION_MODAL: 'OPEN_SUGGESTION_MODAL',
 };
 
 export const getBooks = () => {
@@ -120,3 +124,27 @@ export const getSuggestions = (bookId) => {
     }
   }
 }
+
+export const postSuggestion = (title, author, link) => {
+  return async (dispatch) => {
+    dispatch({type: ActionTypes.BOOK_LOADING});
+    const responsePost = await postBookSuggestion(title, author, link);
+    if(responsePost.ok){
+      dispatch({type: ActionTypes.POST_BOOK_SUGGESTION_SUCCESS});
+    }else{
+      dispatch({type: ActionTypes.POST_BOOK_SUGGESTION_FAILURE});
+    }
+  }
+}
+
+export const openSuggestionModal = () => {
+  return {
+    type: ActionTypes.OPEN_SUGGESTION_MODAL
+  };
+};
+
+export const closeSuggestionModal = () => {
+  return {
+    type: ActionTypes.CLOSE_SUGGESTION_MODAL
+  };
+};

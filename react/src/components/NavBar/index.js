@@ -19,7 +19,7 @@ class NavBar extends Component {
   state = {
     dropdownUserOpen: false,
   };
-  
+
   toggleUser = () => {
     this.setState(prevState => ({ dropdownUserOpen: !prevState.dropdownUserOpen }));
   }
@@ -42,7 +42,7 @@ class NavBar extends Component {
         <div className="navbar-icons-group">
 
           <NotificationMenu {...this.props} />
-          <AddSuggestionMenu />
+          <AddSuggestionMenu {...this.props} />
 
           <Dropdown isOpen={this.state.dropdownUserOpen} toggle={this.toggleUser}>
             <DropdownToggle
@@ -73,7 +73,9 @@ class NavBar extends Component {
 const mapStateToProps = state => {
   return {
     user: state.users.profileState.user,
-    notifications: state.users.notifications.filter(notification => !notification.read)
+    notifications: state.users.notifications.filter(notification => !notification.read),
+    suggestionModalIsOpen: state.books.suggestionModalIsOpen,
+    loading: state.books.loading
   };
 };
 

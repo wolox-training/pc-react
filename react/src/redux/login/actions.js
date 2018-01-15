@@ -22,7 +22,7 @@ export const logIn = (email, password) => {
       api.setHeader('Authorization', response.data.access_token);
       dispatch({type: ActionTypes.LOG_IN_SUCCESS, email, access_token: response.data.access_token})
     }else{
-      dispatch({type: ActionTypes.LOG_IN_FAILURE, error: response.data.error})
+      dispatch({type: ActionTypes.LOG_IN_FAILURE, error: response.error})
     }
   };
 };

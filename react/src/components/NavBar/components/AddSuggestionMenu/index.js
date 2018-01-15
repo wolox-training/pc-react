@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Modal from 'react-modal';
 
 import addBookSvg from '../../../../assets/add_book.svg';
+import {postSuggestion, openSuggestionModal, closeSuggestionModal} from '../../../../redux/books/actions'
 
 import SuggestionForm from './components/SuggestionForm';
 import strings from './strings.js';
@@ -15,15 +16,16 @@ class AddSuggestionMenu extends Component {
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.props.dispatch(openSuggestionModal());
   }
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.props.dispatch(closeSuggestionModal());
   }
-  onSubmitHandler(){
-    console.log('hola');
+  onSubmitHandler(values){
+    this.props.dispatch(postSuggestion(values.title, values.author, values.link));
   }
   componentWillMount() {
     Modal.setAppElement('body');
@@ -33,16 +35,16 @@ class AddSuggestionMenu extends Component {
       <Fragment>
         <img onClick={this.openModal} src={addBookSvg} className="navbar-icon-image" alt={strings.addbook} />
         <Modal
-          isOpen={this.state.modalIsOpen}
+          isOpen={this.props.suggestionModalIsOpen}
           onRequestClose={this.closeModal}
           shouldCloseOnOverlayClick={true}
           contentLabel={strings.suggestbooks}
           className="navbar-add-suggestion-modal"
           overlayClassName="navbar-add-suggestion-modal-overlay"
         >
-          <img  src={addBookSvg} className="navbar-add-suggestion-modal-icon" alt={strings.addbook} />
+          <img src={addBookSvg} className="navbar-add-suggestion-modal-icon" alt={strings.addbook} />
           <h2 className="navbar-add-suggestion-modal-title">{strings.suggestbooks}</h2>
-          <SuggestionForm onCancelClick={this.closeModal} submitHandler={this.onSubmitHandler}/>
+          <SuggestionForm onCancelClick={this.closeModal} onSubmit={this.onSubmitHandler}/>
         </Modal>
       </Fragment>
     );

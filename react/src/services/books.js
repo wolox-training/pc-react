@@ -38,3 +38,10 @@ export const getBookSuggestions = (bookId) => {
     `/books/${bookId}/suggestions`
   );
 };
+
+export const postBookSuggestion = (title, author, link) => {
+  return api.post(
+    '/book_suggestions',
+    {book_suggestion:{title, author, link}}
+  );
+};

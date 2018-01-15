@@ -2,55 +2,70 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import './styles.css';
-import strings from './strings.js';
+
+const required = value => (value ? undefined : 'Required')
+
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning }
+}) => (
+  <div className="navbar-add-suggestion-modal-field-group">
+    <h4 className="navbar-add-suggestion-modal-field-title">{label}</h4>
+    <div>
+      <input {...input} placeholder={label} type={type} className="navbar-add-suggestion-modal-field"/>
+      {touched &&
+        ((error && <span>{error}</span>) ||
+          (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+);
 
 let SuggestionForm = props => {
   return (
-    <form onSubmit={props.submitHandler}>
-      <div className="navbar-add-suggestion-modal-field-group">
-        <h4 className="navbar-add-suggestion-modal-field-title" htmlFor="title">Nombre</h4>
-        <Field
-          name="title"
-          component="input"
-          type="text"
-          className="navbar-add-suggestion-modal-field"
-          validate={(val) => val ? undefined : strings.titlerequired}
-        />
-      </div>
-      <div className="navbar-add-suggestion-modal-field-group">
-        <h4 className="navbar-add-suggestion-modal-field-title" htmlFor="author">Autor</h4>
-        <Field
-          name="author"
-          component="input"
-          type="text"
-          className="navbar-add-suggestion-modal-field"
-          validate={(val) => val ? undefined : strings.authorrequired}
-        />
-      </div>
+    <form onSubmit={props.handleSubmit}>
+      <Field
+        name="title"
+        label="Nombre"
+        component={renderField}
+        type="text"
+        validate={required}
+      />
+      <Field
+        name="author"
+        label="Autor"
+        component={renderField}
+        type="text"
+        validate={required}
+      />
       <div className="navbar-add-suggestion-modal-fields-inline">
-        <div className="navbar-add-suggestion-modal-field-group">
-          <h4 className="navbar-add-suggestion-modal-field-title" htmlFor="price">Precio</h4>
-          <Field name="price" component="input" type="number" className="navbar-add-suggestion-modal-field" />
-        </div>
-        <div className="navbar-add-suggestion-modal-field-group">
-          <h4 className="navbar-add-suggestion-modal-field-title" htmlFor="year">Año</h4>
-          <Field name="year" component="input" type="number" className="navbar-add-suggestion-modal-field" />
-        </div>
-      </div>
-      <div className="navbar-add-suggestion-modal-field-group">
-        <h4 className="navbar-add-suggestion-modal-field-title" htmlFor="editorial">Editorial</h4>
-        <Field name="editorial" component="input" type="text" className="navbar-add-suggestion-modal-field" />
-      </div>
-      <div className="navbar-add-suggestion-modal-field-group">
-        <h4 className="navbar-add-suggestion-modal-field-title" htmlFor="link">Link</h4>
         <Field
-          name="link"
-          component="input"
-          type="text"
-          className="navbar-add-suggestion-modal-field"
-          validate={(val) => val ? undefined : strings.linkrequired}
+          name="price"
+          label="Precio"
+          component={renderField}
+          type="number"
+        />
+        <Field
+          name="year"
+          label="Año"
+          component={renderField}
+          type="number"
         />
       </div>
+      <Field
+        name="editorial"
+        label="Editorial"
+        component={renderField}
+        type="text"
+      />
+      <Field
+        name="link"
+        label="Link"
+        component={renderField}
+        type="text"
+        validate={required}
+      />
       <div className="navbar-add-suggestion-modal-button-group">
         <button className="navbar-add-suggestion-modal-button-cancel" onClick={props.onCancelClick}>Cancelar</button>
         <button className="navbar-add-suggestion-modal-button-accept" type="submit">Aceptar</button>
