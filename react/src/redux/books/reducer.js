@@ -82,13 +82,11 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       suggestionModalIsOpen: false,
-      loading: false
     };
   case actionTypes.OPEN_SUGGESTION_MODAL:
     return {
       ...state,
       suggestionModalIsOpen: true,
-      loading: false
     };
   default:
     return state;

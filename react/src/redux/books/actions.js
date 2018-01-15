@@ -129,10 +129,9 @@ const actionCreators = {
       }
     }
   },
-  postSuggestion: (title, author, link) => {
+  postSuggestion: (values) => {
     return async (dispatch) => {
-      dispatch({type: actionTypes.BOOK_LOADING});
-      const responsePost = await BookService.postBookSuggestion(title, author, link);
+      const responsePost = await BookService.postBookSuggestion(values);
       if(responsePost.ok){
         dispatch({type: actionTypes.POST_BOOK_SUGGESTION_SUCCESS});
       }else{

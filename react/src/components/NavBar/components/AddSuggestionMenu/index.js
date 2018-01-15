@@ -16,7 +16,7 @@ class AddSuggestionMenu extends Component {
     this.props.dispatch(actionCreators.closeSuggestionModal());
   }
   onSubmitHandler = (values) => {
-    this.props.dispatch(actionCreators.postSuggestion(values.title, values.author, values.link));
+    this.props.dispatch(actionCreators.postSuggestion(values));
   }
   componentWillMount() {
     Modal.setAppElement('body');
@@ -28,7 +28,6 @@ class AddSuggestionMenu extends Component {
         <Modal
           isOpen={this.props.suggestionModalIsOpen}
           onRequestClose={this.closeModal}
-          shouldCloseOnOverlayClick={true}
           contentLabel={strings.suggestBooks}
           className="navbar-add-suggestion-modal"
           overlayClassName="navbar-add-suggestion-modal-overlay"

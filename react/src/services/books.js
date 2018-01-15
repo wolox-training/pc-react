@@ -51,7 +51,7 @@ export default {
       `/books/${bookId}/suggestions`
     );
   },
-  postBookSuggestion: (title, author, link) => {
+  postBookSuggestion: ({title, author, link}) => {
     return api.post(
       '/book_suggestions',
       {book_suggestion:{title, author, link}}
