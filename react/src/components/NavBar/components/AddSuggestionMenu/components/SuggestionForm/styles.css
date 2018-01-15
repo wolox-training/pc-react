@@ -1,18 +1,3 @@
-.navbar-add-suggestion-modal-field-group {
-  margin-bottom: 20px;
-  text-align: left; }
-
-.navbar-add-suggestion-modal-field-title {
-  margin: 0 0 5px 5px;
-  font-size: 12px;
-  font-weight: normal; }
-
-.navbar-add-suggestion-modal-field {
-  height: 35px;
-  width: 100%;
-  border: 0;
-  background-color: #F4F4F4; }
-
 .navbar-add-suggestion-modal-button-cancel,
 .navbar-add-suggestion-modal-button-accept {
   width: 175px;

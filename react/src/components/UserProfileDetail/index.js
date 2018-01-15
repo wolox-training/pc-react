@@ -1,5 +1,4 @@
 import React from 'react';
-import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
 
 import UserAvatar from '../UserAvatar';
@@ -41,4 +40,4 @@ UserProfileDetail.propTypes = {
   })
 };
 
-export default connect()(UserProfileDetail);
+export default UserProfileDetail;

@@ -1,7 +1,8 @@
 .navbar-notification-item {
   display: flex;
   width: 300px;
-  padding: 5px; }
+  padding: 5px;
+  border-bottom: 1px solid #D8D8D8; }
 
 .text-column {
   display: flex;

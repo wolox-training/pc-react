@@ -1,6 +1,6 @@
 const strings = {
-  addbook: 'Agregar Libro',
-  suggestbooks: 'Sugerir libros'
+  addBook: 'Agregar Libro',
+  suggestBooks: 'Sugerir libros'
 };
 
 export default strings;

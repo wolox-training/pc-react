@@ -1,26 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import {required} from '../../../../../../utils/validations';
+import InputField from '../../../../../InputField';
+
 import './styles.css';
-
-const required = value => (value ? undefined : 'Required')
-
-const renderField = ({
-  input,
-  label,
-  type,
-  meta: { touched, error, warning }
-}) => (
-  <div className="navbar-add-suggestion-modal-field-group">
-    <h4 className="navbar-add-suggestion-modal-field-title">{label}</h4>
-    <div>
-      <input {...input} placeholder={label} type={type} className="navbar-add-suggestion-modal-field"/>
-      {touched &&
-        ((error && <span>{error}</span>) ||
-          (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-);
 
 let SuggestionForm = props => {
   return (
@@ -28,14 +12,14 @@ let SuggestionForm = props => {
       <Field
         name="title"
         label="Nombre"
-        component={renderField}
+        component={InputField}
         type="text"
         validate={required}
       />
       <Field
         name="author"
         label="Autor"
-        component={renderField}
+        component={InputField}
         type="text"
         validate={required}
       />
@@ -43,32 +27,32 @@ let SuggestionForm = props => {
         <Field
           name="price"
           label="Precio"
-          component={renderField}
+          component={InputField}
           type="number"
         />
         <Field
           name="year"
           label="Año"
-          component={renderField}
+          component={InputField}
           type="number"
         />
       </div>
       <Field
         name="editorial"
         label="Editorial"
-        component={renderField}
+        component={InputField}
         type="text"
       />
       <Field
         name="link"
         label="Link"
-        component={renderField}
+        component={InputField}
         type="text"
         validate={required}
       />
       <div className="navbar-add-suggestion-modal-button-group">
         <button className="navbar-add-suggestion-modal-button-cancel" onClick={props.onCancelClick}>Cancelar</button>
-        <button className="navbar-add-suggestion-modal-button-accept" type="submit">Aceptar</button>
+        <button className="navbar-add-suggestion-modal-button-accept" type="submit" disabled={props.loading}>Aceptar</button>
       </div>
     </form>
   );

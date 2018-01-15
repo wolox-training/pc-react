@@ -3,13 +3,12 @@ import {connect} from 'react-redux';
 
 import {validateCommentLength} from '../../../utils/validations';
 import UserAvatar from '../../UserAvatar';
-import {postComment} from '../../../redux/books/actions'
+import BookService from '../../../redux/books/actions'
 
 import strings from './strings';
 import './styles.css';
 
 const TEXT_ROWS = 4;
-
 
 class CommentaryAdd extends Component {
   state = {
@@ -23,7 +22,7 @@ class CommentaryAdd extends Component {
 
     if(!errorComment){
       this.setState({comment: ''});
-      this.props.dispatch(postComment(this.props.bookId, this.state.comment));
+      this.props.dispatch(BookService.postComment(this.props.bookId, this.state.comment));
     }else{
       errorComment = errorComment || '';
       this.setState({errorComment});
@@ -48,9 +47,9 @@ class CommentaryAdd extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = store => {
   return {
-    loading: state.books.loading
+    loading: store.books.loading
   };
 };
 

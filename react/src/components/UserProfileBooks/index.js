@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import connect from 'react-redux/es/connect/connect';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import BookList from '../BookList';
@@ -10,25 +10,30 @@ import './styles.css';
 
 class UserProfileBooks extends Component {
   componentWillMount() {
-    this.props.dispatch(actionCreators.getProfileBooks());
+    this.props.getProfileBooks();
   }
   render() {
     return (
       <div className="user-profile-books">
-        <div>
-          <h3 className="user-profile-books-title">{strings.read}</h3>
-          <BookList books={this.props.readBooks} />
-          <h3 className="user-profile-books-title">{strings.wishlist}</h3>
-          <BookList books={this.props.wishBooks} />
-        </div>
+        <h3 className="user-profile-books-title">{strings.read}</h3>
+        <BookList books={this.props.readBooks} />
+        <h3 className="user-profile-books-title">{strings.wishlist}</h3>
+        <BookList books={this.props.wishBooks} />
       </div>
     );
   }
 }
 
 UserProfileBooks.propTypes = {
-  readBooks: PropTypes.array,
-  wishBooks: PropTypes.array,
+  readBooks: PropTypes.array.isRequired,
+  wishBooks: PropTypes.array.isRequired,
+  getProfileBooks: PropTypes.func.isRequired
 };
 
-export default connect()(UserProfileBooks);
+const mapDispatchToProps = dispatch => {
+  return({
+    getProfileBooks: () => {dispatch(actionCreators.getProfileBooks());}
+  });
+};
+
+export default connect(null, mapDispatchToProps)(UserProfileBooks);

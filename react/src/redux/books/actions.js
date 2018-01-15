@@ -1,16 +1,17 @@
-import {getBooksService, getBookService, getBookRentsService, getBookCommentaries, postBookComment, getBookSuggestions, postBookSuggestion} from '../../services/books';
-import UsersService from '../../services/users';
-
+import BookService from '../../services/books';
 import bookDetailStates from '../../constants/bookDetailStates';
 
-export const ActionTypes = {
-  GET_BOOKS: 'GET_BOOKS',
-  GET_BOOK: 'GET_BOOK',
-  GET_BOOK_COMMENTARIES: 'GET_BOOK_COMMENTARIES',
+export const actionTypes = {
+  GET_BOOK_SUCCESS: 'GET_BOOK_SUCCESS',
+  GET_BOOK_FAILURE: 'GET_BOOK_FAILURE',
+  GET_BOOKS_SUCCESS: 'GET_BOOKS_SUCCESS',
+  GET_BOOKS_FAILURE: 'GET_BOOKS_FAILURE',
   BOOK_LOADING: 'BOOK_LOADING',
+  SET_BOOK_STATE: 'SET_BOOK_STATE',
   AT_WISHLIST: 'AT_WISHLIST',
   SET_BOOK_FILTER_TYPE: 'SET_BOOK_FILTER_TYPE',
   SET_BOOK_FILTER_TEXT: 'SET_BOOK_FILTER_TEXT',
+  GET_BOOK_COMMENTARIES: 'GET_BOOK_COMMENTARIES',
   NEW_COMMENT_SUCCESS: 'NEW_COMMENT_SUCCESS',
   NEW_COMMENT_FAILURE: 'NEW_COMMENT_FAILURE',
   GET_BOOK_SUGGESTIONS_SUCCESS: 'GET_BOOK_SUGGESTIONS_SUCCESS',
@@ -21,130 +22,134 @@ export const ActionTypes = {
   OPEN_SUGGESTION_MODAL: 'OPEN_SUGGESTION_MODAL',
 };
 
-export const getBooks = () => {
-  return (dispatch) => {
-    getBooksService().then(
-      response => response.ok && dispatch({type: ActionTypes.GET_BOOKS, books: response.data})
-    );
-  };
-};
+const privateActionCreators = {
+  getBookSuccess: (currentBook, bookState, buttonDisabled, returnBefore) => dispatch => {
+    dispatch({type: actionTypes.GET_BOOK_SUCCESS, payload: {currentBook}});
+    dispatch({type: actionTypes.SET_BOOK_STATE, payload: {bookState, buttonDisabled, returnBefore}});
+  }
+}
 
-
-export const getBook = (id) => {
-
-  return async (dispatch) => {
-    dispatch({type: ActionTypes.BOOK_LOADING});
-    const responseBook = await getBookService(id);
-    if(responseBook.ok){
-      const responseRents = await getBookRentsService(id);
-      const rentData = responseRents.data.some(rent => rent.user.email === sessionStorage.getItem('user_session'));
-      if(rentData){
-        dispatch({type: ActionTypes.GET_BOOK, currentBook: responseBook.data, bookState: bookDetailStates.RENTED_BY_CONNECTED, buttonDisabled: true, returnBefore: rentData.to});
+const actionCreators = {
+  getBooks: () => {
+    return async (dispatch) => {
+      const response = await BookService.getBooksService();
+      if(response.ok){
+        dispatch({type: actionTypes.GET_BOOKS_SUCCESS, payload:{books: response.data}})
       }else{
-        if(responseRents.data.some(rent => rent.returned_at)){
-          dispatch({type: ActionTypes.GET_BOOK, currentBook: responseBook.data, bookState: bookDetailStates.NOT_RENTED, buttonDisabled: false, returnBefore: false});
-        }else{
-          const responseData = await UsersService.getConnectedUser();
-          if(responseData.ok){
-            const responseWish = await UsersService.getBookWishesService(responseData.data.id);
-            if(responseWish.ok && responseWish.data.find(wish => wish.book.id === responseBook.data.id)){
-              dispatch({type: ActionTypes.GET_BOOK, currentBook: responseBook.data, bookState: bookDetailStates.AT_WISHLIST, buttonDisabled: true, returnBefore: false});
-            }else {
-              dispatch({type: ActionTypes.GET_BOOK, currentBook: responseBook.data, bookState: bookDetailStates.RENTED_NOT_AT_WISHLIST, buttonDisabled: false, returnBefore: false});
+        dispatch({type: actionTypes.GET_BOOKS_FAILURE})
+      }
+    };
+  },
+  getBook: (id) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responseBook = await BookService.getBookService(id);
+      if(responseBook.ok){
+        const responseRents = await BookService.getBookRentsService(id);
+        if(responseRents.ok){
+          const rentData = responseRents.data.some(rent => rent.user.email === sessionStorage.getItem('user_session'));
+          if(rentData){
+            dispatch(privateActionCreators.getBookSuccess(responseBook.data,bookDetailStates.RENTED_BY_CONNECTED,true,rentData.to));
+          }else{
+            if(responseRents.data.some(rent => rent.returned_at)){
+              dispatch(privateActionCreators.getBookSuccess(responseBook.data,bookDetailStates.NOT_RENTED,false,null));
+            }else{
+              const responseData = await BookService.getUserData();
+              if(responseData.ok){
+                const responseWish = await BookService.getBookWishesService(responseData.data.id);
+                if(responseWish.ok && responseWish.data.some(data => data.book.id === responseBook.data.id)){
+                  dispatch(privateActionCreators.getBookSuccess(responseBook.data,bookDetailStates.AT_WISHLIST,true,null));
+                }else {
+                  dispatch(privateActionCreators.getBookSuccess(responseBook.data,bookDetailStates.RENTED_NOT_AT_WISHLIST,false,null));
+                }
+              }else{
+                dispatch({type: actionTypes.GET_BOOK_FAILURE})
+              }
             }
           }
+        }else{
+          dispatch({type: actionTypes.GET_BOOK_FAILURE})
+        }
+      }else{
+        dispatch({type: actionTypes.GET_BOOK_FAILURE})
+      }
+    };
+  },
+  setBookFilterType: (filterType) => {
+    return {
+      type: actionTypes.SET_BOOK_FILTER_TYPE,
+      payload: {filterType}
+    };
+  },
+  setBookFilterText: (filterText) => {
+    return {
+      type: actionTypes.SET_BOOK_FILTER_TEXT,
+      payload: {filterText}
+    };
+  },
+  addToWishlist: (bookId) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responseData = await BookService.getUserData();
+      if(responseData.ok){
+        const responsePost = await BookService.postWishlist(bookId, responseData.data.id);
+        if(responsePost.ok){
+          dispatch({type: actionTypes.AT_WISHLIST});
         }
       }
-    }else{
-
     }
-  };
-};
-
-export const addToWishlist = (bookId) => {
-  return async (dispatch) => {
-    dispatch({type: ActionTypes.BOOK_LOADING});
-    const responseData = await UsersService.getConnectedUser();
-    if(responseData.ok){
-      const responsePost = await UsersService.postWishlist(bookId, responseData.data.id);
-      if(responsePost.ok){
-        dispatch({type: ActionTypes.AT_WISHLIST});
+  },
+  getCommentaries: (bookId) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responseCommentaries = await BookService.getBookCommentaries(bookId);
+        dispatch({type: actionTypes.GET_BOOK_COMMENTARIES, payload: {commentaries: (responseCommentaries.ok && responseCommentaries.data) || null}});
+    }
+  },
+  postComment: (bookId, comment) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responseData = await BookService.getUserData();
+      if(responseData.ok){
+        const responsePost = await BookService.postBookComment(bookId, responseData.data.id, comment);
+        if(responsePost.ok){
+          dispatch(actionCreators.getCommentaries(bookId))
+        }
       }
     }
-  }
-}
-
-export const getCommentaries = (bookId) => {
-  return async (dispatch) => {
-    dispatch({type: ActionTypes.BOOK_LOADING});
-    const responseCommentaries = await getBookCommentaries(bookId);
-    if(responseCommentaries.ok){
-      dispatch({type: ActionTypes.GET_BOOK_COMMENTARIES, commentaries: responseCommentaries.data});
-    }else{
-      dispatch({type: ActionTypes.GET_BOOK_COMMENTARIES, commentaries: null});
-    }
-  }
-}
-
-export const postComment = (bookId, comment) => {
-  return async (dispatch) => {
-    dispatch({type: ActionTypes.BOOK_LOADING});
-    const responseData = await UsersService.getConnectedUser();
-    if(responseData.ok){
-      const responsePost = await postBookComment(bookId, responseData.data.id, comment);
-      if(responsePost.ok){
-        getCommentaries(bookId)(dispatch)
+  },
+  getSuggestions: (bookId) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responseSuggestions = await BookService.getBookSuggestions(bookId);
+      if(responseSuggestions.ok){
+        dispatch({type: actionTypes.GET_BOOK_SUGGESTIONS_SUCCESS, payload: {currentBookSuggestion: responseSuggestions.data}});
+      }else{
+        dispatch({type: actionTypes.GET_BOOK_SUGGESTIONS_FAILURE});
       }
     }
-  }
-}
-
-export const setBookFilterType = (filterType) => {
-  return {
-    type: ActionTypes.SET_BOOK_FILTER_TYPE,
-    filterType
-  };
-};
-
-export const setBookFilterText = (filterText) => {
-  return {
-    type: ActionTypes.SET_BOOK_FILTER_TEXT,
-    filterText
-  };
-};
-
-export const getSuggestions = (bookId) => {
-  return async (dispatch) => {
-    dispatch({type: ActionTypes.BOOK_LOADING});
-    const responseSuggestions = await getBookSuggestions(bookId);
-    if(responseSuggestions.ok){
-      dispatch({type: ActionTypes.GET_BOOK_SUGGESTIONS_SUCCESS, payload: {currentBookSuggestion: responseSuggestions.data}});
-    }else{
-      dispatch({type: ActionTypes.GET_BOOK_SUGGESTIONS_FAILURE});
+  },
+  postSuggestion: (title, author, link) => {
+    return async (dispatch) => {
+      dispatch({type: actionTypes.BOOK_LOADING});
+      const responsePost = await BookService.postBookSuggestion(title, author, link);
+      if(responsePost.ok){
+        dispatch({type: actionTypes.POST_BOOK_SUGGESTION_SUCCESS});
+      }else{
+        dispatch({type: actionTypes.POST_BOOK_SUGGESTION_FAILURE});
+      }
     }
+  },
+  openSuggestionModal: () => {
+    return {
+      type: actionTypes.OPEN_SUGGESTION_MODAL
+    };
+  },
+  closeSuggestionModal: () => {
+    return {
+      type: actionTypes.CLOSE_SUGGESTION_MODAL
+    };
   }
-}
-
-export const postSuggestion = (title, author, link) => {
-  return async (dispatch) => {
-    dispatch({type: ActionTypes.BOOK_LOADING});
-    const responsePost = await postBookSuggestion(title, author, link);
-    if(responsePost.ok){
-      dispatch({type: ActionTypes.POST_BOOK_SUGGESTION_SUCCESS});
-    }else{
-      dispatch({type: ActionTypes.POST_BOOK_SUGGESTION_FAILURE});
-    }
-  }
-}
-
-export const openSuggestionModal = () => {
-  return {
-    type: ActionTypes.OPEN_SUGGESTION_MODAL
-  };
 };
 
-export const closeSuggestionModal = () => {
-  return {
-    type: ActionTypes.CLOSE_SUGGESTION_MODAL
-  };
-};
+export default actionCreators;

@@ -1,15 +1,13 @@
-import { ActionTypes } from './actions';
+import { actionTypes } from './actions';
 import bookDetailStates from '../../constants/bookDetailStates';
 
 const initialState = {
-  filters: {
-    type: '',
-    text: ''
-  },
-  detail_state: {
+  filterType: '',
+  filterText: '',
+  detailState: {
     bookState: '',
     buttonDisabled: false,
-    returnBefore: false,
+    returnBefore: null,
   },
   books: [],
   currentBook: {},
@@ -19,83 +17,74 @@ const initialState = {
   loading: false
 };
 
-function books(state = initialState, action) {
+function reducer(state = initialState, action) {
   switch (action.type) {
-  case ActionTypes.SET_BOOK_FILTER_TYPE:
+  case actionTypes.SET_BOOK_FILTER_TYPE:
     return {
       ...state,
-      filters: {
-        ...state.filters,
-        type: action.filterType
-      }
+      filterType: action.payload.filterType
     };
-  case ActionTypes.SET_BOOK_FILTER_TEXT:
+  case actionTypes.SET_BOOK_FILTER_TEXT:
     return {
       ...state,
-      filters: {
-        ...state.filters,
-        text: action.filterText
-      }
+      filterText: action.payload.filterText
     };
-  case ActionTypes.BOOK_LOADING:
-
+  case actionTypes.BOOK_LOADING:
     return {
       ...state,
       loading: true
     };
-  case ActionTypes.GET_BOOK:
-
+  case actionTypes.GET_BOOK_SUCCESS:
     return {
       ...state,
-      detail_state: {
-        ...state.detail_state,
-        bookState: action.bookState,
-        buttonDisabled: action.buttonDisabled,
-        returnBefore: action.returnBefore
+      currentBook: {...state.books.filter(x => x.id === Number(action.payload.currentBook.id))[0], ...action.payload.currentBook},
+      loading: false
+    };
+  case actionTypes.SET_BOOK_STATE:
+    return {
+      ...state,
+      detailState: {
+        ...state.detailState,
+        bookState: action.payload.bookState,
+        buttonDisabled: action.payload.buttonDisabled,
+        returnBefore: action.payload.returnBefore
       },
-      currentBook: {...state.books.filter(x => x.id === Number(action.currentBook.id))[0], ...action.currentBook},
       loading: false
-    };
-  case ActionTypes.GET_BOOKS:
+    }
+  case actionTypes.GET_BOOKS_SUCCESS:
     return {
       ...state,
-      books: action.books
+      books: action.payload.books
     };
-  case ActionTypes.GET_BOOK_COMMENTARIES:
+  case actionTypes.AT_WISHLIST:
     return {
       ...state,
-      currentBookCommentaries: action.commentaries,
-      loading: false
-    };
-  case ActionTypes.AT_WISHLIST:
-    return {
-      ...state,
-      detail_state: {
-        ...state.detail_state,
+      detailState: {
+        ...state.detailState,
         bookState: bookDetailStates.AT_WISHLIST,
         buttonDisabled: true
       },
       loading: false
     };
-  case ActionTypes.NEW_COMMENT_SUCCESS:
+  case actionTypes.GET_BOOK_COMMENTARIES:
     return {
       ...state,
       currentBookCommentaries: action.payload.commentaries,
       loading: false
     };
-  case ActionTypes.GET_BOOK_SUGGESTIONS_SUCCESS:
+  case actionTypes.GET_BOOK_SUGGESTIONS_SUCCESS:
     return {
       ...state,
       currentBookSuggestion: action.payload.currentBookSuggestion,
       loading: false
     };
-  case ActionTypes.CLOSE_SUGGESTION_MODAL:
+  case actionTypes.CLOSE_SUGGESTION_MODAL:
     return {
       ...state,
       suggestionModalIsOpen: false,
       loading: false
     };
-  case ActionTypes.OPEN_SUGGESTION_MODAL:
+  case actionTypes.OPEN_SUGGESTION_MODAL:
     return {
       ...state,
       suggestionModalIsOpen: true,
@@ -106,4 +95,4 @@ function books(state = initialState, action) {
   }
 }
 
-export default books;
+export default reducer;
