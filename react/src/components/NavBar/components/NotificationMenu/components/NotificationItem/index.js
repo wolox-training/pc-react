@@ -6,12 +6,15 @@ import BookImage from '../../../../../BookImage';
 import strings from './strings.js';
 import './styles.css';
 
+const URL_MOCK = "http://wolox-training.s3.amazonaws.com/uploads/6963511-M.jpg";
+
 class NotificationItem extends PureComponent {
+  onClickHandler = () => this.props.onClickFunction(this.props.userId, this.props.notificationId);
   render() {
     return (
-      <DropdownItem onClick={() => this.props.onClickFunction(this.props.userId, this.props.notificationId)} className="navbar-notification-item">
+      <DropdownItem onClick={this.onClickHandler} className="navbar-notification-item">
         <div className="navbar-notification-item-image">
-          <BookImage image_url="http://wolox-training.s3.amazonaws.com/uploads/6963511-M.jpg" title={strings.book} width="55px" height="80px" />
+          <BookImage image_url={URL_MOCK} title={strings.book} width="55px" height="80px" />
         </div>
         <div className="text-column">
           <div className="navbar-notification-item-reason">
@@ -24,7 +27,7 @@ class NotificationItem extends PureComponent {
             {strings.author}
           </div>
           <div className="navbar-notification-item-date">
-            {strings.returndate}
+            {strings.returnDate}
           </div>
         </div>
       </DropdownItem>

@@ -1,5 +1,6 @@
 const strings = {
-  notifications: 'Notifications',
+  Notifications: 'Notifications',
+  notifications: 'notificaciones'
 };
 
 export default strings;

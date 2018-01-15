@@ -1,5 +1,5 @@
 const strings = {
-  returndate: 'Fecha de devolución: XX/XX/XX',
+  returnDate: 'Fecha de devolución: XX/XX/XX',
   author: 'Author',
   title: 'Title',
   book: 'Libro'
