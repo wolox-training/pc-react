@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { required } from '../../../../../../utils/validations';
 import InputField from '../../../../../InputField';
 
+import fieldNames from './fieldNames.js';
 import strings from './strings.js';
 import './styles.css';
 
@@ -11,14 +12,14 @@ const SuggestionForm = ({handleSubmit, onCancelClick, loading}) => {
   return (
     <form onSubmit={handleSubmit}>
       <Field
-        name={strings.titleName}
+        name={fieldNames.titleName}
         label={strings.titleLabel}
         component={InputField}
         type="text"
         validate={required}
       />
       <Field
-        name={strings.authorName}
+        name={fieldNames.authorName}
         label={strings.authorLabel}
         component={InputField}
         type="text"
@@ -26,26 +27,26 @@ const SuggestionForm = ({handleSubmit, onCancelClick, loading}) => {
       />
       <div className="navbar-add-suggestion-modal-fields-inline">
         <Field
-          name={strings.priceName}
+          name={fieldNames.priceName}
           label={strings.priceLabel}
           component={InputField}
           type="number"
         />
         <Field
-          name={strings.yearName}
+          name={fieldNames.yearName}
           label={strings.yearLabel}
           component={InputField}
           type="number"
         />
       </div>
       <Field
-        name={strings.editorialName}
+        name={fieldNames.editorialName}
         label={strings.editorialLabel}
         component={InputField}
         type="text"
       />
       <Field
-        name={strings.linkName}
+        name={fieldNames.linkName}
         label={strings.linkLabel}
         component={InputField}
         type="text"

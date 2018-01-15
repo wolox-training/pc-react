@@ -14,7 +14,7 @@ const InputField = ({
       {...input}
       placeholder={label}
       type={type}
-      className={`input-field ${touched && error && 'input-field-error'}`}/>
+      className={`input-field ${touched ? error && 'input-field-error' : ''}`}/>
     {touched &&
       (error && <span className="input-error">{error}</span>)}
   </div>
