@@ -15,3 +15,4 @@ export const validateRepeatPassword =
   (password1, password2) => !(password1 === password2) && strings.error_repeat_password;
 export const validateCommentLength =
   (comment) => !(comment.length > 0 && comment.length < 256) && strings.error_comment_length;
+export const required = value => (value ? undefined : strings.required)

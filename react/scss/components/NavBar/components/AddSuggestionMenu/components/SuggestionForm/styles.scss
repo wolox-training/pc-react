@@ -1,0 +1,30 @@
+@import '../../../../../../variables/_colors';
+@import '../../../../../../variables/_fonts';
+@import '../../../../../../variables/_sizes';
+
+.navbar-add-suggestion-modal-button-cancel,
+.navbar-add-suggestion-modal-button-accept {
+  width: 175px;
+  height: 40px;
+  border: 0;
+  font-size: $font-medium;
+  color: $white;
+  font-weight: bold;
+}
+
+.navbar-add-suggestion-modal-button-cancel {
+  background-color: $grey;
+}
+
+.navbar-add-suggestion-modal-button-accept {
+  background-color: $blue;
+}
+
+.navbar-add-suggestion-modal-fields-inline,
+.navbar-add-suggestion-modal-button-group {
+  display:flex;
+  justify-content: center;
+  & > *:not(:last-child) {
+    margin-right: 20px;
+  }
+}

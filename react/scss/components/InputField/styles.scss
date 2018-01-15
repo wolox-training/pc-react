@@ -1,0 +1,30 @@
+@import '../../variables/_colors';
+@import '../../variables/_fonts';
+@import '../../variables/_sizes';
+
+.input-field-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-field-title {
+  margin: 0 0 5px 5px;
+  font-size: $font-small;
+  font-weight: normal;
+}
+
+.input-field {
+  height: 35px;
+  width: 100%;
+  border: 0;
+  background-color: $light-grey;
+}
+
+.input-error {
+  font-size: $font-medium;
+  color: $red;
+}
+
+.input-field-error {
+  border: 1px solid $red;
+}

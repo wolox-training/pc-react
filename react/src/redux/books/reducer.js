@@ -13,6 +13,7 @@ const initialState = {
   currentBook: {},
   currentBookCommentaries: [],
   currentBookSuggestion: [],
+  suggestionModalIsOpen: false,
   loading: false
 };
 
@@ -76,6 +77,16 @@ function reducer(state = initialState, action) {
       ...state,
       currentBookSuggestion: action.payload.currentBookSuggestion,
       loading: false
+    };
+  case actionTypes.CLOSE_SUGGESTION_MODAL:
+    return {
+      ...state,
+      suggestionModalIsOpen: false,
+    };
+  case actionTypes.OPEN_SUGGESTION_MODAL:
+    return {
+      ...state,
+      suggestionModalIsOpen: true,
     };
   default:
     return state;

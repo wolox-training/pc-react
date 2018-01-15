@@ -8,11 +8,11 @@ import usersActionCreators from '../../redux/users/actions';
 import UserAvatar from '../UserAvatar';
 import routes from '../../constants/routes'
 import wbooksLogoSvg from '../../assets/wbooks_logo.svg';
-import addBookSvg from '../../assets/add_book.svg';
+
 import NotificationMenu from './components/NotificationMenu';
+import AddSuggestionMenu from './components/AddSuggestionMenu';
 import loginActionCreators from '../../redux/login/actions';
 import {getUnreadNotifications} from '../../selectors';
-
 
 import strings from './strings';
 import './styles.css';
@@ -21,6 +21,7 @@ class NavBar extends Component {
   state = {
     dropdownUserOpen: false,
   };
+
   toggleUser = () => {
     this.setState(prevState => ({ dropdownUserOpen: !prevState.dropdownUserOpen }));
   }
@@ -43,7 +44,7 @@ class NavBar extends Component {
         </NavLink>
         <div className="navbar-icons-group">
           <NotificationMenu {...this.props} />
-          <img src={addBookSvg} className="navbar-icon-image" alt={strings.addbook} />
+          <AddSuggestionMenu {...this.props} />
           <Dropdown isOpen={this.state.dropdownUserOpen} toggle={this.toggleUser}>
             <DropdownToggle
               tag="div"
@@ -72,7 +73,9 @@ class NavBar extends Component {
 const mapStateToProps = store => {
   return {
     user: store.users.profileState.user,
-    notifications: getUnreadNotifications(store)
+    notifications: getUnreadNotifications(store),
+    suggestionModalIsOpen: store.books.suggestionModalIsOpen,
+    loading: store.books.loading
   };
 };
 

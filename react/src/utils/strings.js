@@ -5,7 +5,8 @@ const strings = {
   error_name_content: 'El nombre sólo puede contener letras.',
   error_surname_content: 'El apellido sólo puede contener letras.',
   error_repeat_password: 'Se han ingresado passwords diferentes.',
-  error_comment_length: 'El comentario debe contener entre 1 y 256 caracteres'
+  error_comment_length: 'El comentario debe contener entre 1 y 256 caracteres',
+  required: 'Obligatorio'
 };
 
 export default strings;

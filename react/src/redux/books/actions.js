@@ -15,7 +15,11 @@ export const actionTypes = {
   NEW_COMMENT_SUCCESS: 'NEW_COMMENT_SUCCESS',
   NEW_COMMENT_FAILURE: 'NEW_COMMENT_FAILURE',
   GET_BOOK_SUGGESTIONS_SUCCESS: 'GET_BOOK_SUGGESTIONS_SUCCESS',
-  GET_BOOK_SUGGESTIONS_FAILURE: 'GET_BOOK_SUGGESTIONS_FAILURE'
+  GET_BOOK_SUGGESTIONS_FAILURE: 'GET_BOOK_SUGGESTIONS_FAILURE',
+  POST_BOOK_SUGGESTION_SUCCESS: 'CLOSE_SUGGESTION_MODAL',
+  POST_BOOK_SUGGESTION_FAILURE: 'POST_BOOK_SUGGESTION_FAILURE',
+  CLOSE_SUGGESTION_MODAL: 'CLOSE_SUGGESTION_MODAL',
+  OPEN_SUGGESTION_MODAL: 'OPEN_SUGGESTION_MODAL',
 };
 
 const privateActionCreators = {
@@ -124,6 +128,26 @@ const actionCreators = {
         dispatch({type: actionTypes.GET_BOOK_SUGGESTIONS_FAILURE});
       }
     }
+  },
+  postSuggestion: (values) => {
+    return async (dispatch) => {
+      const responsePost = await BookService.postBookSuggestion(values);
+      if(responsePost.ok){
+        dispatch({type: actionTypes.POST_BOOK_SUGGESTION_SUCCESS});
+      }else{
+        dispatch({type: actionTypes.POST_BOOK_SUGGESTION_FAILURE});
+      }
+    }
+  },
+  openSuggestionModal: () => {
+    return {
+      type: actionTypes.OPEN_SUGGESTION_MODAL
+    };
+  },
+  closeSuggestionModal: () => {
+    return {
+      type: actionTypes.CLOSE_SUGGESTION_MODAL
+    };
   }
 };
 
