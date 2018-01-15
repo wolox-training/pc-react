@@ -24,5 +24,15 @@ export default {
     return api.get(
       `/users/${userId}/comments`
     );
-  }
+  },
+  getNotifications: userId => {
+    return api.get(
+      `/users/${userId}/notifications`
+    );
+  },
+  putReadNotification: (userId, notificationId) => {
+    return api.put(
+      `/users/${userId}/notifications/${notificationId}/read`
+    );
+  },
 };
