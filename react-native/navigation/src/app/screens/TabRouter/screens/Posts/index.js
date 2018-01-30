@@ -34,6 +34,7 @@ class Posts extends Component {
             </View>
           </TouchableHighlight>
         )}
+        keyExtractor={(item, index) => item.id}
       />
     );
   }
