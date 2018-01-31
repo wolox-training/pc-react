@@ -1,0 +1,7 @@
+export default {
+  LOGIN: 'LOGIN',
+  DETAIL: 'DETAIL',
+  TAB_ROUTER: 'TAB_ROUTER',
+  POSTS: 'POSTS',
+  RANDOM: 'RANDOM'
+};
