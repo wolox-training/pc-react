@@ -12,7 +12,7 @@ import styles from './styles';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
-const RandomPosition = () => -100*(Math.random() < 0.5 ? -1 : 1)*Math.random();
+const RandomPosition = () => -100 * (Math.random() < 0.5 ? -1 : 1) * Math.random();
 
 const FRICTION = 0.8;
 

@@ -1,22 +1,23 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+import colors from '../../../../constants/colors';
+
+const styles = StyleSheet.create({
   todoList: {
     width: '100%'
   },
   todo: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingHorizontal: 20,
     height: 50,
     borderBottomWidth: 1,
-    borderBottomColor: '#777777',
+    borderBottomColor: colors.DARK_GREY,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
   },
   todoCompleted: {
-    backgroundColor: '#CCCCCC',
+    backgroundColor: colors.DARKER_GREY,
   },
   actions: {
     display: 'flex',
@@ -24,3 +25,5 @@ export default StyleSheet.create({
 
   }
 });
+
+export default styles;

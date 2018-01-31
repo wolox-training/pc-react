@@ -1,9 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+const avatarSize = 40;
+
+const styles = StyleSheet.create({
   userAvatar: {
-    height: 40,
-    width: 40,
+    height: avatarSize,
+    width: avatarSize,
     borderRadius: 50
   }
 });
+
+export default styles;

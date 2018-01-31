@@ -1,15 +1,21 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+import colors from '../../../../../../constants/colors';
+
+const BOX_SIZE = 20;
+
+const styles = StyleSheet.create({
   box: {
-    height: 20,
-    width: 20,
+    height: BOX_SIZE,
+    width: BOX_SIZE,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: colors.BLACK,
   },
   inner: {
     flex: 1,
     margin: 2,
-    backgroundColor: 'rgba(0,0,0,0.8)',
+    backgroundColor: colors.BLACK,
   },
 });
+
+export default styles;

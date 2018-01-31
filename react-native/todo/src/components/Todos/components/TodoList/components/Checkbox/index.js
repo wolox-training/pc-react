@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   TouchableHighlight
 } from 'react-native';
 
+import actionCreators from '../../../../../../redux/todos/actions';
+
 import styles from './styles';
 
-const Checkbox = ({todo, isChecked, toggleClickHandler}) => (
-  <TouchableHighlight onPress={() => toggleClickHandler(todo)}>
-    <View style={styles.box}>
-      { isChecked && <View style={styles.inner}/> }
-    </View>
-  </TouchableHighlight>
-);
+class Checkbox extends Component {
+  toggleClickHandler = () => {
+    this.props.dispatch(actionCreators.toggleTodo(this.props.todo));
+  }
+
+  render() {
+    return (
+      <TouchableHighlight onPress={this.toggleClickHandler}>
+        <View style={styles.box}>
+          { this.props.isChecked && <View style={styles.inner}/> }
+        </View>
+      </TouchableHighlight>
+    )
+  }
+
+}
 
 export default Checkbox;

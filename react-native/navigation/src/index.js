@@ -5,15 +5,10 @@ import Login from './app/screens/Login';
 import TabRouter from './app/screens/TabRouter';
 import Detail from './app/screens/TabRouter/screens/Detail';
 
-let screens = {};
-screens[routes.LOGIN] = {
-  screen: Login
-};
-screens[routes.TAB_ROUTER] = {
-  screen: TabRouter
-};
-screens[routes.DETAIL] = {
-  screen: Detail
+const screens = {
+  [routes.LOGIN]: { screen: Login },
+  [routes.TAB_ROUTER]: { screen: TabRouter },
+  [routes.DETAIL]: { screen: Detail },
 };
 
 const Main = StackNavigator(screens);

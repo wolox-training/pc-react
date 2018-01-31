@@ -2,49 +2,46 @@ import { actions } from './actions';
 
 const initialState = {
   todos: [],
-}
+};
 
 export default reducer = (state = initialState, action) => {
-  const {todos} = state
-  const {type, payload} = action
-
-  switch (type) {
-  case actions.ADD: {
-    const index = todos.length + 1;
-    return {
-      ...state,
-      todos: [{text: payload.text, id: index, isChecked: false}, ...todos],
-    }
-  }
-  case actions.REMOVE: {
-    return {
-      ...state,
-      todos: todos.filter((todo) => todo.id !== payload.index),
-    }
-  }
-  case actions.TOGGLE: {
-    let current_todo = todos.filter((todo) => todo.id === payload.index);
-    if(current_todo && current_todo.length > 0){
+  switch (action.type) {
+    case actions.ADD: {
+      const index = state.todos.length + 1;
       return {
         ...state,
-        todos: [
-          {
-            ...current_todo[0],
-            isChecked: !current_todo[0].isChecked
-          },
-          ...todos.filter((todo) => todo.id !== payload.index)
-        ]
+        todos: [{text: action.payload.text, id: index, isChecked: false}, ...state.todos],
+      };
+    }
+    case actions.REMOVE: {
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== action.payload.index),
+      };
+    }
+    case actions.TOGGLE: {
+      let current_todo = state.todos.filter((todo) => todo.id === action.payload.index);
+      if(current_todo && current_todo.length > 0){
+        return {
+          ...state,
+          todos: [
+            {
+              ...current_todo[0],
+              isChecked: !current_todo[0].isChecked
+            },
+            ...state.todos.filter((todo) => todo.id !== action.payload.index)
+          ]
+        };
       }
+      return state;
     }
-    return state;
-  }
-  case actions.REMOVE_COMPLETED: {
-    return {
-      ...state,
-      todos: todos.filter((todo) => todo.isChecked === false),
+    case actions.REMOVE_COMPLETED: {
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.isChecked === false),
+      };
     }
+    default:
+      return state;
   }
-  default:
-    return state;
-  }
-}
+};

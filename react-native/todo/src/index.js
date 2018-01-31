@@ -1,6 +1,4 @@
-import { compose } from 'redux';
 import React, { Component } from 'react';
-import Reactotron from 'reactotron-react-native';
 
 import { Provider } from 'react-redux';
 import { View } from 'react-native';
@@ -8,11 +6,9 @@ import { View } from 'react-native';
 import Title from './components/Title';
 import Todos from './components/Todos';
 import Footer from './components/Footer';
-import actionCreators from './redux/todos/reducer';
+import store from './redux/store';
 import styles from './styles';
 import strings from './strings';
-
-const store = Reactotron.createStore(actionCreators, compose());
 
 class TodoApp extends Component {
   render() {

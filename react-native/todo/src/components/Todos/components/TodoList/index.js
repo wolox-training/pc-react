@@ -5,28 +5,23 @@ import {
   View
 } from 'react-native';
 
-import actionCreators from '../../../../redux/todos/actions';
-
 import Checkbox from './components/Checkbox';
 import DeleteButton from './components/DeleteButton';
 import styles from './styles';
 
 class TodoList extends Component {
-  toggleClickHandler = todo => {
-    this.props.dispatch(actionCreators.toggleTodo(todo));
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.todos){
+      nextProps.todos.sort(function(a, b) {
+        return a.id - b.id;
+      });
+    }
   }
-
-  deleteClickHandler = todo => {
-    this.props.dispatch(actionCreators.removeTodo(todo));
-  }
-
   render() {
     return (
       <ScrollView style={styles.todoList}>
         {
-          this.props.todos && this.props.todos.sort(function(a, b) {
-            return a.id - b.id;
-          }).map(todo => {
+          this.props.todos && this.props.todos.map(todo => {
             return (
               <View style={todo.isChecked ? [styles.todo, styles.todoCompleted] : styles.todo} key={todo.id}>
                 <Text>
@@ -37,7 +32,6 @@ class TodoList extends Component {
                     {...this.props}
                     isChecked={todo.isChecked}
                     todo={todo.id}
-                    toggleClickHandler={this.toggleClickHandler}
                   />
                   <DeleteButton
                     {...this.props}

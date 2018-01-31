@@ -8,31 +8,26 @@ import {
 
 import data from '../../../../../mock';
 import routes from '../../../../../constants/routes';
-import UserAvatar from '../../../../components/UserAvatar';
 
 import Header from './header';
-import styles from './styles'
+import styles from './styles';
+import PostItem from './components/PostItem';
 
 class Posts extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Posts',
     tabBarLabel: 'Posts',
-    headerLeft: null,
     header: <Header />
   });
+
+  goToDetail = itemId => this.props.navigation.navigate(routes.DETAIL, { id: itemId });
+
   render() {
     return (
       <FlatList
         data={data}
         renderItem={({item, separators}) => (
-          <TouchableHighlight
-            onPress={() => this.props.navigation.navigate(routes.DETAIL, { id: item.id })}
-          >
-            <View style={styles.postsView}>
-              <UserAvatar />
-              <Text>{item.title}</Text>
-            </View>
-          </TouchableHighlight>
+          <PostItem item={item} goToDetail={this.goToDetail} />
         )}
         keyExtractor={(item, index) => item.id}
       />

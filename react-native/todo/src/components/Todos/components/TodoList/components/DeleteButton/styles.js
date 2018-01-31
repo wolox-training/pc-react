@@ -1,11 +1,15 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+import colors from '../../../../../../constants/colors';
+
+const styles = StyleSheet.create({
   deleteButton: {
     marginLeft: 10
   },
   deleteButtonText: {
-    color: '#FF0000',
+    color: colors.RED,
     fontWeight: 'bold'
   }
 });
+
+export default styles;

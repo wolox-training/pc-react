@@ -1,21 +1,14 @@
 import { TabNavigator } from 'react-navigation';
 
 import routes from '../../../constants/routes';
+import colors from '../../../constants/colors';
 
 import Random from './screens/Random';
 import Posts from './screens/Posts';
 
-const colors = {
-  GREEN: '#80c245',
-  GREY: '#f8f8f8'
-};
-
-let tabs = {};
-tabs[routes.POSTS] = {
-  screen: Posts,
-};
-tabs[routes.RANDOM] = {
-  screen: Random,
+const tabs = {
+  [routes.POSTS]: { screen: Posts },
+  [routes.RANDOM]: { screen: Random },
 };
 
 const TabRouter = TabNavigator(

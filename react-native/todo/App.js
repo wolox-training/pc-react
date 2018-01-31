@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import TodoApp from './src'
+import TodoApp from './src';
 
-export default class App extends Component<{}> {
+class App extends Component {
   render() {
     return (
       <TodoApp />
     );
   }
 }
+
+export default App;

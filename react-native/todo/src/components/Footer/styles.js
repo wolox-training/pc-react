@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   instructions: {
     borderTopWidth: 1,
     borderTopColor: '#000000',
@@ -11,3 +11,5 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
 });
+
+export default styles;

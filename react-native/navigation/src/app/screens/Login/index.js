@@ -14,12 +14,15 @@ class Login extends Component {
   static navigationOptions = ({ navigation }) => ({
     header: null
   });
+
+  goToTabRouter = () => this.props.navigation.navigate(routes.TAB_ROUTER);
+  
   render() {
     return (
       <View style={styles.loginView}>
         <Text>Login Screen</Text>
         <Button
-          onPress={() => this.props.navigation.navigate(routes.TAB_ROUTER)}
+          onPress={this.goToTabRouter}
           title={strings.login}
         />
       </View>

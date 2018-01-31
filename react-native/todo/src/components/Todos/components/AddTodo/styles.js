@@ -1,10 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+import colors from '../../../../constants/colors';
+
+const styles = StyleSheet.create({
   input: {
-    color: '#333333',
+    color: colors.GREY,
     width: '100%',
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingHorizontal: 20,
   },
 });
+
+export default styles;

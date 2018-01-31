@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   loginView: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center' 
+    justifyContent: 'center'
   },
 });
+
+export default styles;
